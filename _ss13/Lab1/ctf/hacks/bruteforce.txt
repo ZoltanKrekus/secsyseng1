@@ -1,0 +1,7 @@
+Mit john ein wrterbuch rausschicken
+
+john -stdout -incremental | nice -19 cat
+john -stdout -incremental | nice -19 thc-ssh-crack id_dsa
+
+# wrterbuch an datei schicken
+nice -19 cat <dictionary.txt

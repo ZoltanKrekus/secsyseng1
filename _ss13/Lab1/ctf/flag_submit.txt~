@@ -1,0 +1,5 @@
+# submitting flags
+for i in ‘cat flag‘ ;
+do curl ’http://sela.inso.tuwien.ac.at:3207/submit.php?team=109&flag='$i −u ctf:password;
+done
+

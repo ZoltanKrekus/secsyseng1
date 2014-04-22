@@ -1,0 +1,10 @@
+Tudor: c++, c#, python, java, javascript, php, bash, windows scripts
+Flo: js, java, c, bash, xss, sql
+Simon: C, C++, python, java, javascript, php, batch scripts, linux
+
+Wer kann was?
+
+SQL-Injections:
+XSS: 
+Buffer Overflow:
+Linux:

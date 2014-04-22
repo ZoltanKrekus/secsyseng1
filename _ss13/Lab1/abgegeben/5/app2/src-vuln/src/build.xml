@@ -1,0 +1,28 @@
+<project name="builder" default="build" basedir=".">
+	<description>
+		application
+	</description>
+	
+	<!-- set global properties for this build -->
+	<property name="target" location="/var/www/_lgm/isec/target/"/>
+	<property name="db_host" value="localhost"/>
+	<property name="db_name" value="isec"/>
+	<property name="db_user" value="isec"/>
+	<property name="db_pass" value="isec"/>
+
+	<target name="deploy">
+		<!-- load db -->
+		<echo message="load mysql database"/>
+		<exec executable="mysql" input="./database.sql">
+			<arg value="${db_name}"/>
+			<arg value="-u${db_user}"/>
+			<arg value="-p${db_pass}"/>
+		</exec>
+
+		<!-- copy  -->
+		<copy todir="${target}">
+			<fileset dir="."/>
+		</copy>
+
+	</target>
+</project>

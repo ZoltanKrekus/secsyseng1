@@ -1,0 +1,4 @@
+#Befehle
+
+# Systemmeldungen aenderungen
+tail -f /var/log/dmesg

@@ -1,0 +1,41 @@
+##############################################
+### Windows Dropbox-Lab1-Freigabe für VBox ###
+##############################################
+
+# Quelle:
+# http://www.giannistsakiris.com/index.php/2008/04/09/virtualbox-access-windows-host-shared-folders-from-ubuntu-guest/
+
+# Important information:
+# Under windows (vbox) call the share point "ctf"
+
+
+# Open the terminal in ubuntu (xubuntu)
+
+# create the share folder that we will mount later 
+# the name 'share' is optional! you have to add it
+# to the mounting point as well
+
+sudo mkdir /media/share
+
+
+# mount the windows-vbox-share-folder called 'ctf' is the vbox share name
+# '/media/share' = "share" is the name that you entered above
+
+sudo mount -t vboxsf ctf /media/share
+
+
+# make a shortcut to the Desktop
+# CTF is optional, you can call it whatever you want
+
+ln -s /media/share ~/Desktop/CTF
+
+
+# auto mount at startup
+# Where folder-name will be the name you assigned for this folder when you 
+# were adding it in the shared folders list.
+# the share folder will be automatically mounted every 
+#				time you start your Ubuntu VirtualBox. 
+
+# add this line in the file 'etc/rc.local' BEFORE exit 0, for ex.:
+mount -t vboxsf ctf /media/share
+exit 0

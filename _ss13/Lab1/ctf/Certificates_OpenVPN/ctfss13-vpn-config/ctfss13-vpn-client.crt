@@ -1,0 +1,72 @@
+Certificate:
+    Data:
+        Version: 3 (0x2)
+        Serial Number: 2 (0x2)
+    Signature Algorithm: sha1WithRSAEncryption
+        Issuer: C=AT, ST=Vienna, L=Vienna, O=ESSE, CN=ESSE CA/emailAddress=vpn-ctfss13@security.invalid
+        Validity
+            Not Before: May 27 13:00:00 2013 GMT
+            Not After : Jul 26 13:00:00 2013 GMT
+        Subject: C=AT, ST=Vienna, L=Vienna, O=ESSE, CN=ctfss13-vpn-client/emailAddress=vpn-ctfss13@security.invalid
+        Subject Public Key Info:
+            Public Key Algorithm: rsaEncryption
+                Public-Key: (1024 bit)
+                Modulus:
+                    00:ed:e4:af:86:a2:c0:f4:14:a5:40:57:e9:a9:5a:
+                    0d:38:fc:6a:fd:76:1d:35:87:4f:1e:21:f7:12:1e:
+                    b8:80:11:e4:5f:ad:e0:13:2e:63:95:e7:10:bd:6e:
+                    3d:3c:e2:d8:89:e7:ea:95:32:65:f4:63:2f:2d:d7:
+                    61:5f:82:7c:79:f1:c4:24:b2:d7:40:8c:21:68:99:
+                    cf:4c:c1:dc:f3:8f:8b:4d:1b:3b:b9:de:cf:73:ec:
+                    f6:0e:ce:8b:ab:13:02:b9:67:08:e1:db:86:f1:ad:
+                    89:31:93:c5:b7:bf:9c:eb:40:e2:3a:89:a6:89:07:
+                    30:e8:92:af:0e:91:0b:18:ab
+                Exponent: 65537 (0x10001)
+        X509v3 extensions:
+            X509v3 Basic Constraints: 
+                CA:FALSE
+            Netscape Comment: 
+                Easy-RSA Generated Certificate
+            X509v3 Subject Key Identifier: 
+                43:61:A4:A7:39:30:81:4C:B8:4D:9A:42:F1:6C:E9:92:DA:F3:FA:E0
+            X509v3 Authority Key Identifier: 
+                keyid:2C:5A:65:62:FC:AA:37:21:46:EE:9C:1D:1D:A8:AB:58:AE:B7:10:9C
+                DirName:/C=AT/ST=Vienna/L=Vienna/O=ESSE/CN=ESSE CA/emailAddress=vpn-ctfss13@security.invalid
+                serial:ED:03:7F:50:00:4D:92:AB
+
+            X509v3 Extended Key Usage: 
+                TLS Web Client Authentication
+            X509v3 Key Usage: 
+                Digital Signature
+    Signature Algorithm: sha1WithRSAEncryption
+         b5:13:fb:6e:65:a9:9a:0a:7d:8e:7d:0f:4a:9d:b4:bd:0c:99:
+         ea:32:7f:5f:c6:6e:0f:57:57:e8:8e:5f:db:86:d9:0d:9e:76:
+         98:d6:ec:86:ef:2d:eb:6e:38:ef:94:40:52:ac:27:21:18:22:
+         2a:80:9e:61:f6:30:ce:76:c4:17:5a:b0:bd:b4:d2:1e:13:02:
+         a3:1c:f8:cf:35:2d:45:f4:92:ba:c2:15:57:5e:00:88:72:c5:
+         63:67:d1:b6:19:d7:01:8b:9d:ff:93:57:35:cc:3a:21:28:82:
+         71:46:66:f3:4c:91:a6:c4:5a:eb:26:be:52:d3:fe:5c:53:7f:
+         80:f3
+-----BEGIN CERTIFICATE-----
+MIIDsDCCAxmgAwIBAgIBAjANBgkqhkiG9w0BAQUFADB9MQswCQYDVQQGEwJBVDEP
+MA0GA1UECBMGVmllbm5hMQ8wDQYDVQQHEwZWaWVubmExDTALBgNVBAoTBEVTU0Ux
+EDAOBgNVBAMTB0VTU0UgQ0ExKzApBgkqhkiG9w0BCQEWHHZwbi1jdGZzczEzQHNl
+Y3VyaXR5LmludmFsaWQwHhcNMTMwNTI3MTMwMDAwWhcNMTMwNzI2MTMwMDAwWjCB
+iDELMAkGA1UEBhMCQVQxDzANBgNVBAgTBlZpZW5uYTEPMA0GA1UEBxMGVmllbm5h
+MQ0wCwYDVQQKEwRFU1NFMRswGQYDVQQDExJjdGZzczEzLXZwbi1jbGllbnQxKzAp
+BgkqhkiG9w0BCQEWHHZwbi1jdGZzczEzQHNlY3VyaXR5LmludmFsaWQwgZ8wDQYJ
+KoZIhvcNAQEBBQADgY0AMIGJAoGBAO3kr4aiwPQUpUBX6alaDTj8av12HTWHTx4h
+9xIeuIAR5F+t4BMuY5XnEL1uPTzi2Inn6pUyZfRjLy3XYV+CfHnxxCSy10CMIWiZ
+z0zB3POPi00bO7nez3Ps9g7Oi6sTArlnCOHbhvGtiTGTxbe/nOtA4jqJpokHMOiS
+rw6RCxirAgMBAAGjggEyMIIBLjAJBgNVHRMEAjAAMC0GCWCGSAGG+EIBDQQgFh5F
+YXN5LVJTQSBHZW5lcmF0ZWQgQ2VydGlmaWNhdGUwHQYDVR0OBBYEFENhpKc5MIFM
+uE2aQvFs6ZLa8/rgMIGwBgNVHSMEgagwgaWAFCxaZWL8qjchRu6cHR2oq1iutxCc
+oYGBpH8wfTELMAkGA1UEBhMCQVQxDzANBgNVBAgTBlZpZW5uYTEPMA0GA1UEBxMG
+Vmllbm5hMQ0wCwYDVQQKEwRFU1NFMRAwDgYDVQQDEwdFU1NFIENBMSswKQYJKoZI
+hvcNAQkBFhx2cG4tY3Rmc3MxM0BzZWN1cml0eS5pbnZhbGlkggkA7QN/UABNkqsw
+EwYDVR0lBAwwCgYIKwYBBQUHAwIwCwYDVR0PBAQDAgeAMA0GCSqGSIb3DQEBBQUA
+A4GBALUT+25lqZoKfY59D0qdtL0Mmeoyf1/Gbg9XV+iOX9uG2Q2edpjW7IbvLetu
+OO+UQFKsJyEYIiqAnmH2MM52xBdasL200h4TAqMc+M81LUX0krrCFVdeAIhyxWNn
+0bYZ1wGLnf+TVzXMOiEognFGZvNMkabEWusmvlLT/lxTf4Dz
+-----END CERTIFICATE-----
+

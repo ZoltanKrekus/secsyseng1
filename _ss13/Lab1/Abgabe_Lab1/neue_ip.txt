@@ -1,0 +1,79 @@
+1) Mit folgendem Befehl kann man nachlesen, ob routing tables gespeichert sind.
+
+walter@tomcat:~$ tail /etc/iproute2/rt_tables
+# reserved values
+#
+255	local
+254	main
+253	default
+0	unspec
+#
+# local
+#
+#1	inr.ruhep
+walter@tomcat:~$ cat /etc/iproute2/rt_tables
+#
+# reserved values
+#
+255	local
+254	main
+253	default
+0	unspec
+#
+# local
+#
+#1	inr.ruhep
+
+
+2) Folgende Tabellen werden mit ‘ip route show table <table_name>’ überprüft: local, main, default, unspec
+
+3) Table: local
+walter@tomcat:~$ ip route show table local
+broadcast 192.168.98.0 dev eth1.98  proto kernel  scope link  src 192.168.98.124 
+broadcast 127.255.255.255 dev lo  proto kernel  scope link  src 127.0.0.1 
+broadcast 192.168.20.255 dev eth0  proto kernel  scope link  src 192.168.20.100 
+broadcast 192.168.98.255 dev eth1.98  proto kernel  scope link  src 192.168.98.124 
+local 192.168.20.100 dev eth0  proto kernel  scope host  src 192.168.20.100 
+broadcast 192.168.20.0 dev eth0  proto kernel  scope link  src 192.168.20.100 
+local 192.168.98.124 dev eth1.98  proto kernel  scope host  src 192.168.98.124 
+broadcast 127.0.0.0 dev lo  proto kernel  scope link  src 127.0.0.1 
+local 127.0.0.1 dev lo  proto kernel  scope host  src 127.0.0.1 
+local 127.0.0.0/8 dev lo  proto kernel  scope host  src 127.0.0.1 
+
+4) Table: main
+walter@tomcat:~$ ip route show table main
+192.168.20.0/24 dev eth0  proto kernel  scope link  src 192.168.20.100 
+192.168.98.0/24 dev eth1.98  proto kernel  scope link  src 192.168.98.124 
+default via 192.168.98.1 dev eth1.98 
+
+5) Table: unspec
+walter@tomcat:~$ ip route show table unspec
+192.168.20.0/24 dev eth0  proto kernel  scope link  src 192.168.20.100 
+192.168.98.0/24 dev eth1.98  proto kernel  scope link  src 192.168.98.124 
+default via 192.168.98.1 dev eth1.98 
+broadcast 192.168.98.0 dev eth1.98  table local  proto kernel  scope link  src 192.168.98.124 
+broadcast 127.255.255.255 dev lo  table local  proto kernel  scope link  src 127.0.0.1 
+broadcast 192.168.20.255 dev eth0  table local  proto kernel  scope link  src 192.168.20.100 
+broadcast 192.168.98.255 dev eth1.98  table local  proto kernel  scope link  src 192.168.98.124 
+local 192.168.20.100 dev eth0  table local  proto kernel  scope host  src 192.168.20.100 
+broadcast 192.168.20.0 dev eth0  table local  proto kernel  scope link  src 192.168.20.100 
+local 192.168.98.124 dev eth1.98  table local  proto kernel  scope host  src 192.168.98.124 
+broadcast 127.0.0.0 dev lo  table local  proto kernel  scope link  src 127.0.0.1 
+local 127.0.0.1 dev lo  table local  proto kernel  scope host  src 127.0.0.1 
+local 127.0.0.0/8 dev lo  table local  proto kernel  scope host  src 127.0.0.1 
+fdcb:c447:e9d2:3553:1001::/120 dev eth1.98  proto kernel  metric 256  mtu 1500 advmss 1440 hoplimit 0
+fe80::/64 dev eth0  proto kernel  metric 256  mtu 1500 advmss 1440 hoplimit 0
+fe80::/64 dev eth1  proto kernel  metric 256  mtu 1500 advmss 1440 hoplimit 0
+fe80::/64 dev eth1.98  proto kernel  metric 256  mtu 1500 advmss 1440 hoplimit 0
+default via fdcb:c447:e9d2:3553:1001::1 dev eth1.98  metric 1024  mtu 1500 advmss 1440 hoplimit 0
+unreachable default dev lo  table unspec  proto kernel  metric -1  error -101 hoplimit 255
+local ::1 via :: dev lo  table local  proto none  metric 0  mtu 16436 rtt 0.00ms rttvar 0.00ms cwnd 3 advmss 16376 hoplimit 0
+local fdcb:c447:e9d2:3553:1001::ab via :: dev lo  table local  proto none  metric 0  mtu 16436 rtt 0.00ms rttvar 0.00ms cwnd 5 advmss 16376 hoplimit 0
+local fe80::21b:d7ff:fe12:bc52 via :: dev lo  table local  proto none  metric 0  mtu 16436 advmss 16376 hoplimit 0
+ff00::/8 dev eth0  table local  metric 256  mtu 1500 advmss 1440 hoplimit 0
+ff00::/8 dev eth1  table local  metric 256  mtu 1500 advmss 1440 hoplimit 0
+ff00::/8 dev eth1.98  table local  metric 256  mtu 1500 advmss 1440 hoplimit 0
+unreachable default dev lo  table unspec  proto kernel  metric -1  error -101 hoplimit 255
+
+
+Eine neue IPv6-Adresse wurden gefunden: fe80::21b:d7ff:fe12:bc52

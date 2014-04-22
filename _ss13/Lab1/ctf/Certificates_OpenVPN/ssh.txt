@@ -1,0 +1,20 @@
+# Verbindung zur CTF-Umgebung
+
+# Zur CTF Umgebung ist eine Verbindung mittels VPN und SSH möglich.
+# Bevor man sich mittels zur CTF-Umgebung verbinden kann, muss man mit
+# Username und Passwort via 
+# SSH einmalig zu sela.inso.tuwien.ac.at Port 3205 verbinden und 
+# das Passwort ändern.
+
+ssh <username>@sela.inso.tuwien.ac.at -p 3205
+
+# PLES
+ssh 0826687@sela.inso.tuwien.ac.at -p 3205
+# pw: Hck&31415
+
+# VPN mit sudo starten
+
+
+
+#browser Adresse eingeben:
+192.168.40.200

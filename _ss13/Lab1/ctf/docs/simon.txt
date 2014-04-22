@@ -1,0 +1,11 @@
+ssh 0926240@sela.inso.tuwien.ac.at -p 3205
+zum pwd aendern: Ib1
+
+simon@Cottonmouth:~/ctf/hacks/tmp$ whereis nmap
+nmap: /usr/bin/nmap /usr/lib/nmap /usr/bin/X11/nmap /usr/share/nmap /usr/share/man/man1/nmap.1.gz
+simon@Cottonmouth:~/ctf/hacks/tmp$ scp /usr/bin/nmap root@192.168.40.117:~
+root@192.168.40.117's password: 
+nmap                                                                  100% 1907KB   1.9MB/s   00:00    
+
+
+same libs

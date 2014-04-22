@@ -1,0 +1,10 @@
+<!DOCTYPE configuration [
+	<!ENTITY c SYSTEM "file:///c:/temp/test.txt">
+]>
+<configuration>
+	<database>
+		<url>&c;</url>
+		<user>sa</user>
+		<pw></pw>
+	</database>
+</configuration>

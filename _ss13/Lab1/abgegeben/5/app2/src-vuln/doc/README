@@ -1,0 +1,19 @@
+benoetigte / verwendete Software
+--------------------------------
+* Debian GNU/Linux Etch (Kernel 2.6.18-3-486)
+* Apache/2.2.3
+* PHP 5.2.0-8+etch13
+* mysql Ver 14.12 Distrib 5.0.32
+(die exakten Versionen sind jeweils nicht wesentlich)
+
+
+Installation der Applikation
+----------------------------
+Zur Installation wird ein ant-build-file mitgeliefert. Darin muss sowohl die Datenbankverbindung als auch das Zielverzeichnis in den "property"-Einstellungen angegeben werden. Datenbank und Benutzer müssen bereits existieren. Mit "deploy" wird die Tabelle in die Mysql-Datenbank importiert und die Dateien werden in das Zielverzeichnis kopiert. In der Datei config.php müssen ebenso die Paramter der Datenbankverbindung eingetragen werden.
+
+
+Beschreibung der Applikation
+------------------------------
+Die Applikation stellt ein Login-Portal dar, wie es in ähnlicher Form in sämtlichen Webapplikationen, CMS, Foren usw. verwendet wird. Es wurde nur die Login-Funktion implementiert. "You are <username>" ist der einzige Inhalt, der nur angemeldeten Benutzern angezeigt wird. 
+
+

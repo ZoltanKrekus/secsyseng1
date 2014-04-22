@@ -1,0 +1,12 @@
+logdaten ueberwachen skripts schreiben:
+find
+ls
+gcc aufsetzen
+http logs?
+bash tutorials suchen
+wget installieren
+netcat commands raussuchen um server aufzustellen -> internetsec todo
+grep regex tutorials suchen
+lsof fuer dateien
+beispielskript aus den folien uebernehmen
+port forwarding wie man das macht in txt datei schreiben

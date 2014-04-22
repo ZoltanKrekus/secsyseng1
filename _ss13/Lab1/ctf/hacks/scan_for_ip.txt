@@ -1,0 +1,6 @@
+for num in {1..300} 
+do 
+	ip='fdcb:c447:e9d2:3553:1000::'$(printf "%x" $num) 
+	echo "${ip}" 
+	ping6 -c 1 -t 1 $ip > /dev/null && echo "${ip} is up";
+done

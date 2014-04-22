@@ -1,0 +1,34 @@
+network topology
+
+traceroute 
+walter@tomcat:~$ tracepath [IP_ADDR]
+
+walter@tomcat:~$ tracepath -b 172.16.2.12
+ 1:  tomcat.local.vienna.essecorp.invalid (192.168.98.124)   0.070ms pmtu 1500
+ 1:  omega.local.vienna.essecorp.invalid (192.168.98.1)    0.254ms 
+ 1:  omega.local.vienna.essecorp.invalid (192.168.98.1)    0.144ms 
+ 2:  gemini.dmz.vienna.essecorp.invalid (172.16.2.12)      0.248ms reached
+     Resume: pmtu 1500 hops 2 back 63 
+
+==================================================================================
+- 192.168.98.124
+	--> 192.168.98.1 omega.local.vienna.essecorp.invalid
+		---> 172.16.2.12 gemini.dmz.vienna.essecorp.invalid	
+		---> 172.16.2.15 phoenix.dmz.vienna.essecorp.invalid	
+		---> 172.16.2.25 taurus.dmz.vienna.essecorp.invalid
+	--> 192.168.98.10 alpha.local.vienna.essecorp.invalid  
+	--> 192.168.98.28 beta.local.vienna.essecorp.invalid	
+	--> 192.168.98.54 gamma.local.vienna.essecorp.invalid	
+	--> 192.168.98.99 delta.local.vienna.essecorp.invalid	
+	--> 192.168.98.201 epsilon.local.vienna.essecorp.invalid	
+	--> 192.168.98.202 zeta.local.vienna.essecorp.invalid	
+	--> 172.16.2.253 lyra.dmz.vienna.essecorp.invalid		
+- 192.168.20.100
+	--> 192.168.20.254
+==================================================================================
+
+
+
+
+
+

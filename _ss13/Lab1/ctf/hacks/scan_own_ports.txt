@@ -1,0 +1,2 @@
+for i in {1..65000}; do ./lsof -i :$i; done
+

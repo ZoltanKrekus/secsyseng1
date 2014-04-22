@@ -1,0 +1,5 @@
+http://www.cyberciti.biz/faq/linux-unix-applesox-ssh-password-on-command-line/
+
+apt-get install sshpass
+
+sshpass -p 'mySSHPasswordHere' ssh username@server.nixcraft.net.in "uptime"

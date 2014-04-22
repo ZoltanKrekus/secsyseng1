@@ -1,0 +1,8 @@
+wireshark
+nmap
+firebug
+tamper-data
+http-poster
+
+backups vor aenderungen!
+

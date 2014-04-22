@@ -1,0 +1,49 @@
+traceroute to 192.168.20.100 (192.168.20.100), 30 hops max, 60 byte packets
+ 1  192.168.20.100 (192.168.20.100)  0.017 ms  0.005 ms  0.006 ms
+
+traceroute to 192.168.20.254 (192.168.20.254), 30 hops max, 60 byte packets
+ 1  192.168.20.254 (192.168.20.254)  0.227 ms  0.208 ms  0.219 ms
+
+traceroute to 192.168.98.1 (192.168.98.1), 30 hops max, 60 byte packets
+ 1  omega.local.vienna.essecorp.invalid (192.168.98.1)  0.258 ms  0.231 ms  0.212 ms
+
+traceroute to 192.168.98.10 (192.168.98.10), 30 hops max, 60 byte packets
+ 1  alpha.local.vienna.essecorp.invalid (192.168.98.10)  0.196 ms  0.220 ms  0.200 ms
+
+traceroute to 192.168.98.28 (192.168.98.28), 30 hops max, 60 byte packets
+ 1  beta.local.vienna.essecorp.invalid (192.168.98.28)  0.221 ms  0.195 ms  0.176 ms
+
+traceroute to 192.168.98.54 (192.168.98.54), 30 hops max, 60 byte packets
+ 1  gamma.local.vienna.essecorp.invalid (192.168.98.54)  0.213 ms  0.188 ms  0.167 ms
+
+traceroute to 192.168.98.99 (192.168.98.99), 30 hops max, 60 byte packets
+ 1  delta.local.vienna.essecorp.invalid (192.168.98.99)  2.731 ms  2.719 ms  2.710 ms
+
+traceroute to 192.168.98.124 (192.168.98.124), 30 hops max, 60 byte packets
+ 1  tomcat.local.vienna.essecorp.invalid (192.168.98.124)  0.015 ms  0.006 ms  0.006 ms
+
+traceroute to 192.168.98.201 (192.168.98.201), 30 hops max, 60 byte packets
+ 1  epsilon.local.vienna.essecorp.invalid (192.168.98.201)  2.686 ms  2.676 ms  2.669 ms
+
+traceroute to 192.168.98.202 (192.168.98.202), 30 hops max, 60 byte packets
+ 1  zeta.local.vienna.essecorp.invalid (192.168.98.202)  2.724 ms  2.713 ms  2.701 ms
+
+traceroute to 172.16.2.12 (172.16.2.12), 30 hops max, 60 byte packets
+ 1  omega.local.vienna.essecorp.invalid (192.168.98.1)  0.226 ms  0.202 ms  0.208 ms
+ 2  gemini.dmz.vienna.essecorp.invalid (172.16.2.12)  0.526 ms  0.514 ms  0.469 ms
+
+traceroute to 172.16.2.15 (172.16.2.15), 30 hops max, 60 byte packets
+ 1  omega.local.vienna.essecorp.invalid (192.168.98.1)  0.325 ms  0.298 ms  0.285 ms
+ 2  phoenix.dmz.vienna.essecorp.invalid (172.16.2.15)  0.563 ms  0.549 ms  0.538 ms
+
+traceroute to 172.16.2.25 (172.16.2.25), 30 hops max, 60 byte packets
+ 1  omega.local.vienna.essecorp.invalid (192.168.98.1)  0.230 ms  0.203 ms  0.242 ms
+ 2  taurus.dmz.vienna.essecorp.invalid (172.16.2.25)  0.484 ms  0.472 ms  0.442 ms
+
+traceroute to 172.16.2.253 (172.16.2.253), 30 hops max, 60 byte packets
+ 1  lyra.dmz.vienna.essecorp.invalid (172.16.2.253)  0.307 ms  0.278 ms  0.266 ms
+
+
+
+
+

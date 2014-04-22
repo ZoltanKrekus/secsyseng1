@@ -1,0 +1,1 @@
+hsdata is the datafile used by haskell to store the information. If this file is missing haskell won't work

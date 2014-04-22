@@ -1,0 +1,7 @@
+<configuration>
+	<database>
+		<url>jdbc:hsqldb:mem:test</url>
+		<user>sa</user>
+		<pw></pw>
+	</database>
+</configuration>

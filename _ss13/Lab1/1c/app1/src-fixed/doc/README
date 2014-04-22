@@ -1,0 +1,5 @@
+Die Applikation0 ist eine winzige Applikation, die es einen Benutzer erlaubt sich einzuloggen,
+eine Nachricht aus einer Datenbank auszulesen und eine neue hineinzuspeichern.
+
+Erforderliche Software:
+Java Runtime, getestet für Version 7

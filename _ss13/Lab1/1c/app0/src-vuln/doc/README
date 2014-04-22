@@ -1,0 +1,10 @@
+Erforderliche Software um die Applikation ausführen zu können u.a.
+	- getestet unter Ubuntu 12.04, 32 bit
+	- gcc (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
+	- GNU Make 3.81
+
+
+Hinweise zum Erstellen der Applikation wie zum Beispiel Compiler
+	- make ausführen...
+
+

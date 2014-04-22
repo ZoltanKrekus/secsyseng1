@@ -1,0 +1,22 @@
+network topology
+
+- 192.168.98.124
+	--> 192.168.98.1 omega.local.vienna.essecorp.invalid
+		---> 172.16.2.12 gemini.dmz.vienna.essecorp.invalid	
+		---> 172.16.2.15 phoenix.dmz.vienna.essecorp.invalid	
+		---> 172.16.2.25 taurus.dmz.vienna.essecorp.invalid
+	--> 192.168.98.10 alpha.local.vienna.essecorp.invalid  
+	--> 192.168.98.28 beta.local.vienna.essecorp.invalid	
+	--> 192.168.98.54 gamma.local.vienna.essecorp.invalid	
+	--> 192.168.98.99 delta.local.vienna.essecorp.invalid	
+	--> 192.168.98.201 epsilon.local.vienna.essecorp.invalid	
+	--> 192.168.98.202 zeta.local.vienna.essecorp.invalid	
+	--> 172.16.2.253 lyra.dmz.vienna.essecorp.invalid		
+- 192.168.20.100
+	--> 192.168.20.254
+
+
+
+
+
+

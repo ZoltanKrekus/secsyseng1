@@ -1,0 +1,37 @@
+--------------------------------
+-- Protokoll Gruppe Anonymus ---
+--------------------------------
+
+Mitglieder:
+	0702077 - Zoltan KREKUS 
+	0725439 - Florin Bogdan BALINT
+	0826687 - Tudor-Octav PLES
+	0926240 - Simon Georg HECHT 
+
+---------------------------------
+
+ssh root@192.168.40.117
+pwd: DonSe339B
+
+SERVICES UNTER /home zu finden
+
+
+check.php und login.php unter whateverservice sql injection ausgebessert:
+
+IST:
+$stmt = $dbh->query("SELECT username FROM user WHERE username = '$username' AND password = '$password'");
+
+SOLL:
+$stmt = $dbh->query("SELECT username FROM user WHERE username = :username AND password = :password");
+$stmt->bindParam(':username', $username);
+$stmt->bindParam(':password', $password);
+
+$stmt = $dbh->query("SELECT note FROM user,whatevernote WHERE user.username = :username and user.id = whatevernote.username");
+$stmt->bindParam(':username', $username);
+
+POST mittels POSTER im Firefox liefert:
+
+http://192.168.40.117:8090/register.php
+die php version:  PHP/5.3.3-7+squeeze15
+und den server:  lighttpd/1.4.28
+

