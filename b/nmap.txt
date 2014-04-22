@@ -998,3 +998,275 @@ Nmap scan report for 192.168.98.63
 Host is up (1.6s latency).
 All 1000 scanned ports on 192.168.98.63 are filtered
 
+
+
+dnmap -sL 192.168.98.124/24
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:44 CEST
+Stats: 0:00:35 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 10.55% done; ETC: 17:50 (0:04:57 remaining)
+Stats: 0:02:42 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 50.78% done; ETC: 17:50 (0:02:37 remaining)
+Stats: 0:02:43 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 50.78% done; ETC: 17:50 (0:02:39 remaining)
+Stats: 0:03:42 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 67.97% done; ETC: 17:50 (0:01:45 remaining)
+Stats: 0:04:17 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 80.47% done; ETC: 17:50 (0:01:03 remaining)
+Nmap scan report for 192.168.98.0
+Nmap scan report for omega.local.vienna.essecorp.invalid (192.168.98.1)
+Nmap scan report for 192.168.98.2
+Nmap scan report for 192.168.98.3
+Nmap scan report for 192.168.98.4
+Nmap scan report for 192.168.98.5
+Nmap scan report for 192.168.98.6
+Nmap scan report for 192.168.98.7
+Nmap scan report for 192.168.98.8
+Nmap scan report for 192.168.98.9
+Nmap scan report for alpha.local.vienna.essecorp.invalid (192.168.98.10)
+Nmap scan report for 192.168.98.11
+Nmap scan report for 192.168.98.12
+Nmap scan report for 192.168.98.13
+Nmap scan report for 192.168.98.14
+Nmap scan report for 192.168.98.15
+Nmap scan report for 192.168.98.16
+Nmap scan report for 192.168.98.17
+Nmap scan report for 192.168.98.18
+Nmap scan report for 192.168.98.19
+Nmap scan report for 192.168.98.20
+Nmap scan report for 192.168.98.21
+Nmap scan report for 192.168.98.22
+Nmap scan report for 192.168.98.23
+Nmap scan report for 192.168.98.24
+Nmap scan report for 192.168.98.25
+Nmap scan report for 192.168.98.26
+Nmap scan report for 192.168.98.27
+Nmap scan report for beta.local.vienna.essecorp.invalid (192.168.98.28)
+Nmap scan report for 192.168.98.29
+Nmap scan report for 192.168.98.30
+Nmap scan report for 192.168.98.31
+Nmap scan report for 192.168.98.32
+Nmap scan report for 192.168.98.33
+Nmap scan report for 192.168.98.34
+Nmap scan report for 192.168.98.35
+Nmap scan report for 192.168.98.36
+Nmap scan report for 192.168.98.37
+Nmap scan report for 192.168.98.38
+Nmap scan report for 192.168.98.39
+Nmap scan report for 192.168.98.40
+Nmap scan report for 192.168.98.41
+Nmap scan report for 192.168.98.42
+Nmap scan report for 192.168.98.43
+Nmap scan report for 192.168.98.44
+Nmap scan report for 192.168.98.45
+Nmap scan report for 192.168.98.46
+Nmap scan report for 192.168.98.47
+Nmap scan report for 192.168.98.48
+Nmap scan report for 192.168.98.49
+Nmap scan report for 192.168.98.50
+Nmap scan report for 192.168.98.51
+Nmap scan report for 192.168.98.52
+Nmap scan report for 192.168.98.53
+Nmap scan report for gamma.local.vienna.essecorp.invalid (192.168.98.54)
+Nmap scan report for 192.168.98.55
+Nmap scan report for 192.168.98.56
+Nmap scan report for 192.168.98.57
+Nmap scan report for 192.168.98.58
+Nmap scan report for 192.168.98.59
+Nmap scan report for 192.168.98.60
+Nmap scan report for 192.168.98.61
+Nmap scan report for 192.168.98.62
+Nmap scan report for 192.168.98.63
+Nmap scan report for 192.168.98.64
+Nmap scan report for 192.168.98.65
+Nmap scan report for 192.168.98.66
+Nmap scan report for 192.168.98.67
+Nmap scan report for 192.168.98.68
+Nmap scan report for 192.168.98.69
+Nmap scan report for 192.168.98.70
+Nmap scan report for 192.168.98.71
+Nmap scan report for 192.168.98.72
+Nmap scan report for 192.168.98.73
+Nmap scan report for 192.168.98.74
+Nmap scan report for 192.168.98.75
+Nmap scan report for 192.168.98.76
+Nmap scan report for 192.168.98.77
+Nmap scan report for 192.168.98.78
+Nmap scan report for 192.168.98.79
+Nmap scan report for 192.168.98.80
+Nmap scan report for 192.168.98.81
+Nmap scan report for 192.168.98.82
+Nmap scan report for 192.168.98.83
+Nmap scan report for 192.168.98.84
+Nmap scan report for 192.168.98.85
+Nmap scan report for 192.168.98.86
+Nmap scan report for 192.168.98.87
+Nmap scan report for 192.168.98.88
+Nmap scan report for 192.168.98.89
+Nmap scan report for 192.168.98.90
+Nmap scan report for 192.168.98.91
+Nmap scan report for 192.168.98.92
+Nmap scan report for 192.168.98.93
+Nmap scan report for 192.168.98.94
+Nmap scan report for 192.168.98.95
+Nmap scan report for 192.168.98.96
+Nmap scan report for 192.168.98.97
+Nmap scan report for 192.168.98.98
+Nmap scan report for delta.local.vienna.essecorp.invalid (192.168.98.99)
+Nmap scan report for 192.168.98.100
+Nmap scan report for 192.168.98.101
+Nmap scan report for 192.168.98.102
+Nmap scan report for 192.168.98.103
+Nmap scan report for 192.168.98.104
+Nmap scan report for 192.168.98.105
+Nmap scan report for 192.168.98.106
+Nmap scan report for 192.168.98.107
+Nmap scan report for 192.168.98.108
+Nmap scan report for 192.168.98.109
+Nmap scan report for 192.168.98.110
+Nmap scan report for 192.168.98.111
+Nmap scan report for 192.168.98.112
+Nmap scan report for 192.168.98.113
+Nmap scan report for 192.168.98.114
+Nmap scan report for 192.168.98.115
+Nmap scan report for 192.168.98.116
+Nmap scan report for 192.168.98.117
+Nmap scan report for 192.168.98.118
+Nmap scan report for 192.168.98.119
+Nmap scan report for 192.168.98.120
+Nmap scan report for 192.168.98.121
+Nmap scan report for 192.168.98.122
+Nmap scan report for 192.168.98.123
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (192.168.98.124)
+Nmap scan report for 192.168.98.125
+Nmap scan report for 192.168.98.126
+Nmap scan report for 192.168.98.127
+Nmap scan report for 192.168.98.128
+Nmap scan report for 192.168.98.129
+Nmap scan report for 192.168.98.130
+Nmap scan report for 192.168.98.131
+Nmap scan report for 192.168.98.132
+Nmap scan report for 192.168.98.133
+Nmap scan report for 192.168.98.134
+Nmap scan report for 192.168.98.135
+Nmap scan report for 192.168.98.136
+Nmap scan report for 192.168.98.137
+Nmap scan report for 192.168.98.138
+Nmap scan report for 192.168.98.139
+Nmap scan report for 192.168.98.140
+Nmap scan report for 192.168.98.141
+Nmap scan report for 192.168.98.142
+Nmap scan report for 192.168.98.143
+Nmap scan report for 192.168.98.144
+Nmap scan report for 192.168.98.145
+Nmap scan report for 192.168.98.146
+Nmap scan report for 192.168.98.147
+Nmap scan report for 192.168.98.148
+Nmap scan report for 192.168.98.149
+Nmap scan report for 192.168.98.150
+Nmap scan report for 192.168.98.151
+Nmap scan report for 192.168.98.152
+Nmap scan report for 192.168.98.153
+Nmap scan report for 192.168.98.154
+Nmap scan report for 192.168.98.155
+Nmap scan report for 192.168.98.156
+Nmap scan report for 192.168.98.157
+Nmap scan report for 192.168.98.158
+Nmap scan report for 192.168.98.159
+Nmap scan report for 192.168.98.160
+Nmap scan report for 192.168.98.161
+Nmap scan report for 192.168.98.162
+Nmap scan report for 192.168.98.163
+Nmap scan report for 192.168.98.164
+Nmap scan report for 192.168.98.165
+Nmap scan report for 192.168.98.166
+Nmap scan report for 192.168.98.167
+Nmap scan report for 192.168.98.168
+Nmap scan report for 192.168.98.169
+Nmap scan report for 192.168.98.170
+Nmap scan report for 192.168.98.171
+Nmap scan report for 192.168.98.172
+Nmap scan report for 192.168.98.173
+Nmap scan report for 192.168.98.174
+Nmap scan report for 192.168.98.175
+Nmap scan report for 192.168.98.176
+Nmap scan report for 192.168.98.177
+Nmap scan report for 192.168.98.178
+Nmap scan report for 192.168.98.179
+Nmap scan report for 192.168.98.180
+Nmap scan report for 192.168.98.181
+Nmap scan report for 192.168.98.182
+Nmap scan report for 192.168.98.183
+Nmap scan report for 192.168.98.184
+Nmap scan report for 192.168.98.185
+Nmap scan report for 192.168.98.186
+Nmap scan report for 192.168.98.187
+Nmap scan report for 192.168.98.188
+Nmap scan report for 192.168.98.189
+Nmap scan report for 192.168.98.190
+Nmap scan report for 192.168.98.191
+Nmap scan report for 192.168.98.192
+Nmap scan report for 192.168.98.193
+Nmap scan report for 192.168.98.194
+Nmap scan report for 192.168.98.195
+Nmap scan report for 192.168.98.196
+Nmap scan report for 192.168.98.197
+Nmap scan report for 192.168.98.198
+Nmap scan report for 192.168.98.199
+Nmap scan report for 192.168.98.200
+Nmap scan report for epsilon.local.vienna.essecorp.invalid (192.168.98.201)
+Nmap scan report for zeta.local.vienna.essecorp.invalid (192.168.98.202)
+Nmap scan report for 192.168.98.203
+Nmap scan report for 192.168.98.204
+Nmap scan report for 192.168.98.205
+Nmap scan report for 192.168.98.206
+Nmap scan report for 192.168.98.207
+Nmap scan report for 192.168.98.208
+Nmap scan report for 192.168.98.209
+Nmap scan report for 192.168.98.210
+Nmap scan report for 192.168.98.211
+Nmap scan report for 192.168.98.212
+Nmap scan report for 192.168.98.213
+Nmap scan report for 192.168.98.214
+Nmap scan report for 192.168.98.215
+Nmap scan report for 192.168.98.216
+Nmap scan report for 192.168.98.217
+Nmap scan report for 192.168.98.218
+Nmap scan report for 192.168.98.219
+Nmap scan report for 192.168.98.220
+Nmap scan report for 192.168.98.221
+Nmap scan report for 192.168.98.222
+Nmap scan report for 192.168.98.223
+Nmap scan report for 192.168.98.224
+Nmap scan report for 192.168.98.225
+Nmap scan report for 192.168.98.226
+Nmap scan report for 192.168.98.227
+Nmap scan report for 192.168.98.228
+Nmap scan report for 192.168.98.229
+Nmap scan report for 192.168.98.230
+Nmap scan report for 192.168.98.231
+Nmap scan report for 192.168.98.232
+Nmap scan report for 192.168.98.233
+Nmap scan report for 192.168.98.234
+Nmap scan report for 192.168.98.235
+Nmap scan report for 192.168.98.236
+Nmap scan report for 192.168.98.237
+Nmap scan report for 192.168.98.238
+Nmap scan report for 192.168.98.239
+Nmap scan report for 192.168.98.240
+Nmap scan report for 192.168.98.241
+Nmap scan report for 192.168.98.242
+Nmap scan report for 192.168.98.243
+Nmap scan report for 192.168.98.244
+Nmap scan report for 192.168.98.245
+Nmap scan report for 192.168.98.246
+Nmap scan report for 192.168.98.247
+Nmap scan report for 192.168.98.248
+Nmap scan report for 192.168.98.249
+Nmap scan report for 192.168.98.250
+Nmap scan report for 192.168.98.251
+Nmap scan report for 192.168.98.252
+Nmap scan report for 192.168.98.253
+Nmap scan report for 192.168.98.254
+Nmap scan report for 192.168.98.255
+Nmap done: 256 IP addresses (0 hosts up) scanned in 321.03 seconds
