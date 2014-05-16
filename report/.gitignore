@@ -3,3 +3,5 @@
 !.gitignore
 !protocol.tex
 !Makefile
+!dirtree.tex
+!dirtree.sty

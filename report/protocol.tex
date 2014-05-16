@@ -12,6 +12,7 @@
 
 \documentclass[12pt,a4paper,titlepage,oneside]{scrartcl}
 \usepackage{esseProtocol}
+\usepackage{dirtree}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -20,9 +21,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Group number or "0" for Lab0
-\newcommand{\gruppe}{0}
+\newcommand{\gruppe}{13}
 % Date
-\newcommand{\datum}{2014-04-08}
+\newcommand{\datum}{2014-05-16}
 % valid values: "Lab0", "Lab1" (be sure to use Uppercase for first character)
 \newcommand{\lab}{Lab1}
 
@@ -34,29 +35,24 @@
 \newcommand{\semester}{SS 2014}
 
 % Student data in Lab0 or 1. student of group in Lab1
-\newcommand{\studentAName}{John Doe}
-\renewcommand{\studentAMatrnr}{4711081}
-\newcommand{\studentAEmail}{e4711081@student.tuwien.ac.at}
+\newcommand{\studentAName}{Ren\'{e} Czerny}
+\renewcommand{\studentAMatrnr}{0825750}
+\newcommand{\studentAEmail}{e0825750@student.tuwien.ac.at}
 
 % 2. student of group in Lab1, for Lab0 or if your group has less students, remove these 3 lines
-\newcommand{\studentBName}{Martha Musterfrau}
-\renewcommand{\studentBMatrnr}{5234567}
-\newcommand{\studentBEmail}{e5234567@student.tuwien.ac.at}
+\newcommand{\studentBName}{Zoltan Krekus}
+\renewcommand{\studentBMatrnr}{0702077}
+\newcommand{\studentBEmail}{e0702077@student.tuwien.ac.at}
 
 % 3. student of group in Lab1, for Lab0 or if your group has less students, remove these 3 lines
-\newcommand{\studentCName}{Erika Musterfrau}
-\renewcommand{\studentCMatrnr}{3815421}
-\newcommand{\studentCEmail}{e3815421@student.tuwien.ac.at}
+\newcommand{\studentCName}{Philipp Muhoray}
+\renewcommand{\studentCMatrnr}{0967964}
+\newcommand{\studentCEmail}{e0967964@student.tuwien.ac.at}
 
 % 4. student of group in Lab1, for Lab0 or if your group has less students, remove these 3 lines
-\newcommand{\studentDName}{Otto Mustermann}
-\renewcommand{\studentDMatrnr}{3995421}
-\newcommand{\studentDEmail}{e3995421@student.tuwien.ac.at}
-
-% 5. student of group in Lab1, for Lab0 or if your group has less students, remove these 3 lines
-\newcommand{\studentEName}{Maria Musterfrau}
-\renewcommand{\studentEMatrnr}{3236214}
-\newcommand{\studentEEmail}{e3236214@student.tuwien.ac.at}
+\newcommand{\studentDName}{Peter Neubauer}
+\renewcommand{\studentDMatrnr}{0725263}
+\newcommand{\studentDEmail}{e0725263@student.tuwien.ac.at}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -81,7 +77,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Section 1}
+\section{Lab1a}
 
 \subsection{Notes}
 \emph{Notes:}
@@ -101,7 +97,7 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 \subsection{Sub-Section 2}
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-\section{Section 2}
+\section{Lab1b}
 
 \subsection{Sub-Section 1}
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
@@ -112,16 +108,51 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 \subsection{Sub-Section 3}
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
 
-\section{Demos}
+\section{Lab1c}
 
-\subsection{Source Code format}
-In these sections a few examples how to format source code in \LaTeX are given.
+\subsection{A1 - Injection}
+This application is a small example of a shell injection vulnerability. Injection in general is a widely distributed vulnerability, which can be used
+in various attacks, where one could inject malicious code, get sensitive information, etc.. This example handles a specific version of injection, namely the shell injection. The basis of this vulnerability is, that a user input is forwarded to the system's shell without any validation whatsoever. Attackers can add shell commands to the user input, which will be executed by the program. To counter these attacks, it is necessary to validate the user input, by escaping/removing special characters that are interpreted by the shell, like  \textit{\$, |, \&, <, >, ` and ;}. Even better though, is to completely avoid shell execution from another program, especially if user input is involved.
+
+The example program takes a string as argument and returns it in 1337 speak. It uses the c function
+\textit{system(char *string)}, which makes it vulnerable to shell injection (see code line 42 in the vulnerable source code). The fixed program filters
+every special character, that could be used in a shell injection and replaces it with an
+underscore (see code line 40 and 41 in the fixed source code). Therefore, an attacker is not able to input additional shell commands any more.
+
+The directory structure of the application is as follows:
+
+\dirtree{%
+.1 app3. 
+.2 exploit. 
+.3 Makefile\DTcomment{used to build the example programs}. 
+.3 README. 
+.2 src-vuln.
+.3 1337echo.c\DTcomment{The program vulnerable to shell injection}. 
+.2 src-fixed. 
+.3 1337echo.c\DTcomment{The program no longer vulnerable to shell injection}. 
+}
+
+To compile both the vulnerable and the fixed program, just run
+
+\lstinline{make}
+
+in the \textit{exploit} directory to compile both the vulnerable and the not vulnerable program.
+
+To use the examples after compiling, run 1337echo in the folder \textit{src-vuln} or \textit{src-fixed} (depending on which you want to try):
+
+\lstinline{./1337echo "This is a test!"}
+
+An example exploiting the vulnerability would be (please use with care!):
+
+\lstinline{./1337echo "I will exploit! && rm *"}
+
+An occurrence of a shell injection vulnerability happened in the X.Org X11 server, where remote attackers where allowed to execute commands\footnote{http://www.cvedetails.com/cve/CVE-2011-0465/}. This vulnerability got a CVSS score of 9.3, making it a very delicate one, since it resulted in total information disclosure, total compromise of system integrity and a possibility for total shutdown, while the attacker is not even authenticated.
 
 (\hyperref[code:example1]{see listing~\ref*{code:example1} on page~\pageref*{code:example1}} and \hyperref[code:example2]{see listing~\ref*{code:example2} on page~\pageref*{code:example2}}).
 
 You can include short code snippets or commands directly inline with \lstinline{lstinline block}.
 
-\lstinputlisting[caption=Example C/C++ file,label=code:example1,style=c]{example.c}
+%\lstinputlisting[caption=Example C/C++ file,label=code:example1,style=c]{example.c}
 
 \begin{lstlisting}[caption=Example bash script,label=code:example2,style=simple]
 #!/bin/bash
