@@ -1,0 +1,852 @@
+
+nmap -PS 192.168.98.124/24
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:15 CEST
+Nmap scan report for omega.local.vienna.essecorp.invalid (192.168.98.1)
+Host is up (0.00072s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap scan report for alpha.local.vienna.essecorp.invalid (192.168.98.10)
+Host is up (0.00041s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+53/tcp open  domain
+
+Nmap scan report for beta.local.vienna.essecorp.invalid (192.168.98.28)
+Host is up (0.00056s latency).
+Not shown: 997 closed ports
+PORT    STATE SERVICE
+25/tcp  open  smtp
+110/tcp open  pop3
+143/tcp open  imap
+
+Nmap scan report for gamma.local.vienna.essecorp.invalid (192.168.98.54)
+Host is up (0.00073s latency).
+Not shown: 999 closed ports
+PORT     STATE SERVICE
+1080/tcp open  socks
+
+Nmap scan report for delta.local.vienna.essecorp.invalid (192.168.98.99)
+Host is up (0.00070s latency).
+Not shown: 999 closed ports
+PORT    STATE SERVICE
+631/tcp open  ipp
+
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (192.168.98.124)
+Host is up (0.00055s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+
+Nmap scan report for epsilon.local.vienna.essecorp.invalid (192.168.98.201)
+Host is up (0.00042s latency).
+Not shown: 998 closed ports
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Nmap scan report for zeta.local.vienna.essecorp.invalid (192.168.98.202)
+Host is up (0.00076s latency).
+All 1000 scanned ports on zeta.local.vienna.essecorp.invalid (192.168.98.202) are closed
+
+Nmap done: 256 IP addresses (8 hosts up) scanned in 1.40 seconds
+
+
+
+
+
+
+
+
+###########################
+
+nmap -PA 192.168.98.124/24
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:16 CEST
+Nmap scan report for omega.local.vienna.essecorp.invalid (192.168.98.1)
+Host is up (0.0011s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap scan report for alpha.local.vienna.essecorp.invalid (192.168.98.10)
+Host is up (0.00074s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+53/tcp open  domain
+
+Nmap scan report for beta.local.vienna.essecorp.invalid (192.168.98.28)
+Host is up (0.00072s latency).
+Not shown: 997 closed ports
+PORT    STATE SERVICE
+25/tcp  open  smtp
+110/tcp open  pop3
+143/tcp open  imap
+
+Nmap scan report for gamma.local.vienna.essecorp.invalid (192.168.98.54)
+Host is up (0.00089s latency).
+Not shown: 999 closed ports
+PORT     STATE SERVICE
+1080/tcp open  socks
+
+Nmap scan report for delta.local.vienna.essecorp.invalid (192.168.98.99)
+Host is up (0.0013s latency).
+Not shown: 999 closed ports
+PORT    STATE SERVICE
+631/tcp open  ipp
+
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (192.168.98.124)
+Host is up (0.00079s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+
+Nmap scan report for epsilon.local.vienna.essecorp.invalid (192.168.98.201)
+Host is up (0.00076s latency).
+Not shown: 998 closed ports
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Nmap scan report for zeta.local.vienna.essecorp.invalid (192.168.98.202)
+Host is up (0.0013s latency).
+All 1000 scanned ports on zeta.local.vienna.essecorp.invalid (192.168.98.202) are closed
+
+Nmap done: 256 IP addresses (8 hosts up) scanned in 1.73 seconds
+
+
+
+
+
+
+
+
+##############################
+
+
+nmap -PE 192.168.98.124/24
+Warning:  You are not root -- using TCP pingscan rather than ICMP
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:17 CEST
+Nmap scan report for omega.local.vienna.essecorp.invalid (192.168.98.1)
+Host is up (0.00085s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap scan report for alpha.local.vienna.essecorp.invalid (192.168.98.10)
+Host is up (0.00071s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+53/tcp open  domain
+
+Nmap scan report for beta.local.vienna.essecorp.invalid (192.168.98.28)
+Host is up (0.00069s latency).
+Not shown: 997 closed ports
+PORT    STATE SERVICE
+25/tcp  open  smtp
+110/tcp open  pop3
+143/tcp open  imap
+
+Nmap scan report for gamma.local.vienna.essecorp.invalid (192.168.98.54)
+Host is up (0.00087s latency).
+Not shown: 999 closed ports
+PORT     STATE SERVICE
+1080/tcp open  socks
+
+Nmap scan report for delta.local.vienna.essecorp.invalid (192.168.98.99)
+Host is up (0.00077s latency).
+Not shown: 999 closed ports
+PORT    STATE SERVICE
+631/tcp open  ipp
+
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (192.168.98.124)
+Host is up (0.00070s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+
+Nmap scan report for epsilon.local.vienna.essecorp.invalid (192.168.98.201)
+Host is up (0.00066s latency).
+Not shown: 998 closed ports
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Nmap scan report for zeta.local.vienna.essecorp.invalid (192.168.98.202)
+Host is up (0.00056s latency).
+All 1000 scanned ports on zeta.local.vienna.essecorp.invalid (192.168.98.202) are closed
+
+Nmap done: 256 IP addresses (8 hosts up) scanned in 1.35 seconds
+
+
+
+###############################################
+
+
+nmap -PP 192.168.98.124/24
+Warning:  You are not root -- using TCP pingscan rather than ICMP
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:17 CEST
+Nmap scan report for omega.local.vienna.essecorp.invalid (192.168.98.1)
+Host is up (0.00056s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap scan report for alpha.local.vienna.essecorp.invalid (192.168.98.10)
+Host is up (0.00070s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+53/tcp open  domain
+
+Nmap scan report for beta.local.vienna.essecorp.invalid (192.168.98.28)
+Host is up (0.00068s latency).
+Not shown: 997 closed ports
+PORT    STATE SERVICE
+25/tcp  open  smtp
+110/tcp open  pop3
+143/tcp open  imap
+
+Nmap scan report for gamma.local.vienna.essecorp.invalid (192.168.98.54)
+Host is up (0.00061s latency).
+Not shown: 999 closed ports
+PORT     STATE SERVICE
+1080/tcp open  socks
+
+Nmap scan report for delta.local.vienna.essecorp.invalid (192.168.98.99)
+Host is up (0.00045s latency).
+Not shown: 999 closed ports
+PORT    STATE SERVICE
+631/tcp open  ipp
+
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (192.168.98.124)
+Host is up (0.00072s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+
+Nmap scan report for epsilon.local.vienna.essecorp.invalid (192.168.98.201)
+Host is up (0.00070s latency).
+Not shown: 998 closed ports
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Nmap scan report for zeta.local.vienna.essecorp.invalid (192.168.98.202)
+Host is up (0.00038s latency).
+All 1000 scanned ports on zeta.local.vienna.essecorp.invalid (192.168.98.202) are closed
+
+Nmap done: 256 IP addresses (8 hosts up) scanned in 1.58 seconds
+
+
+##################################
+
+nmap -PM 192.168.98.124/24
+Warning:  You are not root -- using TCP pingscan rather than ICMP
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:18 CEST
+Nmap scan report for omega.local.vienna.essecorp.invalid (192.168.98.1)
+Host is up (0.00062s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap scan report for alpha.local.vienna.essecorp.invalid (192.168.98.10)
+Host is up (0.00037s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+53/tcp open  domain
+
+Nmap scan report for beta.local.vienna.essecorp.invalid (192.168.98.28)
+Host is up (0.00055s latency).
+Not shown: 997 closed ports
+PORT    STATE SERVICE
+25/tcp  open  smtp
+110/tcp open  pop3
+143/tcp open  imap
+
+Nmap scan report for gamma.local.vienna.essecorp.invalid (192.168.98.54)
+Host is up (0.00069s latency).
+Not shown: 999 closed ports
+PORT     STATE SERVICE
+1080/tcp open  socks
+
+Nmap scan report for delta.local.vienna.essecorp.invalid (192.168.98.99)
+Host is up (0.00067s latency).
+Not shown: 999 closed ports
+PORT    STATE SERVICE
+631/tcp open  ipp
+
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (192.168.98.124)
+Host is up (0.00057s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+
+Nmap scan report for epsilon.local.vienna.essecorp.invalid (192.168.98.201)
+Host is up (0.00039s latency).
+Not shown: 998 closed ports
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Nmap scan report for zeta.local.vienna.essecorp.invalid (192.168.98.202)
+Host is up (0.00065s latency).
+All 1000 scanned ports on zeta.local.vienna.essecorp.invalid (192.168.98.202) are closed
+
+Nmap done: 256 IP addresses (8 hosts up) scanned in 1.38 seconds
+
+
+######################################
+user13@tomcat:~$ nmap -Pn 192.168.98.124/24
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:18 CEST
+Stats: 0:00:35 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 10.55% done; ETC: 17:24 (0:04:57 remaining)
+Nmap scan report for 192.168.98.0
+Host is up.
+All 1000 scanned ports on 192.168.98.0 are filtered
+
+Nmap scan report for omega.local.vienna.essecorp.invalid (192.168.98.1)
+Host is up (0.00038s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap scan report for 192.168.98.2
+Host is up (1.2s latency).
+All 1000 scanned ports on 192.168.98.2 are filtered
+
+Nmap scan report for 192.168.98.3
+Host is up (0.87s latency).
+All 1000 scanned ports on 192.168.98.3 are filtered
+
+Nmap scan report for 192.168.98.4
+Host is up (1.3s latency).
+All 1000 scanned ports on 192.168.98.4 are filtered
+
+Nmap scan report for 192.168.98.5
+Host is up (0.56s latency).
+All 1000 scanned ports on 192.168.98.5 are filtered
+
+Nmap scan report for 192.168.98.6
+Host is up (1.1s latency).
+All 1000 scanned ports on 192.168.98.6 are filtered
+
+Nmap scan report for 192.168.98.7
+Host is up (0.72s latency).
+All 1000 scanned ports on 192.168.98.7 are filtered
+
+Nmap scan report for 192.168.98.8
+Host is up (1.3s latency).
+All 1000 scanned ports on 192.168.98.8 are filtered
+
+Nmap scan report for 192.168.98.9
+Host is up (1.4s latency).
+All 1000 scanned ports on 192.168.98.9 are filtered
+
+Nmap scan report for alpha.local.vienna.essecorp.invalid (192.168.98.10)
+Host is up (0.00062s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+53/tcp open  domain
+
+Nmap scan report for 192.168.98.11
+Host is up (1.1s latency).
+All 1000 scanned ports on 192.168.98.11 are filtered
+
+Nmap scan report for 192.168.98.12
+Host is up (1.1s latency).
+All 1000 scanned ports on 192.168.98.12 are filtered
+
+Nmap scan report for 192.168.98.13
+Host is up (0.94s latency).
+All 1000 scanned ports on 192.168.98.13 are filtered
+
+Nmap scan report for 192.168.98.14
+Host is up (1.2s latency).
+All 1000 scanned ports on 192.168.98.14 are filtered
+
+Nmap scan report for 192.168.98.15
+Host is up (1.9s latency).
+All 1000 scanned ports on 192.168.98.15 are filtered
+
+Nmap scan report for 192.168.98.16
+Host is up (1.3s latency).
+All 1000 scanned ports on 192.168.98.16 are filtered
+
+Nmap scan report for 192.168.98.17
+Host is up (1.0s latency).
+All 1000 scanned ports on 192.168.98.17 are filtered
+
+Nmap scan report for 192.168.98.18
+Host is up (1.4s latency).
+All 1000 scanned ports on 192.168.98.18 are filtered
+
+Nmap scan report for 192.168.98.19
+Host is up (0.82s latency).
+All 1000 scanned ports on 192.168.98.19 are filtered
+
+Nmap scan report for 192.168.98.20
+Host is up (1.0s latency).
+All 1000 scanned ports on 192.168.98.20 are filtered
+
+Nmap scan report for 192.168.98.21
+Host is up (1.9s latency).
+All 1000 scanned ports on 192.168.98.21 are filtered
+
+Nmap scan report for 192.168.98.22
+Host is up (0.66s latency).
+All 1000 scanned ports on 192.168.98.22 are filtered
+
+Nmap scan report for 192.168.98.23
+Host is up (0.74s latency).
+All 1000 scanned ports on 192.168.98.23 are filtered
+
+Nmap scan report for 192.168.98.24
+Host is up (0.80s latency).
+All 1000 scanned ports on 192.168.98.24 are filtered
+
+Nmap scan report for 192.168.98.25
+Host is up (1.2s latency).
+All 1000 scanned ports on 192.168.98.25 are filtered
+
+Nmap scan report for 192.168.98.26
+Host is up (1.0s latency).
+All 1000 scanned ports on 192.168.98.26 are filtered
+
+Nmap scan report for 192.168.98.27
+Host is up (0.87s latency).
+All 1000 scanned ports on 192.168.98.27 are filtered
+
+Nmap scan report for beta.local.vienna.essecorp.invalid (192.168.98.28)
+Host is up (0.00060s latency).
+Not shown: 997 closed ports
+PORT    STATE SERVICE
+25/tcp  open  smtp
+110/tcp open  pop3
+143/tcp open  imap
+
+Nmap scan report for 192.168.98.29
+Host is up (1.3s latency).
+All 1000 scanned ports on 192.168.98.29 are filtered
+
+Nmap scan report for 192.168.98.30
+Host is up (2.8s latency).
+All 1000 scanned ports on 192.168.98.30 are filtered
+
+Nmap scan report for 192.168.98.31
+Host is up (0.63s latency).
+All 1000 scanned ports on 192.168.98.31 are filtered
+
+Nmap scan report for 192.168.98.32
+Host is up (0.79s latency).
+All 1000 scanned ports on 192.168.98.32 are filtered
+
+Nmap scan report for 192.168.98.33
+Host is up (1.2s latency).
+All 1000 scanned ports on 192.168.98.33 are filtered
+
+Nmap scan report for 192.168.98.34
+Host is up (1.5s latency).
+All 1000 scanned ports on 192.168.98.34 are filtered
+
+Nmap scan report for 192.168.98.35
+Host is up (1.6s latency).
+All 1000 scanned ports on 192.168.98.35 are filtered
+
+Nmap scan report for 192.168.98.36
+Host is up (1.1s latency).
+All 1000 scanned ports on 192.168.98.36 are filtered
+
+Nmap scan report for 192.168.98.37
+Host is up (1.2s latency).
+All 1000 scanned ports on 192.168.98.37 are filtered
+
+Nmap scan report for 192.168.98.38
+Host is up (1.2s latency).
+All 1000 scanned ports on 192.168.98.38 are filtered
+
+Nmap scan report for 192.168.98.39
+Host is up (1.1s latency).
+All 1000 scanned ports on 192.168.98.39 are filtered
+
+Nmap scan report for 192.168.98.40
+Host is up (2.6s latency).
+All 1000 scanned ports on 192.168.98.40 are filtered
+
+Nmap scan report for 192.168.98.41
+Host is up (1.2s latency).
+All 1000 scanned ports on 192.168.98.41 are filtered
+
+Nmap scan report for 192.168.98.42
+Host is up (0.85s latency).
+All 1000 scanned ports on 192.168.98.42 are filtered
+
+Nmap scan report for 192.168.98.43
+Host is up (0.71s latency).
+All 1000 scanned ports on 192.168.98.43 are filtered
+
+Nmap scan report for 192.168.98.44
+Host is up (0.80s latency).
+All 1000 scanned ports on 192.168.98.44 are filtered
+
+Nmap scan report for 192.168.98.45
+Host is up (1.0s latency).
+All 1000 scanned ports on 192.168.98.45 are filtered
+
+Nmap scan report for 192.168.98.46
+Host is up (0.93s latency).
+All 1000 scanned ports on 192.168.98.46 are filtered
+
+Nmap scan report for 192.168.98.47
+Host is up (2.9s latency).
+All 1000 scanned ports on 192.168.98.47 are filtered
+
+Nmap scan report for 192.168.98.48
+Host is up (1.0s latency).
+All 1000 scanned ports on 192.168.98.48 are filtered
+
+Nmap scan report for 192.168.98.49
+Host is up (1.2s latency).
+All 1000 scanned ports on 192.168.98.49 are filtered
+
+Nmap scan report for 192.168.98.50
+Host is up (0.51s latency).
+All 1000 scanned ports on 192.168.98.50 are filtered
+
+Nmap scan report for 192.168.98.51
+Host is up (0.53s latency).
+All 1000 scanned ports on 192.168.98.51 are filtered
+
+Nmap scan report for 192.168.98.52
+Host is up (0.90s latency).
+All 1000 scanned ports on 192.168.98.52 are filtered
+
+Nmap scan report for 192.168.98.53
+Host is up (0.91s latency).
+All 1000 scanned ports on 192.168.98.53 are filtered
+
+Nmap scan report for gamma.local.vienna.essecorp.invalid (192.168.98.54)
+Host is up (0.00065s latency).
+Not shown: 999 closed ports
+PORT     STATE SERVICE
+1080/tcp open  socks
+
+Nmap scan report for 192.168.98.55
+Host is up (1.1s latency).
+All 1000 scanned ports on 192.168.98.55 are filtered
+
+Nmap scan report for 192.168.98.56
+Host is up (1.1s latency).
+All 1000 scanned ports on 192.168.98.56 are filtered
+
+Nmap scan report for 192.168.98.57
+Host is up (1.2s latency).
+All 1000 scanned ports on 192.168.98.57 are filtered
+
+Nmap scan report for 192.168.98.58
+Host is up (2.1s latency).
+All 1000 scanned ports on 192.168.98.58 are filtered
+
+Nmap scan report for 192.168.98.59
+Host is up (2.9s latency).
+All 1000 scanned ports on 192.168.98.59 are filtered
+
+Nmap scan report for 192.168.98.60
+Host is up (0.96s latency).
+All 1000 scanned ports on 192.168.98.60 are filtered
+
+Nmap scan report for 192.168.98.61
+Host is up (0.97s latency).
+All 1000 scanned ports on 192.168.98.61 are filtered
+
+Nmap scan report for 192.168.98.62
+Host is up (1.1s latency).
+All 1000 scanned ports on 192.168.98.62 are filtered
+
+Nmap scan report for 192.168.98.63
+Host is up (1.6s latency).
+All 1000 scanned ports on 192.168.98.63 are filtered
+
+
+##########################################
+
+dnmap -sL 192.168.98.124/24
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:44 CEST
+Stats: 0:00:35 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 10.55% done; ETC: 17:50 (0:04:57 remaining)
+Stats: 0:02:42 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 50.78% done; ETC: 17:50 (0:02:37 remaining)
+Stats: 0:02:43 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 50.78% done; ETC: 17:50 (0:02:39 remaining)
+Stats: 0:03:42 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 67.97% done; ETC: 17:50 (0:01:45 remaining)
+Stats: 0:04:17 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 80.47% done; ETC: 17:50 (0:01:03 remaining)
+Nmap scan report for 192.168.98.0
+Nmap scan report for omega.local.vienna.essecorp.invalid (192.168.98.1)
+Nmap scan report for 192.168.98.2
+Nmap scan report for 192.168.98.3
+Nmap scan report for 192.168.98.4
+Nmap scan report for 192.168.98.5
+Nmap scan report for 192.168.98.6
+Nmap scan report for 192.168.98.7
+Nmap scan report for 192.168.98.8
+Nmap scan report for 192.168.98.9
+Nmap scan report for alpha.local.vienna.essecorp.invalid (192.168.98.10)
+Nmap scan report for 192.168.98.11
+Nmap scan report for 192.168.98.12
+Nmap scan report for 192.168.98.13
+Nmap scan report for 192.168.98.14
+Nmap scan report for 192.168.98.15
+Nmap scan report for 192.168.98.16
+Nmap scan report for 192.168.98.17
+Nmap scan report for 192.168.98.18
+Nmap scan report for 192.168.98.19
+Nmap scan report for 192.168.98.20
+Nmap scan report for 192.168.98.21
+Nmap scan report for 192.168.98.22
+Nmap scan report for 192.168.98.23
+Nmap scan report for 192.168.98.24
+Nmap scan report for 192.168.98.25
+Nmap scan report for 192.168.98.26
+Nmap scan report for 192.168.98.27
+Nmap scan report for beta.local.vienna.essecorp.invalid (192.168.98.28)
+Nmap scan report for 192.168.98.29
+Nmap scan report for 192.168.98.30
+Nmap scan report for 192.168.98.31
+Nmap scan report for 192.168.98.32
+Nmap scan report for 192.168.98.33
+Nmap scan report for 192.168.98.34
+Nmap scan report for 192.168.98.35
+Nmap scan report for 192.168.98.36
+Nmap scan report for 192.168.98.37
+Nmap scan report for 192.168.98.38
+Nmap scan report for 192.168.98.39
+Nmap scan report for 192.168.98.40
+Nmap scan report for 192.168.98.41
+Nmap scan report for 192.168.98.42
+Nmap scan report for 192.168.98.43
+Nmap scan report for 192.168.98.44
+Nmap scan report for 192.168.98.45
+Nmap scan report for 192.168.98.46
+Nmap scan report for 192.168.98.47
+Nmap scan report for 192.168.98.48
+Nmap scan report for 192.168.98.49
+Nmap scan report for 192.168.98.50
+Nmap scan report for 192.168.98.51
+Nmap scan report for 192.168.98.52
+Nmap scan report for 192.168.98.53
+Nmap scan report for gamma.local.vienna.essecorp.invalid (192.168.98.54)
+Nmap scan report for 192.168.98.55
+Nmap scan report for 192.168.98.56
+Nmap scan report for 192.168.98.57
+Nmap scan report for 192.168.98.58
+Nmap scan report for 192.168.98.59
+Nmap scan report for 192.168.98.60
+Nmap scan report for 192.168.98.61
+Nmap scan report for 192.168.98.62
+Nmap scan report for 192.168.98.63
+Nmap scan report for 192.168.98.64
+Nmap scan report for 192.168.98.65
+Nmap scan report for 192.168.98.66
+Nmap scan report for 192.168.98.67
+Nmap scan report for 192.168.98.68
+Nmap scan report for 192.168.98.69
+Nmap scan report for 192.168.98.70
+Nmap scan report for 192.168.98.71
+Nmap scan report for 192.168.98.72
+Nmap scan report for 192.168.98.73
+Nmap scan report for 192.168.98.74
+Nmap scan report for 192.168.98.75
+Nmap scan report for 192.168.98.76
+Nmap scan report for 192.168.98.77
+Nmap scan report for 192.168.98.78
+Nmap scan report for 192.168.98.79
+Nmap scan report for 192.168.98.80
+Nmap scan report for 192.168.98.81
+Nmap scan report for 192.168.98.82
+Nmap scan report for 192.168.98.83
+Nmap scan report for 192.168.98.84
+Nmap scan report for 192.168.98.85
+Nmap scan report for 192.168.98.86
+Nmap scan report for 192.168.98.87
+Nmap scan report for 192.168.98.88
+Nmap scan report for 192.168.98.89
+Nmap scan report for 192.168.98.90
+Nmap scan report for 192.168.98.91
+Nmap scan report for 192.168.98.92
+Nmap scan report for 192.168.98.93
+Nmap scan report for 192.168.98.94
+Nmap scan report for 192.168.98.95
+Nmap scan report for 192.168.98.96
+Nmap scan report for 192.168.98.97
+Nmap scan report for 192.168.98.98
+Nmap scan report for delta.local.vienna.essecorp.invalid (192.168.98.99)
+Nmap scan report for 192.168.98.100
+Nmap scan report for 192.168.98.101
+Nmap scan report for 192.168.98.102
+Nmap scan report for 192.168.98.103
+Nmap scan report for 192.168.98.104
+Nmap scan report for 192.168.98.105
+Nmap scan report for 192.168.98.106
+Nmap scan report for 192.168.98.107
+Nmap scan report for 192.168.98.108
+Nmap scan report for 192.168.98.109
+Nmap scan report for 192.168.98.110
+Nmap scan report for 192.168.98.111
+Nmap scan report for 192.168.98.112
+Nmap scan report for 192.168.98.113
+Nmap scan report for 192.168.98.114
+Nmap scan report for 192.168.98.115
+Nmap scan report for 192.168.98.116
+Nmap scan report for 192.168.98.117
+Nmap scan report for 192.168.98.118
+Nmap scan report for 192.168.98.119
+Nmap scan report for 192.168.98.120
+Nmap scan report for 192.168.98.121
+Nmap scan report for 192.168.98.122
+Nmap scan report for 192.168.98.123
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (192.168.98.124)
+Nmap scan report for 192.168.98.125
+Nmap scan report for 192.168.98.126
+Nmap scan report for 192.168.98.127
+Nmap scan report for 192.168.98.128
+Nmap scan report for 192.168.98.129
+Nmap scan report for 192.168.98.130
+Nmap scan report for 192.168.98.131
+Nmap scan report for 192.168.98.132
+Nmap scan report for 192.168.98.133
+Nmap scan report for 192.168.98.134
+Nmap scan report for 192.168.98.135
+Nmap scan report for 192.168.98.136
+Nmap scan report for 192.168.98.137
+Nmap scan report for 192.168.98.138
+Nmap scan report for 192.168.98.139
+Nmap scan report for 192.168.98.140
+Nmap scan report for 192.168.98.141
+Nmap scan report for 192.168.98.142
+Nmap scan report for 192.168.98.143
+Nmap scan report for 192.168.98.144
+Nmap scan report for 192.168.98.145
+Nmap scan report for 192.168.98.146
+Nmap scan report for 192.168.98.147
+Nmap scan report for 192.168.98.148
+Nmap scan report for 192.168.98.149
+Nmap scan report for 192.168.98.150
+Nmap scan report for 192.168.98.151
+Nmap scan report for 192.168.98.152
+Nmap scan report for 192.168.98.153
+Nmap scan report for 192.168.98.154
+Nmap scan report for 192.168.98.155
+Nmap scan report for 192.168.98.156
+Nmap scan report for 192.168.98.157
+Nmap scan report for 192.168.98.158
+Nmap scan report for 192.168.98.159
+Nmap scan report for 192.168.98.160
+Nmap scan report for 192.168.98.161
+Nmap scan report for 192.168.98.162
+Nmap scan report for 192.168.98.163
+Nmap scan report for 192.168.98.164
+Nmap scan report for 192.168.98.165
+Nmap scan report for 192.168.98.166
+Nmap scan report for 192.168.98.167
+Nmap scan report for 192.168.98.168
+Nmap scan report for 192.168.98.169
+Nmap scan report for 192.168.98.170
+Nmap scan report for 192.168.98.171
+Nmap scan report for 192.168.98.172
+Nmap scan report for 192.168.98.173
+Nmap scan report for 192.168.98.174
+Nmap scan report for 192.168.98.175
+Nmap scan report for 192.168.98.176
+Nmap scan report for 192.168.98.177
+Nmap scan report for 192.168.98.178
+Nmap scan report for 192.168.98.179
+Nmap scan report for 192.168.98.180
+Nmap scan report for 192.168.98.181
+Nmap scan report for 192.168.98.182
+Nmap scan report for 192.168.98.183
+Nmap scan report for 192.168.98.184
+Nmap scan report for 192.168.98.185
+Nmap scan report for 192.168.98.186
+Nmap scan report for 192.168.98.187
+Nmap scan report for 192.168.98.188
+Nmap scan report for 192.168.98.189
+Nmap scan report for 192.168.98.190
+Nmap scan report for 192.168.98.191
+Nmap scan report for 192.168.98.192
+Nmap scan report for 192.168.98.193
+Nmap scan report for 192.168.98.194
+Nmap scan report for 192.168.98.195
+Nmap scan report for 192.168.98.196
+Nmap scan report for 192.168.98.197
+Nmap scan report for 192.168.98.198
+Nmap scan report for 192.168.98.199
+Nmap scan report for 192.168.98.200
+Nmap scan report for epsilon.local.vienna.essecorp.invalid (192.168.98.201)
+Nmap scan report for zeta.local.vienna.essecorp.invalid (192.168.98.202)
+Nmap scan report for 192.168.98.203
+Nmap scan report for 192.168.98.204
+Nmap scan report for 192.168.98.205
+Nmap scan report for 192.168.98.206
+Nmap scan report for 192.168.98.207
+Nmap scan report for 192.168.98.208
+Nmap scan report for 192.168.98.209
+Nmap scan report for 192.168.98.210
+Nmap scan report for 192.168.98.211
+Nmap scan report for 192.168.98.212
+Nmap scan report for 192.168.98.213
+Nmap scan report for 192.168.98.214
+Nmap scan report for 192.168.98.215
+Nmap scan report for 192.168.98.216
+Nmap scan report for 192.168.98.217
+Nmap scan report for 192.168.98.218
+Nmap scan report for 192.168.98.219
+Nmap scan report for 192.168.98.220
+Nmap scan report for 192.168.98.221
+Nmap scan report for 192.168.98.222
+Nmap scan report for 192.168.98.223
+Nmap scan report for 192.168.98.224
+Nmap scan report for 192.168.98.225
+Nmap scan report for 192.168.98.226
+Nmap scan report for 192.168.98.227
+Nmap scan report for 192.168.98.228
+Nmap scan report for 192.168.98.229
+Nmap scan report for 192.168.98.230
+Nmap scan report for 192.168.98.231
+Nmap scan report for 192.168.98.232
+Nmap scan report for 192.168.98.233
+Nmap scan report for 192.168.98.234
+Nmap scan report for 192.168.98.235
+Nmap scan report for 192.168.98.236
+Nmap scan report for 192.168.98.237
+Nmap scan report for 192.168.98.238
+Nmap scan report for 192.168.98.239
+Nmap scan report for 192.168.98.240
+Nmap scan report for 192.168.98.241
+Nmap scan report for 192.168.98.242
+Nmap scan report for 192.168.98.243
+Nmap scan report for 192.168.98.244
+Nmap scan report for 192.168.98.245
+Nmap scan report for 192.168.98.246
+Nmap scan report for 192.168.98.247
+Nmap scan report for 192.168.98.248
+Nmap scan report for 192.168.98.249
+Nmap scan report for 192.168.98.250
+Nmap scan report for 192.168.98.251
+Nmap scan report for 192.168.98.252
+Nmap scan report for 192.168.98.253
+Nmap scan report for 192.168.98.254
+Nmap scan report for 192.168.98.255
+Nmap done: 256 IP addresses (0 hosts up) scanned in 321.03 seconds

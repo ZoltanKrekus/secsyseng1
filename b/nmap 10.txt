@@ -1,0 +1,436 @@
+/sbin/ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:1b:d2:0b:33:53  
+          inet addr:10.10.20.100  Bcast:10.10.20.255  Mask:255.255.255.0
+          inet6 addr: fe80::21b:d2ff:fe0b:3353/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:7380 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:5701 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:934685 (912.7 KiB)  TX bytes:1521047 (1.4 MiB)
+
+eth1      Link encap:Ethernet  HWaddr 00:1b:d2:11:3c:dd  
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:32684 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:304273 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:2276637 (2.1 MiB)  TX bytes:23974484 (22.8 MiB)
+
+eth1.98   Link encap:Ethernet  HWaddr 00:1b:d2:11:3c:dd  
+          inet addr:192.168.98.124  Bcast:192.168.98.255  Mask:255.255.255.0
+          inet6 addr: fdcb:c447:e9d2:3553:1001::ab/120 Scope:Global
+          inet6 addr: fe80::21b:d2ff:fe11:3cdd/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:32325 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:304274 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:1678273 (1.6 MiB)  TX bytes:22757434 (21.7 MiB)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:20288 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:20288 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:1095061 (1.0 MiB)  TX bytes:1095061 (1.0 MiB)
+
+
+$ nmap -sL 10.10.20.0/24
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 16:45 CEST
+Stats: 0:02:41 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 47.06% done; ETC: 16:51 (0:03:02 remaining)
+Stats: 0:02:41 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 47.06% done; ETC: 16:51 (0:03:02 remaining)
+Stats: 0:02:43 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 47.06% done; ETC: 16:51 (0:03:05 remaining)
+Stats: 0:02:47 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 47.06% done; ETC: 16:51 (0:03:09 remaining)
+Stats: 0:02:48 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 47.06% done; ETC: 16:51 (0:03:10 remaining)
+Stats: 0:03:00 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 50.98% done; ETC: 16:51 (0:02:54 remaining)
+Stats: 0:04:57 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
+Parallel DNS resolution of 256 hosts. Timing: About 86.27% done; ETC: 16:51 (0:00:47 remaining)
+Nmap scan report for 10.10.20.0
+Nmap scan report for 10.10.20.1
+Nmap scan report for 10.10.20.2
+Nmap scan report for 10.10.20.3
+Nmap scan report for 10.10.20.4
+Nmap scan report for 10.10.20.5
+Nmap scan report for 10.10.20.6
+Nmap scan report for 10.10.20.7
+Nmap scan report for 10.10.20.8
+Nmap scan report for 10.10.20.9
+Nmap scan report for 10.10.20.10
+Nmap scan report for 10.10.20.11
+Nmap scan report for 10.10.20.12
+Nmap scan report for 10.10.20.13
+Nmap scan report for 10.10.20.14
+Nmap scan report for 10.10.20.15
+Nmap scan report for 10.10.20.16
+Nmap scan report for 10.10.20.17
+Nmap scan report for 10.10.20.18
+Nmap scan report for 10.10.20.19
+Nmap scan report for 10.10.20.20
+Nmap scan report for 10.10.20.21
+Nmap scan report for 10.10.20.22
+Nmap scan report for 10.10.20.23
+Nmap scan report for 10.10.20.24
+Nmap scan report for 10.10.20.25
+Nmap scan report for 10.10.20.26
+Nmap scan report for 10.10.20.27
+Nmap scan report for 10.10.20.28
+Nmap scan report for 10.10.20.29
+Nmap scan report for 10.10.20.30
+Nmap scan report for 10.10.20.31
+Nmap scan report for 10.10.20.32
+Nmap scan report for 10.10.20.33
+Nmap scan report for 10.10.20.34
+Nmap scan report for 10.10.20.35
+Nmap scan report for 10.10.20.36
+Nmap scan report for 10.10.20.37
+Nmap scan report for 10.10.20.38
+Nmap scan report for 10.10.20.39
+Nmap scan report for 10.10.20.40
+Nmap scan report for 10.10.20.41
+Nmap scan report for 10.10.20.42
+Nmap scan report for 10.10.20.43
+Nmap scan report for 10.10.20.44
+Nmap scan report for 10.10.20.45
+Nmap scan report for 10.10.20.46
+Nmap scan report for 10.10.20.47
+Nmap scan report for 10.10.20.48
+Nmap scan report for 10.10.20.49
+Nmap scan report for 10.10.20.50
+Nmap scan report for 10.10.20.51
+Nmap scan report for 10.10.20.52
+Nmap scan report for 10.10.20.53
+Nmap scan report for 10.10.20.54
+Nmap scan report for 10.10.20.55
+Nmap scan report for 10.10.20.56
+Nmap scan report for 10.10.20.57
+Nmap scan report for 10.10.20.58
+Nmap scan report for 10.10.20.59
+Nmap scan report for 10.10.20.60
+Nmap scan report for 10.10.20.61
+Nmap scan report for 10.10.20.62
+Nmap scan report for 10.10.20.63
+Nmap scan report for 10.10.20.64
+Nmap scan report for 10.10.20.65
+Nmap scan report for 10.10.20.66
+Nmap scan report for 10.10.20.67
+Nmap scan report for 10.10.20.68
+Nmap scan report for 10.10.20.69
+Nmap scan report for 10.10.20.70
+Nmap scan report for 10.10.20.71
+Nmap scan report for 10.10.20.72
+Nmap scan report for 10.10.20.73
+Nmap scan report for 10.10.20.74
+Nmap scan report for 10.10.20.75
+Nmap scan report for 10.10.20.76
+Nmap scan report for 10.10.20.77
+Nmap scan report for 10.10.20.78
+Nmap scan report for 10.10.20.79
+Nmap scan report for 10.10.20.80
+Nmap scan report for 10.10.20.81
+Nmap scan report for 10.10.20.82
+Nmap scan report for 10.10.20.83
+Nmap scan report for 10.10.20.84
+Nmap scan report for 10.10.20.85
+Nmap scan report for 10.10.20.86
+Nmap scan report for 10.10.20.87
+Nmap scan report for 10.10.20.88
+Nmap scan report for 10.10.20.89
+Nmap scan report for 10.10.20.90
+Nmap scan report for 10.10.20.91
+Nmap scan report for 10.10.20.92
+Nmap scan report for 10.10.20.93
+Nmap scan report for 10.10.20.94
+Nmap scan report for 10.10.20.95
+Nmap scan report for 10.10.20.96
+Nmap scan report for 10.10.20.97
+Nmap scan report for 10.10.20.98
+Nmap scan report for 10.10.20.99
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (10.10.20.100)
+Nmap scan report for 10.10.20.101
+Nmap scan report for 10.10.20.102
+Nmap scan report for 10.10.20.103
+Nmap scan report for 10.10.20.104
+Nmap scan report for 10.10.20.105
+Nmap scan report for 10.10.20.106
+Nmap scan report for 10.10.20.107
+Nmap scan report for 10.10.20.108
+Nmap scan report for 10.10.20.109
+Nmap scan report for 10.10.20.110
+Nmap scan report for 10.10.20.111
+Nmap scan report for 10.10.20.112
+Nmap scan report for 10.10.20.113
+Nmap scan report for 10.10.20.114
+Nmap scan report for 10.10.20.115
+Nmap scan report for 10.10.20.116
+Nmap scan report for 10.10.20.117
+Nmap scan report for 10.10.20.118
+Nmap scan report for 10.10.20.119
+Nmap scan report for 10.10.20.120
+Nmap scan report for 10.10.20.121
+Nmap scan report for 10.10.20.122
+Nmap scan report for 10.10.20.123
+Nmap scan report for 10.10.20.124
+Nmap scan report for 10.10.20.125
+Nmap scan report for 10.10.20.126
+Nmap scan report for 10.10.20.127
+Nmap scan report for 10.10.20.128
+Nmap scan report for 10.10.20.129
+Nmap scan report for 10.10.20.130
+Nmap scan report for 10.10.20.131
+Nmap scan report for 10.10.20.132
+Nmap scan report for 10.10.20.133
+Nmap scan report for 10.10.20.134
+Nmap scan report for 10.10.20.135
+Nmap scan report for 10.10.20.136
+Nmap scan report for 10.10.20.137
+Nmap scan report for 10.10.20.138
+Nmap scan report for 10.10.20.139
+Nmap scan report for 10.10.20.140
+Nmap scan report for 10.10.20.141
+Nmap scan report for 10.10.20.142
+Nmap scan report for 10.10.20.143
+Nmap scan report for 10.10.20.144
+Nmap scan report for 10.10.20.145
+Nmap scan report for 10.10.20.146
+Nmap scan report for 10.10.20.147
+Nmap scan report for 10.10.20.148
+Nmap scan report for 10.10.20.149
+Nmap scan report for 10.10.20.150
+Nmap scan report for 10.10.20.151
+Nmap scan report for 10.10.20.152
+Nmap scan report for 10.10.20.153
+Nmap scan report for 10.10.20.154
+Nmap scan report for 10.10.20.155
+Nmap scan report for 10.10.20.156
+Nmap scan report for 10.10.20.157
+Nmap scan report for 10.10.20.158
+Nmap scan report for 10.10.20.159
+Nmap scan report for 10.10.20.160
+Nmap scan report for 10.10.20.161
+Nmap scan report for 10.10.20.162
+Nmap scan report for 10.10.20.163
+Nmap scan report for 10.10.20.164
+Nmap scan report for 10.10.20.165
+Nmap scan report for 10.10.20.166
+Nmap scan report for 10.10.20.167
+Nmap scan report for 10.10.20.168
+Nmap scan report for 10.10.20.169
+Nmap scan report for 10.10.20.170
+Nmap scan report for 10.10.20.171
+Nmap scan report for 10.10.20.172
+Nmap scan report for 10.10.20.173
+Nmap scan report for 10.10.20.174
+Nmap scan report for 10.10.20.175
+Nmap scan report for 10.10.20.176
+Nmap scan report for 10.10.20.177
+Nmap scan report for 10.10.20.178
+Nmap scan report for 10.10.20.179
+Nmap scan report for 10.10.20.180
+Nmap scan report for 10.10.20.181
+Nmap scan report for 10.10.20.182
+Nmap scan report for 10.10.20.183
+Nmap scan report for 10.10.20.184
+Nmap scan report for 10.10.20.185
+Nmap scan report for 10.10.20.186
+Nmap scan report for 10.10.20.187
+Nmap scan report for 10.10.20.188
+Nmap scan report for 10.10.20.189
+Nmap scan report for 10.10.20.190
+Nmap scan report for 10.10.20.191
+Nmap scan report for 10.10.20.192
+Nmap scan report for 10.10.20.193
+Nmap scan report for 10.10.20.194
+Nmap scan report for 10.10.20.195
+Nmap scan report for 10.10.20.196
+Nmap scan report for 10.10.20.197
+Nmap scan report for 10.10.20.198
+Nmap scan report for 10.10.20.199
+Nmap scan report for 10.10.20.200
+Nmap scan report for 10.10.20.201
+Nmap scan report for 10.10.20.202
+Nmap scan report for 10.10.20.203
+Nmap scan report for 10.10.20.204
+Nmap scan report for 10.10.20.205
+Nmap scan report for 10.10.20.206
+Nmap scan report for 10.10.20.207
+Nmap scan report for 10.10.20.208
+Nmap scan report for 10.10.20.209
+Nmap scan report for 10.10.20.210
+Nmap scan report for 10.10.20.211
+Nmap scan report for 10.10.20.212
+Nmap scan report for 10.10.20.213
+Nmap scan report for 10.10.20.214
+Nmap scan report for 10.10.20.215
+Nmap scan report for 10.10.20.216
+Nmap scan report for 10.10.20.217
+Nmap scan report for 10.10.20.218
+Nmap scan report for 10.10.20.219
+Nmap scan report for 10.10.20.220
+Nmap scan report for 10.10.20.221
+Nmap scan report for 10.10.20.222
+Nmap scan report for 10.10.20.223
+Nmap scan report for 10.10.20.224
+Nmap scan report for 10.10.20.225
+Nmap scan report for 10.10.20.226
+Nmap scan report for 10.10.20.227
+Nmap scan report for 10.10.20.228
+Nmap scan report for 10.10.20.229
+Nmap scan report for 10.10.20.230
+Nmap scan report for 10.10.20.231
+Nmap scan report for 10.10.20.232
+Nmap scan report for 10.10.20.233
+Nmap scan report for 10.10.20.234
+Nmap scan report for 10.10.20.235
+Nmap scan report for 10.10.20.236
+Nmap scan report for 10.10.20.237
+Nmap scan report for 10.10.20.238
+Nmap scan report for 10.10.20.239
+Nmap scan report for 10.10.20.240
+Nmap scan report for 10.10.20.241
+Nmap scan report for 10.10.20.242
+Nmap scan report for 10.10.20.243
+Nmap scan report for 10.10.20.244
+Nmap scan report for 10.10.20.245
+Nmap scan report for 10.10.20.246
+Nmap scan report for 10.10.20.247
+Nmap scan report for 10.10.20.248
+Nmap scan report for 10.10.20.249
+Nmap scan report for 10.10.20.250
+Nmap scan report for 10.10.20.251
+Nmap scan report for 10.10.20.252
+Nmap scan report for 10.10.20.253
+Nmap scan report for 10.10.20.254
+Nmap scan report for 10.10.20.255
+Nmap done: 256 IP addresses (0 hosts up) scanned in 338.11 seconds
+
+
+
+
+nmap -PS22-25,80,443,113,8080 10.10.20.0/24
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 16:55 CEST
+Stats: 0:00:04 elapsed; 0 hosts completed (0 up), 256 undergoing Ping Scan
+Ping Scan Timing: About 4.05% done; ETC: 16:57 (0:01:35 remaining)
+Stats: 0:00:15 elapsed; 0 hosts completed (0 up), 256 undergoing Ping Scan
+Ping Scan Timing: About 10.50% done; ETC: 16:58 (0:02:16 remaining)
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+RTTVAR has grown to over 2.3 seconds, decreasing to 2.0
+Stats: 0:00:53 elapsed; 0 hosts completed (0 up), 256 undergoing Ping Scan
+Parallel DNS resolution of 256 hosts. Timing: About 0.00% done
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (10.10.20.100)
+Host is up (0.00091s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+
+Nmap scan report for 10.10.20.254
+Host is up (0.00086s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap done: 256 IP addresses (2 hosts up) scanned in 65.18 seconds
+
+
+
+nmap -PA22-25,80,443,113,8080 10.10.20.0/24
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:00 CEST
+Stats: 0:00:19 elapsed; 0 hosts completed (0 up), 256 undergoing Ping Scan
+Ping Scan Timing: About 6.74% done; ETC: 17:05 (0:04:37 remaining)
+Stats: 0:01:17 elapsed; 0 hosts completed (0 up), 256 undergoing Ping Scan
+Parallel DNS resolution of 256 hosts. Timing: About 0.00% done
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (10.10.20.100)
+Host is up (0.0011s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+
+Nmap scan report for 10.10.20.254
+Host is up (0.00100s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap done: 256 IP addresses (2 hosts up) scanned in 79.52 seconds
+
+
+
+ nmap -PE 10.10.20.0/24
+Warning:  You are not root -- using TCP pingscan rather than ICMP
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:03 CEST
+Stats: 0:00:12 elapsed; 0 hosts completed (0 up), 256 undergoing Ping Scan
+Ping Scan Timing: About 23.44% done; ETC: 17:03 (0:00:39 remaining)
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (10.10.20.100)
+Host is up (0.00077s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+
+Nmap scan report for 10.10.20.254
+Host is up (0.00073s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap done: 256 IP addresses (2 hosts up) scanned in 27.81 seconds]
+
+
+
+
+nmap -PP 10.10.20.0/24
+Warning:  You are not root -- using TCP pingscan rather than ICMP
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:04 CEST
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (10.10.20.100)
+Host is up (0.0012s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+
+Nmap scan report for 10.10.20.254
+Host is up (0.0010s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap done: 256 IP addresses (2 hosts up) scanned in 27.80 seconds
+
+
+
+ not root -- using TCP pingscan rather than ICMP
+
+Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:06 CEST
+Nmap scan report for tomcat.local.vienna.essecorp.invalid (10.10.20.100)
+Host is up (0.0012s latency).
+Not shown: 998 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+
+Nmap scan report for 10.10.20.254
+Host is up (0.0011s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap done: 256 IP addresses (2 hosts up) scanned in 27.79 seconds
+
