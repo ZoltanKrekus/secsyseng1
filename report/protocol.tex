@@ -99,8 +99,34 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 
 \section{Lab1b}
 
-\subsection{Sub-Section 1}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+\subsection{Host Discovery}
+The first step to explore the network is to find out which hosts can be found in the networks to scan. To find out which network we are in, we can use the command
+
+\begin{lstlisting}[style=simple]
+user13:$ /sbin/ifconfig 
+\end{lstlisting}
+
+So we discover, that we are in the network \emph{192.168.98.0/24}, which we will scan using nmap:
+
+\begin{lstlisting}[style=simple]
+user13:$ nmap -sL 192.168.98.0/24
+\end{lstlisting}
+
+The results are as follows:
+
+\begin{tabular}{ l | l }
+\hline
+192.168.98.1 & omega.local.vienna.essecorp.invalid \\ \hline
+192.168.98.10 & alpha.local.vienna.essecorp.invalid \\ \hline
+192.168.98.28 & beta.local.vienna.essecorp.invalid \\ \hline
+192.168.98.54 & gamma.local.vienna.essecorp.invalid \\ \hline
+192.168.98.99 & delta.local.vienna.essecorp.invalid \\ \hline
+192.168.98.124 & tomcat.local.vienna.essecorp.invalid \\ \hline
+192.168.98.201 & epsilon.local.vienna.essecorp.invalid \\ \hline
+192.168.98.202 & zeta.local.vienna.essecorp.invalid \\ \hline
+\end{tabular}
+
+
 
 \subsection{Sub-Section 2}
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 

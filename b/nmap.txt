@@ -1000,7 +1000,7 @@ All 1000 scanned ports on 192.168.98.63 are filtered
 
 
 
-dnmap -sL 192.168.98.124/24
+nmap -sL 192.168.98.124/24
 
 Starting Nmap 6.00 ( http://nmap.org ) at 2014-04-22 17:44 CEST
 Stats: 0:00:35 elapsed; 0 hosts completed (0 up), 0 undergoing Host Discovery
