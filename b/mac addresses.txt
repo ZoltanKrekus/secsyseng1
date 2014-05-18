@@ -1,0 +1,18 @@
+IP		MAC
+192.168.98.1	00:1b:d2:0d:84:98
+192.168.98.10	00:1b:d2:d1:1f:85
+192.168.98.28	00:1b:d2:f0:60:59
+192.168.98.54	00:1b:d2:83:b8:41
+192.168.98.99	00:1b:d2:a7:8f:d2
+192.168.98.124	00:1b:d2:11:3c:dd
+192.168.98.201	00:1b:d2:38:ae:b9
+192.168.98.202	00:1b:d2:85:9c:c4
+
+Im Reporting festhalten:
+
+mac adressen wurden gelistet mittels:
+cat /proc/net/arp | grep 192.168
+
+dabei nicht gelistet wurde:
+- 192.168.98.124, da dies unsere eigene IP Adresse ist. sie wurde stattdessen über /sbin/ifconfig angezeigt.
+- Alle 172.xxx Adressen, da sie nicht in unserem Netzwerk sind. Wir brauchen sie daher auch nicht.

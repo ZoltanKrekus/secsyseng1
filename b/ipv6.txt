@@ -1,0 +1,30 @@
+IP		IPv6
+172.16.2.12	-
+172.16.2.15	-
+172.16.2.25	-
+172.16.2.253	fdcb:c447:e9d2:3553:1002::fd
+192.168.98.1	fdcb:c447:e9d2:3553:1001::1
+192.168.98.10	fdcb:c447:e9d2:3553:1001::5
+192.168.98.28	fdcb:c447:e9d2:3553:1001::9
+192.168.98.54	fdcb:c447:e9d2:3553:1001::21
+192.168.98.99	fdcb:c447:e9d2:3553:1001::43
+192.168.98.124	fdcb:c447:e9d2:3553:1001::ab
+192.168.98.201	fdcb:c447:e9d2:3553:1001::79
+192.168.98.202	fdcb:c447:e9d2:3553:1001::88
+
+Im Reporting festhalten:
+Die IPv6 Adressen wurden gefunden durch den Befehl:
+nslookup
+>set type=AAAA
+>[domain]
+
+Sprich es wurde ein IP-Lookup auf eine gegebene Domain durchgeführt. Mittels type=AAAA wurde festgelegt, dass die IPv6 Adresse angezeigt werden soll.
+
+
+######
+was fehlt ist das durchsuchen des netzwerks nach nur-ipv6 hosts. laut report vom ss13 sollte da in etwa so funktionieren, was bei mir aber nicht klappt (snytax fehler):
+
+for num in {1..300} do ip = 'fdcb:c447:e9d2:3553:1000::'
+(printf "%x" $num) echo "${ip}" ping6 -c 1-t 1
+ip >/dev/null && echo "${ip} is up";done
+
