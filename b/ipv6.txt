@@ -21,10 +21,7 @@ nslookup
 Sprich es wurde ein IP-Lookup auf eine gegebene Domain durchgeführt. Mittels type=AAAA wurde festgelegt, dass die IPv6 Adresse angezeigt werden soll.
 
 
-######
-was fehlt ist das durchsuchen des netzwerks nach nur-ipv6 hosts. laut report vom ss13 sollte da in etwa so funktionieren, was bei mir aber nicht klappt (snytax fehler):
+Mit dem folgenden Bash-Skript sind wir die gefragten IPv6 Bereiche durchgegangen (0000 bis 000f), konnten dabei aber keine weiteren Hosts identifizieren:
 
-for num in {1..300} do ip = 'fdcb:c447:e9d2:3553:1000::'
-(printf "%x" $num) echo "${ip}" ping6 -c 1-t 1
-ip >/dev/null && echo "${ip} is up";done
+for i in `seq 1 255`; do i=$(printf "%x" $i); ping6 -c 1 -t 1 "fdcb:c447:e9d2:3553:1000:0000:0000:00$i" >/dev/null && echo "Host $i is running"; done
 
