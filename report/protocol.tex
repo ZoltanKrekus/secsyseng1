@@ -13,6 +13,9 @@
 \documentclass[12pt,a4paper,titlepage,oneside]{scrartcl}
 \usepackage{esseProtocol}
 \usepackage{dirtree}
+\usepackage{pbox}
+\usepackage{array}
+\usepackage{bigstrut}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -106,15 +109,16 @@ The first step to explore the network is to find out which hosts can be found in
 user13:$ /sbin/ifconfig 
 \end{lstlisting}
 
-So we discover, that we are in the network \emph{192.168.98.0/24}, which we will scan using nmap:
+So we discover, that we are in the network \emph{192.168.98.0/24}. This gives us a good hint where to scan, additionally to the exercise description:
 
 \begin{lstlisting}[style=simple]
-user13:$ nmap -sL 192.168.98.0/24
+user13:$ nmap -sn 192.168.0.0/16
+user13:$ nmap -sn 172.16.0.0/16
 \end{lstlisting}
 
 The results are as follows:
 
-\begin{tabular}{ l | l }
+\begin{tabular}{| l | l |}
 \hline
 192.168.98.1 & omega.local.vienna.essecorp.invalid \\ \hline
 192.168.98.10 & alpha.local.vienna.essecorp.invalid \\ \hline
@@ -124,18 +128,79 @@ The results are as follows:
 192.168.98.124 & tomcat.local.vienna.essecorp.invalid \\ \hline
 192.168.98.201 & epsilon.local.vienna.essecorp.invalid \\ \hline
 192.168.98.202 & zeta.local.vienna.essecorp.invalid \\ \hline
+172.16.2.12 & gemini.dmz.vienna.essecorp.invalid \\ \hline
+172.16.2.15 & phoenix.dmz.vienna.essecorp.invalid \\ \hline
+172.16.2.25 & taurus.dmz.vienna.essecorp.invalid \\ \hline
+172.16.2.253 & lyra.dmz.vienna.essecorp.invalid \\ \hline
 \end{tabular}
 
-
-
 \subsection{MAC addresses}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
 
-\subsection{Ports and Services}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. 
+The MAC addresses have been obtained by looking at the ARP table, and at the information about the own network interfaces. The addresses not currently in the ARP table can be forced into it by simply pinging the required host.
 
-\subsection{Operating Systems and Functionality}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+\begin{lstlisting}[style=simple]
+user13:$ cat /proc/net/arp | grep 192.168
+user13:$ /sbin/ifconfig
+\end{lstlisting}
+
+The results are the MAC addresses, which reside in the same subnet.
+
+\begin{tabular}{| l | l |}
+\hline
+192.168.98.1 & 00:1b:d2:0d:84:98 \\ \hline
+192.168.98.10 & 00:1b:d2:d1:1f:85 \\ \hline
+192.168.98.28 & 00:1b:d2:f0:60:59 \\ \hline
+192.168.98.54 & 00:1b:d2:83:b8:41 \\ \hline
+192.168.98.99 & 00:1b:d2:a7:8f:d2 \\ \hline
+192.168.98.124 & 00:1b:d2:11:3c:dd \\ \hline
+192.168.98.201 & 00:1b:d2:38:ae:b9 \\ \hline
+192.168.98.202 & 00:1b:d2:85:9c:c4 \\ \hline
+\end{tabular}
+
+\subsection{Operating Systems, Ports and Services}
+
+Nmap also has the possibility to guess operating systems and services behind open ports. Sometimes even version numbers. We used the following commands to gain this information. Regarding the operating system, one can also sometimes guess it looking at the services running. Some only run on Unix systems, for example.
+
+\begin{lstlisting}[style=simple]
+user13:$ nmap -A 192.168.98.1/24
+user13:$ nmap -A 172.16.2.1/24
+\end{lstlisting}
+
+\renewcommand{\arraystretch}{2.5}
+\begin{tabular}{| l | l |}
+\hline
+192.168.98.1 & \pbox[c]{\textwidth}{OS: Linux (Debian kind) \\ 22: SSH - OpenSSH 6.0p1} \\ \hline
+192.168.98.10 & \pbox[c]{\textwidth}{OS: Unix  \\ 53: DNS - dnsmasq 2.62} \\ \hline
+192.168.98.28 & \pbox[c]{\textwidth}{OS: Unix  \\ 25: SMTP - Exim smtpd 4.80 \\ 110: POP3 - Dovecot pop3d \\ 143: IMAP - Dovecot imapd} \\ \hline
+192.168.98.54 & \pbox[c]{\textwidth}{ OS:  \\ 1080: SOCKS - socks5}  \\ \hline
+192.168.98.99 & \pbox[c]{\textwidth}{OS: Unix  \\ 631: IPP - CUPS 1.5}  \\ \hline
+192.168.98.124 & \pbox[c]{\textwidth}{OS: Linux \\ 8080: HTTP - Apache Tomcat JSP engine 1.1}  \\ \hline
+192.168.98.201 & \pbox[c]{\textwidth}{OS: Unix \\ 139: netbios-ssn - Samba 3.6.6 \\ 445: microsoft-ds - Samba 3.6.6}  \\ \hline
+192.168.98.202 & all ports closed  \\ \hline
+172.16.2.12 & \pbox[c]{\textwidth}{OS: Unix  \\ 80: HTTP - lighttpd 1.4.31}  \\ \hline
+172.16.2.15 & \pbox[c]{\textwidth}{OS: Unix \\ 21: FTP - vsftpd 2.3.5}  \\ \hline
+172.16.2.25 & \pbox[c]{\textwidth}{OS:  \\ 25: SMTP - smtpd 4.8}  \\ \hline
+172.16.2.253 & \pbox[c]{\textwidth}{OS: Linux \\ 22: SSH - OpenSSH 6.0p1}  \\ \hline
+\end{tabular}
+
+\subsection{Functionality}
+The functionality can, of course, only be guessed. However the services provided on the servers give a strong hint to what it might be used for:
+ 
+\begin{tabular}{| l | l |}
+\hline
+192.168.98.1 & - \\ \hline
+192.168.98.10 & name server (DNS) \\ \hline
+192.168.98.28 & mail server \\ \hline
+192.168.98.54 & proxy server \\ \hline
+192.168.98.99 & printer server \\ \hline
+192.168.98.124 & web application server \\ \hline
+192.168.98.201 & file server \\ \hline
+192.168.98.202 & unknown \\ \hline
+172.16.2.12 & web server \\ \hline
+172.16.2.15 & FTP server \\ \hline
+172.16.2.25 & mail server (only sending - probably for the tomcat server) \\ \hline
+172.16.2.253 & - \\ \hline
+\end{tabular}
 
 \subsection{Network Topology}
 Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
