@@ -1,0 +1,17 @@
+-Um welche Art von Schwachstelle handelt es sich? (kurzer theoretischer Hintergrund)
+Es handelt sich bei dieser Implementierung um eine Schwachstelle der Art "A7-Missing Function Level Access Control." (OWASP). Bei dieser Art von Schwachstellen erfolgt auf Seiten des Servers nicht die notwendige Autorisierung, sodass sensible Funktionalitäten für unautorisierte User zugänglich sind (trotz 'verstecken' der Funktion in der GUI).
+
+-Genaue Angabe wo sich der Fehler befindet (z.b. Codezeilen, etc.)
+Der Fehler befindet sich in der Datei modify.php, die dafür verwendet wird, Beschreibungen von Bildern zu verändern. Es findet hier keine Überprüfung der Session statt.
+
+-Beschreibung wie der Fehler behoben werden kann
+Behoben werden kann solch ein Fehler dadurch, eine Autorisierung des aufrufenden User durchzuführen. Dafür muss der User zunächst authentifiziert werden (üblicherweise über seine Session) und anschließend seine Rolle geprüft werden (bspw ob er Administrator ist). Dies wird dann mit den Ausführungsrechten der angeforderte Funktionalität verglichen und diese nur ausgeführt, wenn der User die entsprechenden Privilegien hat.
+
+-Schritte, die erforderlich sind, um die Schwachstelle auszunutzen.
+Durch Aufruf der Seite index.html gelangt man auf die Hauptseite. In der Gallerie können Bilder mit Beschreibungen gesehen werden. Diese kann man ändern, wenn man sich im Login-Bereich einloggt ("password"). Bei der src-vuln Applikation ist es so, dass durch den Aufruf der URL src-vuln/modify.php?id=[bild-id]&text=[beschreibung] auch ohne Login jede Beschreibung geändert werden kann.
+
+-Beschreibung des von Ihnen korrigierten Programms
+Das sichere Programm fragt zunächst die Session des Users ab, und überprüft danach, ob es sich dabei um einen Admin handelt. Die angeforderte Textänderung erfolgt nur dann, wenn beides erfüllt ist (was nur mit Passwort-Zugang möglich ist).
+
+-Recherchieren Sie, wo in letzter Zeit diese Schwachstelle in bekannten Programmen/Anwendungen/Webseiten/etc. vorgekommen ist.
+Der Router "Allied Telesis AT-RG634A ADSL" bietet ein Webinterface als Benutzerschnelle. In früheren Versionen der Firmware (3.5, 2.4) war es möglich, durch Aufruf von cli.html Shell-Kommandos am zugrunde liegenden Betriebssystem auszuführen. Dieser Aufruf war ohne Prüfung der Authentizität und Autorisierung möglich, sodass jeder User den Router kompromittieren konnte. (Quelle: http://www.cvedetails.com/cve/CVE-2014-1982/)
