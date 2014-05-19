@@ -134,6 +134,38 @@ The results are as follows:
 172.16.2.253 & lyra.dmz.vienna.essecorp.invalid \\ \hline
 \end{tabular}
 
+In order to detect the IPv6 addresses of the found domains we use the fact that nslookup also lists IPv6 addresses for given domains, if we set the type to AAAA:
+
+\begin{lstlisting}[style=simple]
+user13:$ nslookup 
+>set type=AAAA
+alpha.local.vienna.essecorp.invalid
+...
+\end{lstlisting}
+
+Here are the resulting IPv6 addresses:
+
+\begin{tabular}{| l | l |}
+\hline
+omega.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::1 \\ \hline
+alpha.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::5 \\ \hline
+beta.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::9 \\ \hline
+gamma.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::21 \\ \hline
+delta.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::43 \\ \hline
+tomcat.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::ab \\ \hline
+epsilon.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::79 \\ \hline
+zeta.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::88 \\ \hline
+lyra.dmz.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1002::fd \\ \hline
+\end{tabular}
+
+But what about the IPv6 hosts, who are IPv6-only and have therefore not yet been discovered? Unfortunately nmap does not provide the possibility to scan ranges of IPv6 addresses, which is why we have to create our own ping script and let it run for every subnet in the exercise description (\emph{fdcb:c447:e9d2:3553:1000::} to \emph{fdcb:c447:e9d2:3553:100f::}):
+
+\begin{lstlisting}[style=simple]
+for i in `seq 1 255`; do i=$(printf "%x" $i); echo "Trying $i..."; ping6 -c 1 -t 1 "fdcb:c447:e9d2:3553:1000:0000:0000:00$i" > /dev/null && echo "Host $i is running"; done
+\end{lstlisting}
+
+However, no additional hosts have been found using this method.
+
 \subsection{MAC addresses}
 
 The MAC addresses have been obtained by looking at the ARP table, and at the information about the own network interfaces. The addresses not currently in the ARP table can be forced into it by simply pinging the required host.
@@ -179,7 +211,7 @@ user13:$ nmap -A 172.16.2.1/24
 192.168.98.202 & all ports closed  \\ \hline
 172.16.2.12 & \pbox[c]{\textwidth}{OS: Unix  \\ 80: HTTP - lighttpd 1.4.31}  \\ \hline
 172.16.2.15 & \pbox[c]{\textwidth}{OS: Unix \\ 21: FTP - vsftpd 2.3.5}  \\ \hline
-172.16.2.25 & \pbox[c]{\textwidth}{OS:  \\ 25: SMTP - smtpd 4.8}  \\ \hline
+172.16.2.25 & \pbox[c]{\textwidth}{OS: Unix \\ 25: SMTP - smtpd 4.8}  \\ \hline
 172.16.2.253 & \pbox[c]{\textwidth}{OS: Linux \\ 22: SSH - OpenSSH 6.0p1}  \\ \hline
 \end{tabular}
 
