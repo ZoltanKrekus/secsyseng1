@@ -14,8 +14,6 @@
 \usepackage{esseProtocol}
 \usepackage{dirtree}
 \usepackage{pbox}
-\usepackage{array}
-\usepackage{bigstrut}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -216,11 +214,11 @@ user13:$ nmap -A 172.16.2.1/24
 \end{tabular}
 
 \subsection{Functionality}
-The functionality can, of course, only be guessed. However the services provided on the servers give a strong hint to what it might be used for:
+The functionality can, of course, only be guessed. However the services provided on the servers give a strong hint to what it might be used for. Also nslookup can be used to guess which computers are probably routers (see Network Topology section).
  
 \begin{tabular}{| l | l |}
 \hline
-192.168.98.1 & - \\ \hline
+192.168.98.1 & router \\ \hline
 192.168.98.10 & name server (DNS) \\ \hline
 192.168.98.28 & mail server \\ \hline
 192.168.98.54 & proxy server \\ \hline
@@ -231,11 +229,28 @@ The functionality can, of course, only be guessed. However the services provided
 172.16.2.12 & web server \\ \hline
 172.16.2.15 & FTP server \\ \hline
 172.16.2.25 & mail server (only sending - probably for the tomcat server) \\ \hline
-172.16.2.253 & - \\ \hline
+172.16.2.253 & router \\ \hline
 \end{tabular}
 
 \subsection{Network Topology}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+To discover the network topology, we used trace path, where you can find out which hops a packet needs to pass in order to get to a destination.
+
+\begin{lstlisting}[style=simple]
+user13:$ tracepath 172.16.2.12
+1:  tomcat.local.vienna.essecorp.invalid                  0.100ms pmtu 1500
+1:  omega.local.vienna.essecorp.invalid                  0.721ms 
+1:  omega.local.vienna.essecorp.invalid                  0.542ms 
+2:  gemini.dmz.vienna.essecorp.invalid                   1.128ms reached
+     Resume: pmtu 1500 hops 2 back 63 
+\end{lstlisting}
+
+\begin{figure}[h!]
+  \centering
+  \fbox{
+    \includegraphics[angle=270,width=0.9\textwidth]{./imgs/network_topology.png}
+  }
+  \caption{Network Topology}
+\end{figure}
 
 \section{Lab1c}
 
