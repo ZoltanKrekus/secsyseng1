@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<head>
+<title>Lab1c App1</title>
+</head>
+<f:metadata>
+	<!--<f:viewParam name="sessionId" value="#{user.sessionId}"/>
+	<f:event listener="#{userManager.loginBySessionId}" type="javax.faces.event.PreValidateEvent"></f:event> -->
+</f:metadata>
+<body>
+<f:view>
+<h:form>
+	<table>
+		<tr>
+			<td><h:outputText value="Enter User Name: " /></td>
+			<td><h:inputText id="name" value="#{user.name}" /></td>
+		</tr>
+		<tr>
+			<td><h:outputText value="Enter Password: " /></td>
+			<td><h:inputSecret id="password" value="#{user.password}" /></td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td><h:commandButton value="Login" action="#{userManager.login}"/></td>
+		</tr>
+		<tr/>
+		<tr>
+			<td> </td>
+			<td><h:outputText value="or alternatively : " /></td>			
+		</tr>
+		<tr/>
+		<tr>
+			<td><h:outputText value="SessionId: " /></td>
+			<td><h:inputText id="sessionId" value="#{user.sessionId}" /></td>
+		</tr>
+		<tr>
+			<td> </td>
+			<td><h:commandButton value="Login" action="#{userManager.loginBySessionId}"/></td>
+		</tr>
+	</table>
+	</h:form>
+</f:view>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14006035081741" configfile="/SecSysEngLab1cApp1/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="login.xhtml" x="122" y="370" id="pf14006052918982" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf14006052918983 pf14006052918984 pf14006064534447 pf14006064534448" path="/login.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="loginSuccess.xhtml" x="338" y="178" id="pf14006052918985" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf14006052918983 pf14006064534447" path="/loginSuccess.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="loginFailed.xhtml" x="338" y="562" id="pf14006052918986" referenceLink="//@navigationRule.1/@navigationCase.1/@toViewId|" inlinks="pf14006052918984 pf14006064534448" path="/loginFailed.xhtml"/>
+  <links id="pf14006052918983" target="pf14006052918985" source="pf14006052918982" outcome="success" fromaction="#{userManager.login}"/>
+  <links id="pf14006052918984" target="pf14006052918986" source="pf14006052918982" outcome="fail" fromaction="#{userManager.login}"/>
+  <links id="pf14006064534447" target="pf14006052918985" source="pf14006052918982" outcome="success" fromaction="#{userManager.loginBySessionId}"/>
+  <links id="pf14006064534448" target="pf14006052918986" source="pf14006052918982" outcome="fail" fromaction="#{userManager.loginBySessionId}"/>
+</pageflow:Pageflow>
