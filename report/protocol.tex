@@ -13,7 +13,8 @@
 \documentclass[12pt,a4paper,titlepage,oneside]{scrartcl}
 \usepackage{esseProtocol}
 \usepackage{dirtree}
-\usepackage{pbox}
+\usepackage{multirow}
+\usepackage{bigstrut}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -97,6 +98,7 @@ http://localhost:8989/login/
 
 in a browser to access the web application.
 
+\newpage
 \subsection{Exploiting the Vulnerability}
 The next step was to find a suitable vulnerability for this Apache Wicket version. A look at the the source code revealed the version of the framework (Apache Wicket 1.5.4). A little bit of trying and getting the website to know, we discovered an information revealing comment in the source code after trying to login with invalid credentials:
 
@@ -143,20 +145,20 @@ user13:$ nmap -sn 172.16.0.0/16
 
 The results are as follows:
 
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
 \hline
-192.168.98.1 & omega.local.vienna.essecorp.invalid \\ \hline
-192.168.98.10 & alpha.local.vienna.essecorp.invalid \\ \hline
-192.168.98.28 & beta.local.vienna.essecorp.invalid \\ \hline
-192.168.98.54 & gamma.local.vienna.essecorp.invalid \\ \hline
-192.168.98.99 & delta.local.vienna.essecorp.invalid \\ \hline
-192.168.98.124 & tomcat.local.vienna.essecorp.invalid \\ \hline
-192.168.98.201 & epsilon.local.vienna.essecorp.invalid \\ \hline
-192.168.98.202 & zeta.local.vienna.essecorp.invalid \\ \hline
-172.16.2.12 & gemini.dmz.vienna.essecorp.invalid \\ \hline
-172.16.2.15 & phoenix.dmz.vienna.essecorp.invalid \\ \hline
-172.16.2.25 & taurus.dmz.vienna.essecorp.invalid \\ \hline
-172.16.2.253 & lyra.dmz.vienna.essecorp.invalid \\ \hline
+192.168.98.1 & omega.local.vienna.essecorp.invalid \bigstrut \\ \hline
+192.168.98.10 & alpha.local.vienna.essecorp.invalid \bigstrut \\ \hline
+192.168.98.28 & beta.local.vienna.essecorp.invalid \bigstrut \\ \hline
+192.168.98.54 & gamma.local.vienna.essecorp.invalid \bigstrut \\ \hline
+192.168.98.99 & delta.local.vienna.essecorp.invalid \bigstrut \\ \hline
+192.168.98.124 & tomcat.local.vienna.essecorp.invalid \bigstrut \\ \hline
+192.168.98.201 & epsilon.local.vienna.essecorp.invalid \bigstrut \\ \hline
+192.168.98.202 & zeta.local.vienna.essecorp.invalid \bigstrut \\ \hline
+172.16.2.12 & gemini.dmz.vienna.essecorp.invalid \bigstrut \\ \hline
+172.16.2.15 & phoenix.dmz.vienna.essecorp.invalid \bigstrut \\ \hline
+172.16.2.25 & taurus.dmz.vienna.essecorp.invalid \bigstrut \\ \hline
+172.16.2.253 & lyra.dmz.vienna.essecorp.invalid \bigstrut \\ \hline
 \end{tabular}
 
 In order to detect the IPv6 addresses of the found domains we use the fact that nslookup also lists IPv6 addresses for given domains, if we set the type to AAAA:
@@ -170,17 +172,17 @@ alpha.local.vienna.essecorp.invalid
 
 Here are the resulting IPv6 addresses:
 
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
 \hline
-omega.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::1 \\ \hline
-alpha.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::5 \\ \hline
-beta.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::9 \\ \hline
-gamma.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::21 \\ \hline
-delta.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::43 \\ \hline
-tomcat.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::ab \\ \hline
-epsilon.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::79 \\ \hline
-zeta.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::88 \\ \hline
-lyra.dmz.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1002::fd \\ \hline
+omega.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::1 \bigstrut \\ \hline
+alpha.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::5 \bigstrut \\ \hline
+beta.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::9 \bigstrut \\ \hline
+gamma.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::21 \bigstrut \\ \hline
+delta.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::43 \bigstrut \\ \hline
+tomcat.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::ab \bigstrut \\ \hline
+epsilon.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::79 \bigstrut \\ \hline
+zeta.local.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1001::88 \bigstrut \\ \hline
+lyra.dmz.vienna.essecorp.invalid & fdcb:c447:e9d2:3553:1002::fd \bigstrut \\ \hline
 \end{tabular}
 
 But what about the IPv6 hosts, who are IPv6-only and have therefore not yet been discovered? Unfortunately nmap does not provide the possibility to scan ranges of IPv6 addresses, which is why we have to create our own ping script and let it run for every subnet in the exercise description (\emph{fdcb:c447:e9d2:3553:1000::} to \emph{fdcb:c447:e9d2:3553:100f::}):
@@ -202,18 +204,19 @@ user13:$ /sbin/ifconfig
 
 The results are the MAC addresses, which reside in the same subnet.
 
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
 \hline
-192.168.98.1 & 00:1b:d2:0d:84:98 \\ \hline
-192.168.98.10 & 00:1b:d2:d1:1f:85 \\ \hline
-192.168.98.28 & 00:1b:d2:f0:60:59 \\ \hline
-192.168.98.54 & 00:1b:d2:83:b8:41 \\ \hline
-192.168.98.99 & 00:1b:d2:a7:8f:d2 \\ \hline
-192.168.98.124 & 00:1b:d2:11:3c:dd \\ \hline
-192.168.98.201 & 00:1b:d2:38:ae:b9 \\ \hline
-192.168.98.202 & 00:1b:d2:85:9c:c4 \\ \hline
+192.168.98.1 & 00:1b:d2:0d:84:98 \bigstrut \\ \hline
+192.168.98.10 & 00:1b:d2:d1:1f:85 \bigstrut \\ \hline
+192.168.98.28 & 00:1b:d2:f0:60:59 \bigstrut \\ \hline
+192.168.98.54 & 00:1b:d2:83:b8:41 \bigstrut \\ \hline
+192.168.98.99 & 00:1b:d2:a7:8f:d2 \bigstrut \\ \hline
+192.168.98.124 & 00:1b:d2:11:3c:dd \bigstrut \\ \hline
+192.168.98.201 & 00:1b:d2:38:ae:b9 \bigstrut \\ \hline
+192.168.98.202 & 00:1b:d2:85:9c:c4 \bigstrut \\ \hline
 \end{tabular}
 
+\newpage
 \subsection{Operating Systems, Ports and Services}
 
 Nmap also has the possibility to guess operating systems and services behind open ports. Sometimes even version numbers. We used the following commands to gain this information. Regarding the operating system, one can also sometimes guess it looking at the services running. Some only run on Unix systems, for example.
@@ -223,40 +226,40 @@ user13:$ nmap -A 192.168.98.1/24
 user13:$ nmap -A 172.16.2.1/24
 \end{lstlisting}
 
-\renewcommand{\arraystretch}{2.5}
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
 \hline
-192.168.98.1 & \pbox[c]{\textwidth}{OS: Linux (Debian kind) \\ 22: SSH - OpenSSH 6.0p1} \\ \hline
-192.168.98.10 & \pbox[c]{\textwidth}{OS: Unix  \\ 53: DNS - dnsmasq 2.62} \\ \hline
-192.168.98.28 & \pbox[c]{\textwidth}{OS: Unix  \\ 25: SMTP - Exim smtpd 4.80 \\ 110: POP3 - Dovecot pop3d \\ 143: IMAP - Dovecot imapd} \\ \hline
-192.168.98.54 & \pbox[c]{\textwidth}{ OS:  \\ 1080: SOCKS - socks5}  \\ \hline
-192.168.98.99 & \pbox[c]{\textwidth}{OS: Unix  \\ 631: IPP - CUPS 1.5}  \\ \hline
-192.168.98.124 & \pbox[c]{\textwidth}{OS: Linux \\ 8080: HTTP - Apache Tomcat JSP engine 1.1}  \\ \hline
-192.168.98.201 & \pbox[c]{\textwidth}{OS: Unix \\ 139: netbios-ssn - Samba 3.6.6 \\ 445: microsoft-ds - Samba 3.6.6}  \\ \hline
-192.168.98.202 & all ports closed  \\ \hline
-172.16.2.12 & \pbox[c]{\textwidth}{OS: Unix  \\ 80: HTTP - lighttpd 1.4.31}  \\ \hline
-172.16.2.15 & \pbox[c]{\textwidth}{OS: Unix \\ 21: FTP - vsftpd 2.3.5}  \\ \hline
-172.16.2.25 & \pbox[c]{\textwidth}{OS: Unix \\ 25: SMTP - smtpd 4.8}  \\ \hline
-172.16.2.253 & \pbox[c]{\textwidth}{OS: Linux \\ 22: SSH - OpenSSH 6.0p1}  \\ \hline
+\multirow{2}{*}{192.168.98.1} & OS: Linux (Debian kind) \bigstrut \\ & 22: SSH - OpenSSH 6.0p1 \bigstrut \\ \hline
+\multirow{2}{*}{192.168.98.10} & OS: Unix \bigstrut  \\ &  53: DNS - dnsmasq 2.62 \bigstrut \\ \hline
+\multirow{4}{*}{192.168.98.28} &OS: Unix \bigstrut \\ & 25: SMTP - Exim smtpd 4.80 \bigstrut \\ & 110: POP3 - Dovecot pop3d \bigstrut \\  & 143: IMAP - Dovecot imapd \bigstrut \\ \hline
+\multirow{2}{*}{192.168.98.54} & OS: \bigstrut \\ & 1080: SOCKS - socks5 \bigstrut \\ \hline
+\multirow{2}{*}{192.168.98.99} & OS: Unix \bigstrut \\ & 631: IPP - CUPS 1.5 \bigstrut \\ \hline
+\multirow{2}{*}{192.168.98.124} & OS: Linux \bigstrut \\ & 8080: HTTP - Apache Tomcat JSP engine 1.1 \bigstrut \\ \hline
+\multirow{3}{*}{192.168.98.201} & OS: Unix \bigstrut \\ & 139: netbios-ssn - Samba 3.6.6 \bigstrut \\ & 445: microsoft-ds - Samba 3.6.6 \bigstrut \\ \hline
+192.168.98.202 & all ports closed  \bigstrut \\ \hline
+\multirow{2}{*}{172.16.2.12} & OS: Unix \bigstrut \\ & 80: HTTP - lighttpd 1.4.31 \bigstrut \\ \hline
+\multirow{2}{*}{172.16.2.15} & OS: Unix \bigstrut \\ & 21: FTP - vsftpd 2.3.5 \bigstrut \\ \hline
+\multirow{2}{*}{172.16.2.25} & OS: Unix \bigstrut \\ & 25: SMTP - smtpd 4.8 \bigstrut \\ \hline
+\multirow{2}{*}{172.16.2.253} & OS: Linux \bigstrut \\ & 22: SSH - OpenSSH 6.0p1 \bigstrut \\ \hline
 \end{tabular}
 
+\newpage
 \subsection{Functionality}
 The functionality can, of course, only be guessed. However the services provided on the servers give a strong hint to what it might be used for. Also nslookup can be used to guess which computers are probably routers (see Network Topology section).
  
-\begin{tabular}{| l | l |}
+\begin{tabular}{l | l}
 \hline
-192.168.98.1 & router \\ \hline
-192.168.98.10 & name server (DNS) \\ \hline
-192.168.98.28 & mail server \\ \hline
-192.168.98.54 & proxy server \\ \hline
-192.168.98.99 & printer server \\ \hline
-192.168.98.124 & web application server \\ \hline
-192.168.98.201 & file server \\ \hline
-192.168.98.202 & unknown \\ \hline
-172.16.2.12 & web server \\ \hline
-172.16.2.15 & FTP server \\ \hline
-172.16.2.25 & mail server (only sending - probably for the tomcat server) \\ \hline
-172.16.2.253 & router \\ \hline
+192.168.98.1 & router \bigstrut \\ \hline
+192.168.98.10 & name server (DNS) \bigstrut \\ \hline
+192.168.98.28 & mail server \bigstrut \\ \hline
+192.168.98.54 & proxy server \bigstrut \\ \hline
+192.168.98.99 & printer server \bigstrut \\ \hline
+192.168.98.124 & web application server \bigstrut \\ \hline
+192.168.98.201 & file server \bigstrut \\ \hline
+192.168.98.202 & unknown \bigstrut \\ \hline
+172.16.2.12 & web server \bigstrut \\ \hline
+172.16.2.15 & FTP server \bigstrut \\ \hline
+172.16.2.25 & mail server (only sending - probably for the tomcat server) \bigstrut \\ \hline
+172.16.2.253 & router \bigstrut \\ \hline
 \end{tabular}
 
 \subsection{Network Topology}
@@ -279,6 +282,7 @@ user13:$ tracepath 172.16.2.12
   \caption{Network Topology}
 \end{figure}
 
+\newpage
 \section{Lab1c}
 
 \subsection{A1 - Injection}
@@ -337,20 +341,6 @@ echo "some very very very very very very very very very very very very very very
 
 exit 0;
 \end{lstlisting}
-
-\subsection{Images}
-
-Here is an example how to insert an image into this document.
-(\hyperref[fig:logo1]{see figure~\ref*{fig:logo1} on page~\pageref*{fig:logo1}}).
-
-\begin{figure}[h!]
-  \centering
-  \fbox{
-    \includegraphics[width=0.4\textwidth]{./imgs/esse-color.png}
-  }
-  \caption{ESSE Logo}
-  \label{fig:logo1}
-\end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
