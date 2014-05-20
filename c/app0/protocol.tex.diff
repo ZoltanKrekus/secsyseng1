@@ -1,0 +1,58 @@
+--- report/protocol.tex	2014-05-20 21:27:51.682699906 +0200
++++ report/protocol_prev.tex	2014-05-20 18:01:10.462935127 +0200
+@@ -285,55 +285,6 @@
+ \newpage
+ \section{Lab1c}
+ 
+-\subsection{A0 - XSS (Cross-Site Scripting)}
+-
+-XSS ist eine Art von Injection. Als signifikantes Merkmal wird der Inhalt der Injection (payload) vom angegriffenen Server an einen oder mehrere Empfänger, die tatsächlichen Angriffsziele, weitergeleitet. Im prominentesten Fall wird die Angriffs-Payload Teil eines HTML-Dokuments, das von einem kompromittierten Webserver an den Browser eines Clients gesendet wird, der eine darauf befindliche Webseite aufruft. Das gleiche Prinzip ermöglicht das Angreifen von E-Mail-Clients, welche E-Mails von einem kompromittierten Server bekommen.
+-
+-Fehlerquelle
+-============
+-
+-Die XSS-Schwäche befindet sich in src-vuln/index.php: Zeile 47-48.
+-Der String-Inhalt der Datenbank wird durch die Variablen $row[user] und $row[comment] direkt in den HTML-Quellcode der Seite eingebettet. Falls der String nicht nur simplen Text, sondern auch HTML-relevante Information enthält, wird diese zum Teil der Struktur der Webseite. Das ermöglicht dem Angreifer, den Browser von aufrufenden Clients mit allen Anweisungen anzusteuern, die von diesem unterstützt werden, z.B. Javascript.
+-
+-Ausnutzung
+-==========
+-
+-Eingabe eines speziell angefertigten Strings in das 'Text'-Eingabefeld und den Knopf 'Drehen' drücken.
+-Beispiel: test<script>alert(''hi'')</script>
+-Der manipulierte String wird nun jedem Aufrufer der Webseite als Teil der Tabelle unter dem Formular zugeschickt.
+-
+-Behebung
+-========
+-
+-Die Abgabelösung in src-fixed/index.php benutzt die PHP-Funktion htmlentities(), um die auszugebenden Strings in ein HTML-kompatibles Format zu konvertieren. Aufrufende Browser interpretieren daraus den korrekten Text, wie er in der Datenbank liegt. Die HTML-Struktur wird nicht beeinträchtigt.
+-
+-Eine alternative Lösung besteht in der Verwendung eines Objektmodells für die Komponenten der Webseite wie z.B. in .NET. Ein String mit HTML-Entitäten, der einer Web-Komponente als Anzeigetext zugewiesen wird, wird beim Rendering der Komponente 'aufgeräumt'. Der Implementationsaufwand wird vom Web-Programmierer auf das Web-Framework übertragen, was das Fehler-Risiko senkt.
+-
+-Eine weitere Alternative wäre die Säuberung von Benutzereingaben bereits vor dem Eintragen in die Datenbank, z.B. ebenfalls durch die htmlentities()-Funktion.
+-
+-Vorkommen in letzter Zeit
+-=========================
+-
+-vBulletin:
+-Die 'private message' Funktion der verbreiteten Webforum-Software vBulletin enthält eine XSS-Schwachstelle, mit der über einen manipulierten Hyperlink beliebiger Code in die Website eingeschleust werden kann.
+-Als mögliche Konsequenz könnte ein Angreifer unter der Identität des Opfers Aktionen in der Forumsoftware ausführen.
+-Es handelt sich um einen reflektierten XSS-Angriff, bei dem das Opfer einen manipulierten Link besuchen muss und der Angriffscode nicht am Server gespeichert bleibt.
+-http://www.cvedetails.com/cve/CVE-2014-3135/
+-http://packetstormsecurity.com/files/126226/vBulletin-5.1-Cross-Site-Scripting.html (Exploit Beispiel)
+-
+-phpMyID:
+-Die Login-Seite von phpMyID, eine identity provider Software für OpenID, kann mittels XSS manipuliert werden. Der Benutzer besucht die anfällige Seite, um sich mit seinen OpenID Credentials einzuloggen. Daher kann jede Webseite, die eine OpenID-Authentifizierung anbietet, einem potentiellen Opfer glaubhaft den XSS-infizierten Link unterschieben. Auch dies ist ein reflektierter XSS-Angriff. Da die Software nicht mehr gewartet wird, bleiben alle bestehenden Deployments verwundbar. Die anfällige Version 0.9 gibt es seit 6 Jahren.
+-http://www.cvedetails.com/cve/CVE-2014-2890/
+-http://siege.org/phpmyid (Beschreibung und Dokumentation)
+-
+-lxml:
+-Die XML- und HTML-Tool-Library lxml enthält ein Modul zum Aufräumen von HTML-Code. Dieses soll Aufrufe von Javascript entfernen. Allerdings wird ein Aufruf nicht erkannt, wenn die gesuchten Strings wie 'javascript' durch nicht-druckbare Zeichen unterbrochen werden. In der Ausgabe der clean_html()-Funktion befindet sich dann der zusammengesetzte, unerwünschte javascript-Aufruf.
+-Ein denkbares Anwendungsgebiet dieser Funktion wären Eingabemasken, die einem Benutzer z.B. begrenzte HTML-Eingaben zur Textformatierung ermöglichen. In diesem Fall könnte ein Angreifer die Beschränkungen auf seine Eingabe umgehen.
+-Die Art der möglichen Angriffe hängt vom Einsatz der lxml-Library ab. Es wäre vorstellbar, dass eine Webseite die Library so einsetzt, dass die 'gesäuberten' Benutzereingaben am Server gespeichert und anderen Benutzern gesendet werden (persistenter XSS-Angriff).
+-http://cvedetails.com/cve/CVE-2014-3146/
+-http://seclists.org/fulldisclosure/2014/Apr/319 (Exploit Beispiel)
+-http://lxml.de/api/lxml.html.clean.Cleaner-class.html (lxml API Dokumentation)
+-
+ \subsection{A1 - Injection}
+ This application is a small example of a shell injection vulnerability. Injection in general is a widely distributed vulnerability, which can be used
+ in various attacks, where one could inject malicious code, get sensitive information, etc.. This example handles a specific version of injection, namely the shell injection. The basis of this vulnerability is, that a user input is forwarded to the system's shell without any validation whatsoever. Attackers can add shell commands to the user input, which will be executed by the program. To counter these attacks, it is necessary to validate the user input, by escaping/removing special characters that are interpreted by the shell, like  \textit{\$, |, \&, <, >, ` and ;}. Even better though, is to completely avoid shell execution from another program, especially if user input is involved.

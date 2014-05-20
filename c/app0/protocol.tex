@@ -285,6 +285,55 @@ user13:$ tracepath 172.16.2.12
 \newpage
 \section{Lab1c}
 
+\subsection{A0 - XSS (Cross-Site Scripting)}
+
+XSS ist eine Art von Injection. Als signifikantes Merkmal wird der Inhalt der Injection (payload) vom angegriffenen Server an einen oder mehrere Empfänger, die tatsächlichen Angriffsziele, weitergeleitet. Im prominentesten Fall wird die Angriffs-Payload Teil eines HTML-Dokuments, das von einem kompromittierten Webserver an den Browser eines Clients gesendet wird, der eine darauf befindliche Webseite aufruft. Das gleiche Prinzip ermöglicht das Angreifen von E-Mail-Clients, welche E-Mails von einem kompromittierten Server bekommen.
+
+Fehlerquelle
+============
+
+Die XSS-Schwäche befindet sich in src-vuln/index.php: Zeile 47-48.
+Der String-Inhalt der Datenbank wird durch die Variablen $row[user] und $row[comment] direkt in den HTML-Quellcode der Seite eingebettet. Falls der String nicht nur simplen Text, sondern auch HTML-relevante Information enthält, wird diese zum Teil der Struktur der Webseite. Das ermöglicht dem Angreifer, den Browser von aufrufenden Clients mit allen Anweisungen anzusteuern, die von diesem unterstützt werden, z.B. Javascript.
+
+Ausnutzung
+==========
+
+Eingabe eines speziell angefertigten Strings in das 'Text'-Eingabefeld und den Knopf 'Drehen' drücken.
+Beispiel: test<script>alert(''hi'')</script>
+Der manipulierte String wird nun jedem Aufrufer der Webseite als Teil der Tabelle unter dem Formular zugeschickt.
+
+Behebung
+========
+
+Die Abgabelösung in src-fixed/index.php benutzt die PHP-Funktion htmlentities(), um die auszugebenden Strings in ein HTML-kompatibles Format zu konvertieren. Aufrufende Browser interpretieren daraus den korrekten Text, wie er in der Datenbank liegt. Die HTML-Struktur wird nicht beeinträchtigt.
+
+Eine alternative Lösung besteht in der Verwendung eines Objektmodells für die Komponenten der Webseite wie z.B. in .NET. Ein String mit HTML-Entitäten, der einer Web-Komponente als Anzeigetext zugewiesen wird, wird beim Rendering der Komponente 'aufgeräumt'. Der Implementationsaufwand wird vom Web-Programmierer auf das Web-Framework übertragen, was das Fehler-Risiko senkt.
+
+Eine weitere Alternative wäre die Säuberung von Benutzereingaben bereits vor dem Eintragen in die Datenbank, z.B. ebenfalls durch die htmlentities()-Funktion.
+
+Vorkommen in letzter Zeit
+=========================
+
+vBulletin:
+Die 'private message' Funktion der verbreiteten Webforum-Software vBulletin enthält eine XSS-Schwachstelle, mit der über einen manipulierten Hyperlink beliebiger Code in die Website eingeschleust werden kann.
+Als mögliche Konsequenz könnte ein Angreifer unter der Identität des Opfers Aktionen in der Forumsoftware ausführen.
+Es handelt sich um einen reflektierten XSS-Angriff, bei dem das Opfer einen manipulierten Link besuchen muss und der Angriffscode nicht am Server gespeichert bleibt.
+http://www.cvedetails.com/cve/CVE-2014-3135/
+http://packetstormsecurity.com/files/126226/vBulletin-5.1-Cross-Site-Scripting.html (Exploit Beispiel)
+
+phpMyID:
+Die Login-Seite von phpMyID, eine identity provider Software für OpenID, kann mittels XSS manipuliert werden. Der Benutzer besucht die anfällige Seite, um sich mit seinen OpenID Credentials einzuloggen. Daher kann jede Webseite, die eine OpenID-Authentifizierung anbietet, einem potentiellen Opfer glaubhaft den XSS-infizierten Link unterschieben. Auch dies ist ein reflektierter XSS-Angriff. Da die Software nicht mehr gewartet wird, bleiben alle bestehenden Deployments verwundbar. Die anfällige Version 0.9 gibt es seit 6 Jahren.
+http://www.cvedetails.com/cve/CVE-2014-2890/
+http://siege.org/phpmyid (Beschreibung und Dokumentation)
+
+lxml:
+Die XML- und HTML-Tool-Library lxml enthält ein Modul zum Aufräumen von HTML-Code. Dieses soll Aufrufe von Javascript entfernen. Allerdings wird ein Aufruf nicht erkannt, wenn die gesuchten Strings wie 'javascript' durch nicht-druckbare Zeichen unterbrochen werden. In der Ausgabe der clean_html()-Funktion befindet sich dann der zusammengesetzte, unerwünschte javascript-Aufruf.
+Ein denkbares Anwendungsgebiet dieser Funktion wären Eingabemasken, die einem Benutzer z.B. begrenzte HTML-Eingaben zur Textformatierung ermöglichen. In diesem Fall könnte ein Angreifer die Beschränkungen auf seine Eingabe umgehen.
+Die Art der möglichen Angriffe hängt vom Einsatz der lxml-Library ab. Es wäre vorstellbar, dass eine Webseite die Library so einsetzt, dass die 'gesäuberten' Benutzereingaben am Server gespeichert und anderen Benutzern gesendet werden (persistenter XSS-Angriff).
+http://cvedetails.com/cve/CVE-2014-3146/
+http://seclists.org/fulldisclosure/2014/Apr/319 (Exploit Beispiel)
+http://lxml.de/api/lxml.html.clean.Cleaner-class.html (lxml API Dokumentation)
+
 \subsection{A1 - Injection}
 This application is a small example of a shell injection vulnerability. Injection in general is a widely distributed vulnerability, which can be used
 in various attacks, where one could inject malicious code, get sensitive information, etc.. This example handles a specific version of injection, namely the shell injection. The basis of this vulnerability is, that a user input is forwarded to the system's shell without any validation whatsoever. Attackers can add shell commands to the user input, which will be executed by the program. To counter these attacks, it is necessary to validate the user input, by escaping/removing special characters that are interpreted by the shell, like  \textit{\$, |, \&, <, >, ` and ;}. Even better though, is to completely avoid shell execution from another program, especially if user input is involved.
@@ -294,115 +343,54 @@ The example program takes a string as argument and returns it in 1337 speak. It 
 every special character, that could be used in a shell injection and replaces it with an
 underscore (see code line 40 and 41 in the fixed source code). Therefore, an attacker is not able to input additional shell commands any more.
 
+The directory structure of the application is as follows:
+
+\dirtree{%
+.1 app3. 
+.2 exploit. 
+.3 Makefile\DTcomment{used to build the example programs}. 
+.3 README. 
+.2 src-vuln.
+.3 1337echo.c\DTcomment{The program vulnerable to shell injection}. 
+.2 src-fixed. 
+.3 1337echo.c\DTcomment{The program no longer vulnerable to shell injection}. 
+}
+
 To compile both the vulnerable and the fixed program, just run
 
-\begin{lstlisting}[style=simple]
-make
-\end{lstlisting}
+\lstinline{make}
 
 in the \textit{exploit} directory to compile both the vulnerable and the not vulnerable program.
 
 To use the examples after compiling, run 1337echo in the folder \textit{src-vuln} or \textit{src-fixed} (depending on which you want to try):
 
-\begin{lstlisting}[style=simple]
-./1337echo "This is a test!"
-\end{lstlisting}
+\lstinline{./1337echo "This is a test!"}
 
 An example exploiting the vulnerability would be (please use with care!):
 
-\begin{lstlisting}[style=simple]
-./1337echo "I will exploit! && rm *"
-\end{lstlisting}
+\lstinline{./1337echo "I will exploit! && rm *"}
 
 An occurrence of a shell injection vulnerability happened in the X.Org X11 server, where remote attackers where allowed to execute commands\footnote{http://www.cvedetails.com/cve/CVE-2011-0465/}. This vulnerability got a CVSS score of 9.3, making it a very delicate one, since it resulted in total information disclosure, total compromise of system integrity and a possibility for total shutdown, while the attacker is not even authenticated.
 
-\subsection{A2 - Broken Authentication and Session Management}
+(\hyperref[code:example1]{see listing~\ref*{code:example1} on page~\pageref*{code:example1}} and \hyperref[code:example2]{see listing~\ref*{code:example2} on page~\pageref*{code:example2}}).
 
-This vulnerability is about Broken Authentication and Session Management. The session IDs, with which a user can be authenticated are not being protected sufficiently.
-In our case, there are several problems:
-\begin{itemize}
-\item The session ID can be calculated by just incrementing.
-\item There are no time outs for session IDs
-\item The session ID is in memory in plain text. (the application saves everything in-memory)
-\end{itemize}
-Remark: In the fixed application, we focussed on the randomisation of session IDs to make them unpredictable. For reasons of simplicity, we didn't handle timeout handling and encryption this time.
+You can include short code snippets or commands directly inline with \lstinline{lstinline block}.
 
-In principle at the creation of a new session ID only a counter gets incremented. The only "protection measure" which was implemented, was to use an AtomicLong to avoid concurrency issues. However, this measure is not sufficient to create proper IDs.
+%\lstinputlisting[caption=Example C/C++ file,label=code:example1,style=c]{example.c}
 
-\begin{lstlisting}[style=simple]
-service.UserManager, Line 21: 
-	private final static AtomicLong SESSION_COUNTER = new AtomicLong();
+\begin{lstlisting}[caption=Example bash script,label=code:example2,style=simple]
+#!/bin/bash
+echo "Bash version ${BASH_VERSION}..."
+for i in {0..10..2}
+  do
+     echo "Welcome $i times"
+ done
+
+echo "some very very very very very very very very very very very very very very very very very very very very long string"
+
+exit 0;
 \end{lstlisting}
 
-An AtomicLong is instanced here, which is used to create session IDs
-
-\begin{lstlisting}[style=simple]
-service.UserManager, Line 50:
-	long sessionId = UserManager.SESSION_COUNTER.incrementAndGet();
-\end{lstlisting}
-	
-At every new login with username and password a simply incremented ID is distributed.
-An attacker can, for example, login with his legitimate account to see at which number the session ID currently is.
-He can then create a script to try a range of session IDs from the current one to <Long.MaxValue>, or even a range from 1 to <Long.MaxValue>.
-
-The fix we used was a 128-bit long UUID (Universally Unique Identifier)
-UUIDs are pseudo-random, but very much unpredictable. Guessing the UUID is not a real attack vector.
-Of course, there are variou different ways to fix this problem. One of the best ones is to simply use the APIs for session cookies provided by JSF.
-However, to keep things simple, yet secure, we decided to go with UUIDs. In a real-world scenario, of course one also has to consider session timeouts and encrypted persistent session IDs.
-
-In 2012, Blizzard was victim to a number of session hijacking attacks, which made some waves in the media, as millions of online gamers where affected.\footnote{http://www.tomshardware.com/news/Diablo-3-Authenticator-Battle.net-Bashiok-Password,15724.html}
-Even more newsworthy: Heatbleed, probably the biggest security vulnerability of all time. Session Hijacking is also a possibility here.
-With Heartbleed, it is possible to send malicious requests to a server and the server responds with more data to the client, than it should. More precisely, it makes a false check and made it possible to the client to read 64KByte from the main memory.
-It is quite possible, that in these 64K a session ID is hidden unencrypted.\footnote{https://www.mattslifebytes.com/?p=533} \footnote{https://de.wikipedia.org/wiki/Heartbleed}
-
-
-\subsection{A3 - XSS (Cross-Site Scripting)}
-
-XSS is a kind of injection. As a significant characteristic, the injected content (payload) is forwarded from the attacked application to the victim. In the most prominent case, the payload gets part of the HTML document and gets send by the compromised application to the victims browser.
-
-The XSS weakness in our application can be found in src-vuln/index.php: lines 47-48.
-The string content of the database is embedded into the HTML source code via the variables \$row[user] and \$row[comment]. If the string does not only contains simple text, but also parseable content, the string gets part of the websites structure. This enables the attacker to execute code in the name of the client's browser (e.g. JavaScript).
-
-The exploit the vulnerability, one can enter a specially assembled string in the input field and click "Drehen".
-Example: test<script>alert(''hi'')</script>
-The manipulated string is now send to every visitor of the website as part of the table.
-
-How to fix the problem? In src-fixed/index.php the PHP function htmlentities() is used to convert the string to an HTML compatible string. Now it can be interpreted as a normal string and not as part of the website.
-An alternative solution is to use an object model for the components of the website, e.g. like in .NET. A string with HTML entities, which is assigned to a web component as text will be cleaned during rendering. The implementation effort is transferred from the developer to the framework.
-A further alternative would be the cleaning of user input before it gets persisted in the database. This is also possible with the htmlentities function
-
-There were several occurrences not long ago:
-
-vBulletin:
-The 'private message' function of the bulletin board software had a XSS vulnerability, with which an attacker could inject malicious code in the the website. This enabled the attacker to do things in the victim's name.
-This was a reflected XSS attack - the user only had to click on a manipulated link in order to become a victim. The malicious code was not saved on the web server.\footnote{http://www.cvedetails.com/cve/CVE-2014-3135/} \footnote{http://packetstormsecurity.com/files/126226/vBulletin-5.1-Cross-Site-Scripting.html}
-
-phpMyID:
-The login site of phpMyID, an identity software for OpenID could be manipulated using XSS. The user visits the affected site to login with his OpenID credentials, so every website which offers OpenID authentication can distribute credible, yet XSS infected links. This is a reflected XSS attack as well. As the software is no longer maintained, the vulnerability remains. \footnote{http://www.cvedetails.com/cve/CVE-2014-2890/} \footnote{http://siege.org/phpmyid}
-
-lxml:
-The XML- and HTML tool library contains a module to clean HTML code and should remove JavaScript from the code. However, the code is not detected, if the keywords (like "javascript") are interrupted by non-printable characters.
-So every application, which relies on this library could be victim to a XSS attack. \footnote{http://cvedetails.com/cve/CVE-2014-3146/} \footnote{http://seclists.org/fulldisclosure/2014/Apr/319} \footnote{http://lxml.de/api/lxml.html.clean.Cleaner-class.html (lxml API Dokumentation)}
-
-\subsection{A7 - Missing Function Level Access Control}
-
-The implemented vulnerability is based on the OWASP "A7-Missing Function Level Access Control." This kind of vulnerability allows an unauthorized attacker to gain access to functionality that is not intended for him or her. This is because the application forgets to check the privileges when the function is called (or the check is sowehow flawed, maybe by just 'hiding' the functionality in the GUI).
-
-The error resides in the file modify.php, which is called by gallery.php to modify the description of an image. No checking of the caller's session takes place, which leads to an type A7 vulnerability.
-
-This vulnerability can be fixed by authorizing the user before executing the function. This is done by first authenticating the user (normally by his session) and afterwards checking his role (e.g. if he or she is an administator). This role will then be checked against the access rights of the requested function, so that execution only takes place when the user meets the respective privileges.
-
-Through visiting the page index.html one will get to the main page. On the left you will see a menu that lets you access the gallery and the login section. You can log in by going to the 'Login' section and typing in 'password'. Now you are able to modify the description of the images (this is the way the application was designed for). Through accessing the file 
-
-\begin{lstlisting}[style=simple]
-src-vuln/modify.php?id=[image-id]&text=[descr]
-\end{lstlisting}
-
-you are able to set the description of an arbitrary image, even when not logged in. The vulnerability happens because the modify.php file misses a proper session and authorization handling (i.e. non at all).
-
-In the fixed version of the application, the session of the user is first established (session\_start\(\)) and then it checks whether the user is logged in as an administrator (admin==1). The image's description is only modified as long as both conditions are met (which should only be possible through access via password).
-
-The router "Allied Telesis AT-RG634A ADSL" uses an HTML page as user interface. In earlier versions of the firmware (3.5, 2.4) it was possible to execute Shell commands on the underlying operating system by calling cli.html. This page call happened without any authentication or authorisation, with the consequences that every one was able to compromise the router.\footnote{http://www.cvedetails.com/cve/CVE-2014-1982/}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
