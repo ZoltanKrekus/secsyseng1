@@ -80,23 +80,50 @@
 
 \section{Lab1a}
 
-\subsection{Notes}
-\emph{Notes:}
-\begin{itemize}
-    \item Either use this English version or the German version in \lstinline{protokoll.tex}
-    \item Replace all variables below \emph{FOR STUDENTS} in this .tex file
-    \item Replace the placeholders for your name and your student id (MatNr)
-    \item Delete these hints and example chapters before the final submission
-    \item Keep an eye on the required file formats and \emph{file names} for your submission(s)
-    \item Execute \lstinline{pdflatex} at least twice, in order to get correct references and page numbers in the pdf document
-    \item You may also use the Makefile for this purpose: \lstinline{make en}
-\end{itemize}
+\subsection{Port-Forwarding}
 
-\subsection{Sub-Section 1}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Using the credentials we got at the previous exercise, we could login to the lab environment and from there, we had access to a web server running a web application, which used an old version of the Apache Wicket Framework. This version of Apache Wicket is supposed to have a vulnerability, which we can use to complete the exercise.
+The first challenge that presented itself to us was the fact, that we need to access the web application using a browser. But how do you use a browser over ssh? To resolve the issue, we used port forwarding:
 
-\subsection{Sub-Section 2}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\begin{lstlisting}[style=simple]
+ssh -N e0825750@tese.inso.tuwien.ac.at -p 15000 -L 8989:10.10.20.100:8080
+\end{lstlisting}
+
+All the traffic that goes to the port 8989 is now redirected to 10.10.20.100 on Port 8080. As this is where the web application lies, we can enter
+
+\begin{lstlisting}[style=simple]
+http://localhost:8989/login/
+\end{lstlisting}
+
+in a browser to access the web application.
+
+\subsection{Exploiting the Vulnerability}
+The next step was to find a suitable vulnerability for this Apache Wicket version. A look at the the source code revealed the version of the framework (Apache Wicket 1.5.4). A little bit of trying and getting the website to know, we discovered an information revealing comment in the source code after trying to login with invalid credentials:
+
+\begin{lstlisting}[style=simple]
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Unhandled Exception:
+at.ac.tuwien.inso.MatchingUserNotFoundException: Couldn't find the given user in file:/var/lib/tomcat7/webapps/login/WEB-INF/classes/at/ac/tuwien/inso/EsseCorp/users.xml
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+\end{lstlisting}
+
+This indeed told a lot about the web application's structure.
+
+Our next step brought us to a huge vulnerability database, where we searched for relevant vulnerabilities and maybe even exploits (\emph{http://www.cvedetails.com}). We found a very useful directory traversal vulnerability (\emph{CVE-2012-1089 - http://www.cvedetails.com/cve/CVE-2012-1089/}), which combined with the knowledge about the users.xml from above should prove useful.
+
+The part that really took time and nerves was trying to use the vulnerability. We searched what felt like the whole internet for a clearer description than \emph{"Directory traversal vulnerability in Apache Wicket 1.4.x before 1.4.20 and 1.5.x before 1.5.5 allows remote attackers to read arbitrary web-application files via a relative pathname in a URL for a Wicket resource that corresponds to a null package."}, but didn't manage to find one. Here we learnt an important lesson. Exploiting takes a good deal of patience, trial-and-error and "don't give up".
+in the end we managed to find the users.xml file by accessing the following address:
+
+\begin{lstlisting}[style=simple]
+http://localhost:8989/login/wicket/resource/at.ac.tuwien.inso.EsseCorp.Login/users.xml
+\end{lstlisting}
+
+There we got the second part of the password. The first part could be found in \emph{group.txt} in our home directory on the lab environment.
+Now we were able to logon via ssh using the password \emph{soocheenooquaul}.
+
+\begin{lstlisting}[style=simple]
+ssh user13@10.10.20.100
+\end{lstlisting}
 
 \section{Lab1b}
 
