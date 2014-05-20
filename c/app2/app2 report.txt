@@ -1,0 +1,17 @@
+-Um welche Art von Schwachstelle handelt es sich? (kurzer theoretischer Hintergrund)
+The implemented vulnerability is based on the OWASP "A7-Missing Function Level Access Control." This kind of vulnerability allows an unauthorized attacker to gain access to functionality that is not intended for him or her. This is because the application forgets to check the privileges when the function is called (or the check is sowehow flawed, maybe by just 'hiding' the functionality in the GUI).
+
+-Genaue Angabe wo sich der Fehler befindet (z.b. Codezeilen, etc.)
+The error resides in the file modify.php, which is called by gallery.php to modify the description of an image. No checking of the caller's session takes place, which leads to an type A7 vulnerability.
+
+-Beschreibung wie der Fehler behoben werden kann
+This vulnerability can be fixed by authorizing the user before executing the function. This is done by first authenticating the user (normally by his session) and afterwards checking his role (e.g. if he or she is an administator). This role will then be checked against the access rights of the requested function, so that execution only takes place when the user meets the respective privileges.
+
+-Schritte, die erforderlich sind, um die Schwachstelle auszunutzen.
+Through visiting the page index.html one will get to the main page. On the left you will see a menu that lets you access the gallery and the login section. You can log in by going to the 'Login' section and typing in 'password'. Now you are able to modify the description of the images (this is the way the application was designed for). Through accessing the file src-vuln/modify.php?id=[image-id]&text=[descr], you are able to set the description of an arbitrary image, even when not logged in. The vulnerability happens because the modify.php file misses a proper session and authorization handling (i.e. non at all).
+
+-Beschreibung des von Ihnen korrigierten Programms
+In the fixed version of the application, the session of the user is first established (session_start()) and then it checks whether the user is logged in as an administrator (admin==1). The image's description is only modified as long as both conditions are met (which should only be possible through access via password).
+
+-Recherchieren Sie, wo in letzter Zeit diese Schwachstelle in bekannten Programmen/Anwendungen/Webseiten/etc. vorgekommen ist.
+The router "Allied Telesis AT-RG634A ADSL" uses an HTML page as user interface. In earlier versions of the firmware (3.5, 2.4) it was possible to execute Shell commands on the underlying operating system by calling cli.html. This page call happened without any authentication or authorisation, with the consequences that every one was able to compromise the router. (Source: http://www.cvedetails.com/cve/CVE-2014-1982/)
